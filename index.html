@@ -16,6 +16,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .brand h1{font-size:18px;margin:0}.brand p{margin:2px 0 0;font-size:11px;color:var(--muted)}
 .actions{display:flex;gap:7px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 11px;font-size:12px;font-weight:750;color:var(--ink)}
 .btn:hover{border-color:#9da9b9;transform:translateY(-1px)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.danger{color:var(--danger)}.btn.small{padding:6px 8px;font-size:11px}.btn.icon{width:31px;height:31px;padding:0}
+.library-title{font-size:10px;font-weight:800;color:#475467;margin:10px 0 6px}.library-list{display:grid;gap:6px}.library-item{display:flex;align-items:center;gap:6px;padding:6px;border:1px solid #e0e5ec;border-radius:8px;background:#fbfcfe}.library-item .library-name{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;font-weight:700;color:#344054}.library-empty{font-size:10px;color:var(--muted);padding:3px 0}
+.confirm-dialog{width:min(420px,calc(100vw - 32px));border:0;border-radius:12px;padding:0;box-shadow:0 24px 70px rgba(16,24,40,.28);color:var(--ink)}.confirm-dialog::backdrop{background:rgba(16,24,40,.45)}.confirm-dialog .dialog-body{padding:18px}.confirm-dialog h3{margin:0 0 7px;font-size:15px}.confirm-dialog p{margin:0;color:#475467;font-size:12px;line-height:1.5}.confirm-dialog .dialog-actions{display:flex;justify-content:flex-end;gap:8px;padding:12px 18px;border-top:1px solid #e4e7ec;background:#f9fafb}
 .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;background:#f1f4f8;padding:5px;border-radius:10px;margin-bottom:14px}.tab{border:0;background:transparent;border-radius:7px;padding:8px 4px;font-size:11px;font-weight:800}.tab.active{background:#fff;box-shadow:0 2px 8px rgba(16,24,40,.08);color:var(--accent)}
 .tabpane{display:none}.tabpane.active{display:block}
 .panel{border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:12px;background:var(--panel)}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.panelhead h2{font-size:13px;margin:0}.hint{font-size:10px;color:var(--muted)}
@@ -334,7 +336,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 body.pdf-exporting .invoice.template-minimal{padding:23px 33px 30px 33px!important}
 
 .invoice.template-classic{padding:12mm 13mm;font-family:var(--font-oneeducation)}.template-classic .inv-header{display:block}.template-classic .companywrap{justify-content:flex-end;display:flex}.template-classic .logobox{display:grid}.template-classic .companyname{font-size:14px;text-align:right;font-family:var(--font-oneeducation-sans);font-weight:700}.template-classic .metaText{text-align:right;font-size:9.5px;font-family:var(--font-oneeducation-lucida)}.template-classic .invtitle{text-align:left;margin-top:-54px}.template-classic .invtitle h2{font-size:29px;font-weight:700;font-family:var(--font-oneeducation-sans)}.template-classic .invno{font-size:12px}.template-classic .balance{margin-left:auto;width:240px;border:0;background:transparent;border-bottom:2px double #111;border-radius:0}.template-classic .billrow{margin:18px 0 14px}.template-classic .invtable th{background:#fff;border:1px solid #111;color:#111;font-family:var(--font-oneeducation-sans)}.template-classic .invtable td{border:1px solid #111;font-family:var(--font-oneeducation-sans)}.template-classic .bottomgrid{grid-template-columns:1fr 220px}.template-classic .notebox{border:0;background:#fff}.template-classic .summary{border-top:1px solid #111}
-.invoice.template-royalty{padding:13mm 13mm;font-family:var(--font-royalty)}.template-royalty .inv-header{grid-template-columns:1fr .72fr}.template-royalty .companywrap{display:block}.template-royalty .logobox{margin-bottom:8px;border:0;border-radius:0}.template-royalty .companyname{font-size:17px}.template-royalty .invtitle h2{font-size:26px;font-weight:650}.template-royalty .balance{display:none}.template-royalty .billrow{margin:15px 0}.template-royalty .invtable th{background:#e5e5e5;border-color:#777;color:#111;font-family:var(--font-royalty);font-weight:700}.template-royalty .invtable td{border-color:#777;font-family:var(--font-royalty)}.template-royalty .bottomgrid{grid-template-columns:1fr 220px}.template-royalty .summary{border-top:1px solid #111}.template-royalty .status{border-radius:2px}
+.invoice.template-royalty{padding:13mm 13mm;font-family:var(--font-royalty)}.template-royalty .inv-header{grid-template-columns:1fr .72fr}.template-royalty .companywrap{display:block}.template-royalty .logobox{margin-bottom:8px;border:0;border-radius:0}.template-royalty .companyname{font-size:17px}.template-royalty .invtitle h2{font-size:26px;font-weight:650}.template-royalty .balance{display:none}.template-royalty .billrow{margin:15px 0}.template-royalty .invtable th{background:#e5e5e5;border-color:#777;color:#111;font-family:var(--font-royalty);font-weight:700}.template-royalty .invtable td{border-color:#777;font-family:var(--font-royalty)}.template-royalty .bottomgrid{grid-template-columns:minmax(0,1fr) 220px;align-items:start}.template-royalty .notebox{min-width:0}.template-royalty .notebox .label,.template-royalty .paymentgrid .label{text-transform:none;letter-spacing:0;font-size:10px;line-height:1.25;margin-bottom:7px;color:#333}.template-royalty .notebox .metaText,.template-royalty .paymentgrid .metaText{white-space:pre-wrap;line-height:1.5;overflow-wrap:anywhere;word-break:normal}.template-royalty .summary{border-top:1px solid #111}.template-royalty .status{border-radius:2px}
 .toast{position:fixed;right:20px;bottom:20px;background:#172033;color:#fff;padding:11px 14px;border-radius:10px;box-shadow:0 12px 35px rgba(0,0,0,.25);font-size:12px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s;z-index:99}.toast.show{opacity:1;transform:none}
 
 
@@ -520,6 +522,16 @@ body.pdf-exporting .invoice.template-minimal{padding:23px 33px 30px 33px!importa
   </article>
 </main>
 </div>
+<dialog class="confirm-dialog" id="templateOverwriteDialog">
+  <div class="dialog-body">
+    <h3>Template already exists</h3>
+    <p id="templateOverwriteMessage"></p>
+  </div>
+  <div class="dialog-actions">
+    <button class="btn" type="button" id="templateOverwriteCancel">Cancel</button>
+    <button class="btn primary" type="button" id="templateOverwriteConfirm">Overwrite</button>
+  </div>
+</dialog>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -569,7 +581,7 @@ function renderPreview(){
   modern:{title:"INVOICE",bill:"Bill to",status:"Invoice status",balance:"Balance due",note:"Invoice note",payment:"Payment details",terms:"Terms",date:"Invoice date",due:"Due date",ref:"Reference"},
   minimal:{title:"INVOICE",bill:"Bill To:",status:"Status:",balance:":",note:"Notes:",payment:"Notes:",terms:"Terms:",date:"Date:",due:"Due date:",ref:":"},
   classic:{title:"Invoice",bill:"Bill To",status:"Status",balance:"Balance Due",note:"Notes",payment:"Payment Details:",terms:"Terms",date:"Date",due:"Due Date",ref:"Invoice no."},
-  royalty:{title:"INVOICE",bill:"To:",status:"Status:",balance:"BalanceDue:",note:"InvoiceNote:",payment:"Payment Details:",terms:"Terms:",date:"Date:",due:"Due Date:",ref:""}
+  royalty:{title:"INVOICE",bill:"To:",status:"Status:",balance:"Balance Due:",note:"Invoice Note:",payment:"Payment Details:",terms:"Terms:",date:"Date:",due:"Due Date:",ref:"Reference:"}
  }[tpl];
  $("pInvoiceTitle").textContent=cases.title;
  $("pBillToLabel").textContent=cases.bill;
@@ -585,7 +597,12 @@ function renderPreview(){
  $("pCompanyName").textContent=$("companyName").value.trim()||"Your Company";$("pCompanyMeta").textContent=metaCompany();
  let no=$("invoiceNumber").value.trim()||"Untitled";$("pInvoiceNo").textContent=(tpl==="minimal"?"# ":"#")+no;$("pDate").textContent=dateFmt($("invoiceDate").value);$("pDue").textContent=dateFmt($("dueDate").value);$("pReference").textContent=$("reference").value.trim()||"—";
  $("pClientName").textContent=$("clientName").value.trim()||"Client company";$("pClientMeta").textContent=metaClient();
- const notesText=$("notes").value.trim();
+ let notesText=$("notes").value.trim();
+ // Repair the known Alpha invoice-note typo without changing unrelated wording.
+ if(tpl==="royalty"&&/\bbank detailsfor payment\b/i.test(notesText)){
+   notesText=notesText.replace(/\bbank detailsfor payment\b/gi,"bank details for payment");
+   $("notes").value=notesText;
+ }
  const termsText=$("terms").value.trim();
  $("pNotes").textContent=notesText;
  $("pPayment").textContent=$("paymentDetails").value.trim();
@@ -593,6 +610,8 @@ function renderPreview(){
  $("pFooterCompany").textContent=$("companyName").value.trim()||"Your Company";$("pFooterInvoice").textContent="Invoice #"+no;
  let status=$("status").value,p=$("pStatus"),styles={Draft:["#475467","#f2f4f7","#d0d5dd"],Due:["#18794e","#ecfdf3","#abefc6"],Paid:["#175cd3","#eff8ff","#b2ddff"],"Partially Paid":["#9a6700","#fffaeb","#fedf89"],Overdue:["#b42318","#fef3f2","#fecdca"],Cancelled:["#667085","#f2f4f7","#d0d5dd"]}[status]||["#475467","#f2f4f7","#d0d5dd"];p.textContent="● "+status;p.style.color=styles[0];p.style.background=styles[1];p.style.borderColor=styles[2];
  document.querySelectorAll("[data-section]").forEach(e=>e.classList.toggle("section-hidden",!state.sections[e.dataset.section]));
+ const referenceRow=document.querySelector('.metatable tr[data-section="reference"]');
+ if(tpl==="royalty"&&referenceRow)referenceRow.classList.toggle("section-hidden",!state.sections.reference||!$("reference").value.trim());
  const notesSection=document.querySelector('[data-section="notes"]');
  const termsSection=document.querySelector('[data-section="terms"]');
  if(notesSection)notesSection.classList.toggle("section-hidden",!state.sections.notes||!notesText);
@@ -604,12 +623,23 @@ function renderPreview(){
    paymentSection.classList.toggle("section-hidden",!paymentText);
  }
  let visible=state.columns.filter(c=>c.visible);
+ // Alpha/Fanatical statements use one Royalty value column. The generic invoice
+ // model has both Rate and Amount roles, so hide Rate when Amount is available
+ // instead of rendering two columns with the same "Royalty" heading.
+ if(tpl==="royalty"){
+   const amountCol=visible.find(c=>c.role==="amount");
+   const rateCol=visible.find(c=>c.role==="rate");
+   if(amountCol&&rateCol)visible=visible.filter(c=>c!==rateCol);
+ }
  if(tpl==="minimal"){
    const desc=visible.find(c=>String(c.key).toLowerCase()==="description");
    const sku=visible.find(c=>String(c.key).toLowerCase()==="sku");
    if(desc&&sku)visible=visible.filter(c=>c!==sku);
  }if(tpl==="minimal"&&visible.length===4){
    $("pCols").innerHTML='<col style="width:55%"><col style="width:15%"><col style="width:15%"><col style="width:15%">';
+ }else if(tpl==="royalty"&&visible.length===4){
+   // Fanatical royalty layout: SKU, Name, Net Qty, Royalty.
+   $("pCols").innerHTML='<col style="width:20%"><col style="width:50%"><col style="width:12%"><col style="width:18%">';
  }else{
    $("pCols").innerHTML=visible.map(c=>`<col style="width:${Math.max(5,num(c.width))}%">`).join("");
  }const headerLabel=(c)=>{
@@ -1000,15 +1030,65 @@ function getLibrary(key){
   try{return JSON.parse(localStorage.getItem(key)||"[]")}catch(e){return []}
 }
 function setLibrary(key,value){localStorage.setItem(key,JSON.stringify(value))}
+function renderLibraryList(root,items,type){
+  if(!root)return;
+  root.innerHTML="";
+  const title=document.createElement("div");
+  title.className="library-title";
+  title.textContent=type==="template"?"Templates":"Brands";
+  root.appendChild(title);
+  if(!items.length){
+    const empty=document.createElement("div");
+    empty.className="library-empty";
+    empty.textContent=type==="template"?"No templates saved":"No brands saved";
+    root.appendChild(empty);
+    return;
+  }
+  const list=document.createElement("div");
+  list.className="library-list";
+  items.forEach((x,i)=>{
+    const row=document.createElement("div");
+    row.className="library-item";
+    const name=document.createElement("div");
+    name.className="library-name";
+    name.textContent=x.name;
+    const loadBtn=document.createElement("button");
+    loadBtn.type="button";
+    loadBtn.className="btn small";
+    loadBtn.textContent="Load";
+    loadBtn.onclick=()=>type==="template"?window.loadInvoiceTemplate(i):window.loadInvoiceBrand(i);
+    row.append(name,loadBtn);
+    if(type==="template"){
+      const deleteBtn=document.createElement("button");
+      deleteBtn.type="button";
+      deleteBtn.className="btn small danger";
+      deleteBtn.textContent="Delete";
+      deleteBtn.onclick=()=>window.deleteInvoiceTemplate(i);
+      row.appendChild(deleteBtn);
+    }
+    list.appendChild(row);
+  });
+  root.appendChild(list);
+}
 function refreshLibraries(){
   const ts=getLibrary(TEMPLATE_KEY), bs=getLibrary(BRAND_KEY);
-  const t=$("savedTemplates"), b=$("savedBrands");
-  if(t)t.innerHTML="<b>Templates</b><br>"+(ts.length?ts.map((x,i)=>`<button class="btn small" onclick="loadInvoiceTemplate(${i})">${x.name}</button>`).join(" "):"No templates saved");
-  if(b)b.innerHTML="<br><b>Brands</b><br>"+(bs.length?bs.map((x,i)=>`<button class="btn small" onclick="loadInvoiceBrand(${i})">${x.name}</button>`).join(" "):"No brands saved");
+  renderLibraryList($("savedTemplates"),ts,"template");
+  renderLibraryList($("savedBrands"),bs,"brand");
 }
 window.loadInvoiceTemplate=function(i){
   const x=getLibrary(TEMPLATE_KEY)[i];
   if(x){load(JSON.parse(JSON.stringify(x.data)));renderColumns();renderItems();renderToggles();renderPreview();save();toast("Template loaded: "+x.name)}
+}
+window.deleteInvoiceTemplate=function(i){
+  const list=getLibrary(TEMPLATE_KEY), x=list[i];
+  if(!x)return;
+  if(!confirm(`Delete template "${x.name}"?
+
+This cannot be undone.`))return;
+  list.splice(i,1);
+  setLibrary(TEMPLATE_KEY,list);
+  refreshLibraries();
+  toast("Template deleted: "+x.name);
 }
 window.loadInvoiceBrand=function(i){
   const x=getLibrary(BRAND_KEY)[i];
@@ -1021,14 +1101,48 @@ window.loadInvoiceBrand=function(i){
     renderPreview();save();toast("Brand loaded: "+x.name);
   }
 }
+function promptTemplateOverwrite(existingName,onOverwrite){
+  const dialog=$("templateOverwriteDialog");
+  const message=$("templateOverwriteMessage");
+  if(!dialog||typeof dialog.showModal!=="function"){
+    if(confirm(`A template named "${existingName}" already exists.
+
+Overwrite it?`))onOverwrite();
+    else toast("Template save cancelled");
+    return;
+  }
+  message.textContent=`A template named "${existingName}" already exists. Do you want to replace it with the current invoice settings?`;
+  dialog.returnValue="";
+  $("templateOverwriteCancel").onclick=()=>dialog.close("cancel");
+  $("templateOverwriteConfirm").onclick=()=>dialog.close("overwrite");
+  dialog.onclose=()=>{
+    dialog.onclose=null;
+    if(dialog.returnValue==="overwrite")onOverwrite();
+    else toast("Template save cancelled");
+  };
+  dialog.showModal();
+}
 $("saveTemplateBtn").onclick=()=>{
-  const name=prompt("Template name (example: One Education Royalty)");
-  if(!name)return;
+  const entered=prompt("Template name (example: One Education Royalty)");
+  if(entered===null)return;
+  const name=entered.trim();
+  if(!name)return toast("Template name cannot be empty.");
   const list=getLibrary(TEMPLATE_KEY);
-  list.push({name,data:serialize()});
+  const existing=list.findIndex(x=>String(x.name||"").trim().toLocaleLowerCase()===name.toLocaleLowerCase());
+  const record={name,data:serialize()};
+  if(existing!==-1){
+    promptTemplateOverwrite(list[existing].name,()=>{
+      list[existing]=record;
+      setLibrary(TEMPLATE_KEY,list);
+      refreshLibraries();
+      toast("Template overwritten: "+name);
+    });
+    return;
+  }
+  list.push(record);
   setLibrary(TEMPLATE_KEY,list);
   refreshLibraries();
-  toast("Template saved");
+  toast("Template saved: "+name);
 };
 $("saveBrandBtn").onclick=()=>{
   const name=prompt("Brand name");
