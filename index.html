@@ -464,7 +464,16 @@ body.pdf-exporting .invoice.template-minimal{padding:23px 33px 30px 33px!importa
     </section>
     <section class="panel">
       <div class="panelhead"><h2>Show / hide sections</h2></div>
-      <div id="sectionToggles"></div>
+      <div id="sectionToggles"></div><div class="section" id="templateManagerSection">
+<h2>Brand & Template Library</h2>
+<div class="actions">
+<button class="btn small primary" id="saveTemplateBtn">Save Template</button>
+<button class="btn small" id="saveBrandBtn">Save Brand</button>
+</div>
+<div id="savedTemplates" class="hint"></div>
+<div id="savedBrands" class="hint"></div>
+</div>
+
     </section>
   </div>
 <div class="sidebar-resizer" id="sidebarResizer" title="Drag to resize sidebar"></div>
@@ -663,7 +672,97 @@ function load(d){if(!d||typeof d!=="object")throw Error("Invalid invoice file.")
 function download(name,text){let b=new Blob([text],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),500)}
 function parseCSV(t){let rows=[],row=[],cell="",q=false;for(let i=0;i<t.length;i++){let c=t[i],n=t[i+1];if(c=='"'&&q&&n=='"'){cell+='"';i++}else if(c=='"')q=!q;else if(c==","&&!q){row.push(cell);cell=""}else if((c=="\n"||c=="\r")&&!q){if(c=="\r"&&n=="\n")i++;row.push(cell);rows.push(row);row=[];cell=""}else cell+=c}if(cell.length||row.length){row.push(cell);rows.push(row)}return rows}
 function norm(s){return String(s??"").trim().toLowerCase().replace(/[^a-z0-9]+/g," ")}
-function mapRows(rows){if(!rows.length)return[];let best=0,score=-1;rows.slice(0,30).forEach((r,i)=>{let s=r.reduce((n,x)=>n+(["sku","description","name","item","quantity","qty","net qty","rate","unit price","amount","royalty"].includes(norm(x))?1:0),0);if(s>score){score=s;best=i}});let h=rows[best].map(x=>String(x??"").trim()),data=rows.slice(best+1),aliases={sku:["sku","item code","product code","code"],description:["description","name","item","product","course name"],quantity:["quantity","qty","net qty","net quantity"],rate:["rate","unit price","price","unit rate"],amount:["amount","total","royalty","line total"]};return data.map(r=>{let o={};h.forEach((x,i)=>o[x]=r[i]);let item={};state.columns.forEach(c=>{let candidates=[norm(c.label),norm(c.key),...(aliases[c.key]||[])],key=Object.keys(o).find(k=>candidates.includes(norm(k)));if(key!=null)item[c.key]=o[key]});let q=roleCol("quantity"),rate=roleCol("rate"),amount=roleCol("amount");if(q&&(!item[q.key]&&item[q.key]!==0))item[q.key]=1;if(rate&&amount&&num(item[rate.key])===0&&num(item[amount.key]))item[rate.key]=num(item[amount.key])/Math.max(1,num(item[q?.key]||1));return Object.values(item).some(v=>String(v??"").trim())?item:null}).filter(Boolean)}
+function mapRows(rows){
+  if(!rows.length)return[];
+
+  // Find the real royalty table header.
+  let best=0,score=-1;
+  rows.slice(0,100).forEach((r,i)=>{
+    const s=r.reduce((n,x)=>{
+      const v=norm(x);
+      return n+([
+        "sku","name","description","quantity","qty",
+        "net qty","royalty","amount"
+      ].includes(v)?1:0);
+    },0);
+    if(s>score){score=s;best=i;}
+  });
+
+  const headers=rows[best].map(x=>String(x??"").trim());
+  let data=rows.slice(best+1);
+
+  // Remove royalty statement footer and summary rows.
+  const stopWords=[
+    "royalties are converted",
+    "all values are exclusive",
+    "please invoice for",
+    "supplier id",
+    "exchange rate",
+    "total royalty",
+    "subtotal"
+  ];
+
+  const isStopRow=(row)=>{
+    const text=row.map(v=>norm(v)).join(" ");
+    return stopWords.some(w=>text.includes(w));
+  };
+
+  const clean=[];
+  for(const row of data){
+    if(isStopRow(row)) break;
+
+    // Ignore completely empty rows.
+    if(row.every(v=>String(v??"").trim()==="")){
+      if(clean.length) break;
+      continue;
+    }
+
+    clean.push(row);
+  }
+
+  const aliases={
+    sku:["sku","item code","product code","code"],
+    description:["description","name","item","product","course name"],
+    quantity:["quantity","qty","net qty","net quantity"],
+    rate:["rate","unit price","price","unit rate"],
+    amount:["amount","total","royalty","line total"]
+  };
+
+  return clean.map(row=>{
+    let source={};
+    headers.forEach((h,i)=>source[h]=row[i]);
+
+    let item={};
+    state.columns.forEach(c=>{
+      const candidates=[
+        norm(c.label),
+        norm(c.key),
+        ...(aliases[c.key]||[])
+      ];
+
+      const key=Object.keys(source).find(k=>candidates.includes(norm(k)));
+      if(key!==undefined)item[c.key]=source[key];
+    });
+
+    const q=roleCol("quantity");
+    const rate=roleCol("rate");
+    const amount=roleCol("amount");
+
+    if(q && item[q.key]==="" ) item[q.key]=1;
+
+    if(
+      rate &&
+      amount &&
+      num(item[rate.key])===0 &&
+      num(item[amount.key])
+    ){
+      item[rate.key]=num(item[amount.key])/Math.max(1,num(item[q?.key]||1));
+    }
+
+    return Object.values(item).some(v=>String(v??"").trim()) ? item : null;
+  }).filter(Boolean);
+}
+
 async function ensureXLSX(){if(window.XLSX)return;await new Promise((res,rej)=>{let s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";s.onload=res;s.onerror=()=>rej(Error("Excel parser could not load. Use CSV or connect to the internet."));document.head.appendChild(s)})}
 
 
@@ -881,6 +980,63 @@ $("invoiceDate").value=today();$("dueDate").value=plusDays(today(),14);
 if(!$("logoWidth").value)$("logoWidth").value="120";
 if(!$("logoHeight").value)$("logoHeight").value="54";setAccent("#2563eb");renderColumns();renderItems();renderToggles();renderPreview();
 try{let raw=localStorage.getItem(KEY);if(raw)load(JSON.parse(raw))}catch{}
+
+// ===== Brand Manager + Template Library =====
+const TEMPLATE_KEY="invoiceStudio.templates.v1";
+const BRAND_KEY="invoiceStudio.brands.v1";
+
+function getLibrary(key){
+  try{return JSON.parse(localStorage.getItem(key)||"[]")}catch(e){return []}
+}
+function setLibrary(key,value){localStorage.setItem(key,JSON.stringify(value))}
+function refreshLibraries(){
+  const ts=getLibrary(TEMPLATE_KEY), bs=getLibrary(BRAND_KEY);
+  const t=$("savedTemplates"), b=$("savedBrands");
+  if(t)t.innerHTML="<b>Templates</b><br>"+(ts.length?ts.map((x,i)=>`<button class="btn small" onclick="loadInvoiceTemplate(${i})">${x.name}</button>`).join(" "):"No templates saved");
+  if(b)b.innerHTML="<br><b>Brands</b><br>"+(bs.length?bs.map((x,i)=>`<button class="btn small" onclick="loadInvoiceBrand(${i})">${x.name}</button>`).join(" "):"No brands saved");
+}
+window.loadInvoiceTemplate=function(i){
+  const x=getLibrary(TEMPLATE_KEY)[i];
+  if(x){load(JSON.parse(JSON.stringify(x.data)));renderColumns();renderItems();renderToggles();renderPreview();save();toast("Template loaded: "+x.name)}
+}
+window.loadInvoiceBrand=function(i){
+  const x=getLibrary(BRAND_KEY)[i];
+  if(x){
+    const d=JSON.parse(JSON.stringify(x.data));
+    state.company=d.company||state.company;
+    state.logo=d.logo||state.logo;
+    state.currency=d.currency||state.currency;
+    state.template=d.template||state.template;
+    renderPreview();save();toast("Brand loaded: "+x.name);
+  }
+}
+$("saveTemplateBtn").onclick=()=>{
+  const name=prompt("Template name (example: One Education Royalty)");
+  if(!name)return;
+  const list=getLibrary(TEMPLATE_KEY);
+  list.push({name,data:serialize()});
+  setLibrary(TEMPLATE_KEY,list);
+  refreshLibraries();
+  toast("Template saved");
+};
+$("saveBrandBtn").onclick=()=>{
+  const name=prompt("Brand name");
+  if(!name)return;
+  const data=serialize();
+  const list=getLibrary(BRAND_KEY);
+  list.push({name,data:{
+    company:data.company,
+    logo:data.logo,
+    currency:data.currency,
+    template:data.template,
+    columns:data.columns,
+    settings:data.settings
+  }});
+  setLibrary(BRAND_KEY,list);
+  refreshLibraries();
+  toast("Brand saved");
+};
+refreshLibraries();
 </script>
 </body>
 </html>
