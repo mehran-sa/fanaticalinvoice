@@ -32,7 +32,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .hidden{display:none!important}
 .canvasbar{width:210mm;margin:0 auto 10px;display:flex;justify-content:space-between;align-items:center;gap:10px}.canvasbar .meta{font-size:11px;color:var(--muted)}
 .invoice{--template-accent:var(--accent);width:210mm;min-height:297mm;margin:auto;background:#fff;box-shadow:0 18px 55px rgba(16,24,40,.14);padding:14mm 14mm 13mm;position:relative;overflow:hidden;font-family:var(--font-modern)}
-.invoice .section-hidden{display:none!important}.inv-header{display:grid;grid-template-columns:1.15fr .85fr;gap:26px}.companywrap{display:flex;gap:12px;align-items:flex-start}.logobox{width:64px;height:64px;border:1px solid #d7dde6;border-radius:10px;background:#f7f9fc;display:grid;place-items:center;overflow:hidden;flex:none}.logobox img{width:100%;height:100%;object-fit:contain;display:none}.logobox.has-logo{background:transparent;border-color:transparent}.logofallback{width:42px;height:42px;border-radius:11px;background:var(--template-accent);color:#fff;font-size:20px;font-weight:900;display:grid;place-items:center}.companyname{font-size:20px;font-weight:800;margin:1px 0 5px}.metaText{white-space:pre-line;font-size:10.5px;color:#485568;line-height:1.45}.invtitle{text-align:right}.invtitle h2{margin:0;font-size:36px;font-weight:300;letter-spacing:.04em}.invno{font-size:15px;color:#667085;font-weight:700;margin-top:3px}.metatable{width:100%;margin-top:14px;border-collapse:collapse;font-size:10.5px}.metatable td{padding:3px 0}.metatable td:first-child{text-align:left;color:#667085}.metatable td:last-child{text-align:right;font-weight:700}.balance{margin-top:13px;background:rgba(var(--accent-rgb),.08);border:1px solid rgba(var(--accent-rgb),.14);border-radius:8px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800}.balance strong{font-size:18px;color:var(--template-accent)}
+.invoice .section-hidden{display:none!important}.topdetails{display:contents}.inv-header{display:grid;grid-template-columns:1.15fr .85fr;gap:26px}.companywrap{display:flex;gap:12px;align-items:flex-start}.logobox{width:64px;height:64px;border:1px solid #d7dde6;border-radius:10px;background:#f7f9fc;display:grid;place-items:center;overflow:hidden;flex:none}.logobox img{width:100%;height:100%;object-fit:contain;display:none}.logobox.has-logo{background:transparent;border-color:transparent}.logofallback{width:42px;height:42px;border-radius:11px;background:var(--template-accent);color:#fff;font-size:20px;font-weight:900;display:grid;place-items:center}.companyname{font-size:20px;font-weight:800;margin:1px 0 5px}.metaText{white-space:pre-line;font-size:10.5px;color:#485568;line-height:1.45}.invtitle{text-align:right}.invtitle h2{margin:0;font-size:36px;font-weight:300;letter-spacing:.04em}.invno{font-size:15px;color:#667085;font-weight:700;margin-top:3px}.metatable{width:100%;margin-top:14px;border-collapse:collapse;font-size:10.5px}.metatable td{padding:3px 0}.metatable td:first-child{text-align:left;color:#667085}.metatable td:last-child{text-align:right;font-weight:700}.balance{margin-top:13px;background:rgba(var(--accent-rgb),.08);border:1px solid rgba(var(--accent-rgb),.14);border-radius:8px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800}.balance strong{font-size:18px;color:var(--template-accent)}
 .billrow{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:20px 0}.label{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#667085;font-weight:850;margin-bottom:5px}.clientname{font-size:14px;font-weight:850;margin-bottom:4px;white-space:pre-line}.status{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:9.5px;font-weight:850;border:1px solid #abefc6;background:#ecfdf3;color:#18794e}
 .invtable{width:100%;border-collapse:collapse;table-layout:fixed;font-size:10px}.invtable th{padding:8px 7px;text-transform:none;letter-spacing:.04em;font-size:8.5px;background:#f4f6f9;color:#344054;border:1px solid #cfd6e0;text-align:left}.invtable td{padding:8px 7px;border:1px solid #d7dde6;vertical-align:top;overflow-wrap:anywhere}.invtable .right{text-align:right}.empty{text-align:center;color:#98a2b3;padding:20px!important}
 .bottomgrid{display:grid;grid-template-columns:1fr 250px;gap:24px;margin-top:16px}.notebox{border:1px solid #d8dee7;border-radius:8px;padding:10px;background:#fbfcfe;min-height:88px}.summary{border-top:2px solid #344054;padding-top:6px}.sumrow{display:flex;justify-content:space-between;gap:14px;padding:4px 0;font-size:10.5px}.sumrow span:first-child{color:#667085}.sumrow.total{border-top:1px solid #d0d5dd;margin-top:4px;padding-top:9px;font-size:14px;font-weight:850}.paymentgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;border-top:1px solid #d9dee7;margin-top:21px;padding-top:15px}.footer{position:absolute;bottom:9mm;left:14mm;right:14mm;display:flex;justify-content:space-between;font-size:8.5px;color:#8a94a5}
@@ -46,15 +46,19 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   overflow:hidden;
 }
 .template-minimal:before{display:none!important}
+.template-minimal .topdetails{
+  display:block;
+  position:relative;
+  min-height:190px;
+  margin:0 0 42px;
+  padding:0;
+}
 .template-minimal .inv-header{
-  display:grid;
-  grid-template-columns:316px minmax(0,1fr);
-  column-gap:18px;
-  align-items:start;
-  min-height:228px;
+  display:contents;
 }
 .template-minimal .companywrap{
   display:block;
+  width:316px;
   margin:0;
   padding:0;
 }
@@ -90,8 +94,10 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   color:#303030;
 }
 .template-minimal .invtitle{
-  position:relative;
-  width:100%;
+  position:absolute;
+  top:0;
+  right:0;
+  width:calc(100% - 334px);
   height:190px;
   margin:0;
   padding:0;
@@ -191,8 +197,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 }
 .template-minimal .billrow{
   display:block;
-  width:316px;
-  margin:-88px 0 42px 20px;
+  width:296px;
+  margin:14px 0 0 20px;
   padding:0;
   border:0;
 }
@@ -486,6 +492,7 @@ body.pdf-exporting .invoice.template-minimal{padding:23px 33px 30px 33px!importa
 <main class="workspace">
   <div class="canvasbar"><div class="meta" id="previewMeta">A4 portrait preview</div><div class="actions"><button class="btn small" id="zoomOut">−</button><span class="meta" id="zoomLabel">100%</span><button class="btn small" id="zoomIn">+</button></div></div>
   <article class="invoice template-modern" id="invoice">
+    <div class="topdetails">
     <header class="inv-header">
       <div class="companywrap" data-section="company">
         <div class="logobox" data-section="logo"><img id="pLogo"><div class="logofallback" id="pLogoFallback">Y</div></div>
@@ -505,6 +512,7 @@ body.pdf-exporting .invoice.template-minimal{padding:23px 33px 30px 33px!importa
       <div data-section="client"><div class="label" id="pBillToLabel">Bill to</div><div class="clientname" id="pClientName">Client company</div><div class="metaText" id="pClientMeta">Add client details</div></div>
       <div data-section="status"><div class="label" id="pStatusLabel">Invoice status</div><span class="status" id="pStatus">● Due</span></div>
     </section>
+    </div>
     <table class="invtable"><colgroup id="pCols"></colgroup><thead><tr id="pHeaders"></tr></thead><tbody id="pItems"></tbody></table>
     <section class="bottomgrid">
       <div class="notebox" data-section="notes"><div class="label" id="pNoteLabel">Invoice note</div><div class="metaText" id="pNotes"></div></div>
@@ -921,6 +929,7 @@ function buildInvoicePrintDocument(autoPrint=true){
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
+    .topdetails,
     .inv-header,
     .billrow,
     .balance,
