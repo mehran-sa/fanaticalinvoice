@@ -343,7 +343,244 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 }
 body.pdf-exporting .invoice.template-minimal{padding:23px 33px 30px 33px!important}
 
-.invoice.template-classic{padding:12mm 13mm;font-family:var(--font-oneeducation)}.template-classic .inv-header{display:block}.template-classic .companywrap{justify-content:flex-end;display:flex}.template-classic .logobox{display:grid}.template-classic .companyname{font-size:14px;text-align:right;font-family:var(--font-oneeducation-sans);font-weight:700}.template-classic .metaText{text-align:right;font-size:9.5px;font-family:var(--font-oneeducation-lucida)}.template-classic .invtitle{text-align:left;margin-top:-54px}.template-classic .invtitle h2{font-size:29px;font-weight:700;font-family:var(--font-oneeducation-sans)}.template-classic .invno{font-size:12px}.template-classic .balance{margin-left:auto;width:240px;border:0;background:transparent;border-bottom:2px double #111;border-radius:0}.template-classic .billrow{margin:18px 0 14px}.template-classic .invtable th{background:#fff;border:1px solid #111;color:#111;font-family:var(--font-oneeducation-sans)}.template-classic .invtable td{border:1px solid #111;font-family:var(--font-oneeducation-sans)}.template-classic .bottomgrid{grid-template-columns:1fr 220px}.template-classic .notebox{border:0;background:#fff}.template-classic .summary{border-top:1px solid #111}
+/* ONE EDUCATION TEMPLATE - matched to One Education - Fanatical Invoice 2026-0228.pdf. */
+.invoice.template-classic{
+  padding:16mm 8mm 14mm;
+  font-family:var(--font-oneeducation-sans);
+  color:#111;
+  overflow:hidden;
+}
+.template-classic .topdetails{display:block}
+.template-classic .inv-header{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  min-height:17mm;
+  margin:0 8mm;
+  padding:0 0 3px;
+  border-bottom:4px double #111;
+}
+.template-classic .companywrap{
+  display:block;
+  margin:0;
+  padding:0;
+}
+.template-classic .logobox,
+.template-classic .companyname{display:none!important}
+.template-classic .companywrap .metaText{
+  margin:0;
+  padding:0;
+  text-align:left;
+  white-space:pre-line;
+  font-family:var(--font-oneeducation-sans);
+  font-size:11px;
+  line-height:1.28;
+  font-weight:700;
+  color:#111;
+}
+.template-classic .invtitle{
+  position:static;
+  margin:0;
+  padding:0;
+  text-align:right;
+}
+.template-classic .invtitle h2{
+  margin:6.5mm 1mm 0 0;
+  padding:0;
+  font-family:var(--font-oneeducation-sans);
+  font-size:25px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:0;
+  color:#111;
+}
+.template-classic .invno{display:none!important}
+.template-classic .metatable{
+  position:absolute;
+  top:calc(100% + 12mm);
+  right:0;
+  width:43%;
+  margin:0;
+  border-collapse:collapse;
+  table-layout:fixed;
+  font-family:var(--font-oneeducation-sans);
+  font-size:11px;
+  line-height:1.2;
+}
+.template-classic .metatable tr{height:20px}
+.template-classic .metatable td{
+  padding:1px 0;
+  border:0;
+  color:#111;
+  white-space:nowrap;
+}
+.template-classic .metatable td:first-child{
+  width:58%;
+  padding-right:8px;
+  text-align:right;
+  font-weight:700;
+  color:#111;
+}
+.template-classic .metatable td:last-child{
+  width:42%;
+  text-align:right;
+  font-weight:400;
+}
+.classic-only{display:none}
+.template-classic .classic-only{display:table-row}
+.template-classic .metatable tr[data-section="reference"]{display:none!important}
+.template-classic .balance{display:none!important}
+.template-classic .billrow{
+  display:block;
+  min-height:24mm;
+  margin:9mm 8mm 8.5mm;
+  padding:0;
+}
+.template-classic .billrow>[data-section="status"]{display:none!important}
+.template-classic .billrow .label{
+  margin:0 0 1px;
+  padding:0;
+  text-transform:none;
+  letter-spacing:0;
+  font-family:var(--font-oneeducation-sans);
+  font-size:12px;
+  line-height:1.25;
+  font-weight:700;
+  color:#111;
+}
+.template-classic .clientname{
+  margin:0 0 1px;
+  padding:0;
+  white-space:pre-line;
+  font-family:var(--font-oneeducation-sans);
+  font-size:12px;
+  line-height:1.35;
+  font-weight:700;
+  color:#111;
+}
+.template-classic .billrow .metaText{
+  max-width:58%;
+  margin:0;
+  padding:0;
+  text-align:left;
+  white-space:pre-line;
+  font-family:var(--font-oneeducation-sans);
+  font-size:11px;
+  line-height:1.52;
+  font-weight:400;
+  color:#111;
+}
+.template-classic .invtable{
+  width:100%;
+  margin:0;
+  border-collapse:collapse;
+  border-spacing:0;
+  table-layout:fixed;
+  font-family:var(--font-oneeducation-sans);
+  font-size:10.5px;
+  color:#111;
+}
+.template-classic .invtable th{
+  padding:10px 7px;
+  border:1px solid #111;
+  background:#fff;
+  color:#111;
+  text-transform:none;
+  letter-spacing:0;
+  font-family:var(--font-oneeducation-sans);
+  font-size:11px;
+  line-height:1.15;
+  font-weight:400;
+  text-align:left;
+  vertical-align:middle;
+}
+.template-classic .invtable th:nth-child(n+2){text-align:center}
+.template-classic .invtable td{
+  padding:12.7px 7px;
+  border:1px solid #111;
+  background:#fff;
+  color:#111;
+  font-family:var(--font-oneeducation-sans);
+  font-size:10.5px;
+  line-height:1.28;
+  font-weight:400;
+  vertical-align:top;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+.template-classic .invtable td:first-child{text-align:center}
+.template-classic .invtable td.right{text-align:right}
+.template-classic .invtable tbody td:nth-last-child(2){text-align:center}
+.template-classic .invtable tfoot{display:table-row-group}
+.template-classic .invtable .classic-total-row td{
+  padding:7px;
+  font-size:11px;
+  line-height:1.15;
+  vertical-align:middle;
+}
+.template-classic .invtable .classic-total-label{text-align:center!important}
+.template-classic .invtable .classic-total-qty{text-align:center!important}
+.template-classic .invtable .classic-total-money{text-align:right!important}
+.template-classic .bottomgrid{display:none!important}
+.template-classic .paymentgrid{
+  display:block;
+  margin:14mm 0 0;
+  padding:0;
+  border:0;
+}
+.template-classic .paymentgrid>[data-section="terms"]{display:none!important}
+.template-classic .paymentgrid>[data-section="payment"]{display:block;break-inside:avoid;page-break-inside:avoid}
+.template-classic .paymentgrid .label{
+  margin:0 0 9mm;
+  padding:0;
+  text-transform:none;
+  letter-spacing:0;
+  font-family:var(--font-oneeducation-sans);
+  font-size:19px;
+  line-height:1.1;
+  font-weight:700;
+  color:#111;
+}
+.template-classic .paymentgrid .metaText{
+  width:78%;
+  margin:0 auto;
+  padding:0;
+  border:2px solid #111;
+  font-family:var(--font-oneeducation-sans);
+  font-size:11px;
+  line-height:1.2;
+  color:#111;
+}
+.template-classic .oe-payment-row{
+  display:grid;
+  grid-template-columns:28% 72%;
+  min-height:40px;
+}
+.template-classic .oe-payment-row+.oe-payment-row{border-top:2px solid #111}
+.template-classic .oe-payment-key,
+.template-classic .oe-payment-value{
+  display:flex;
+  align-items:center;
+  padding:10px 7px;
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+.template-classic .oe-payment-key{
+  border-right:2px solid #111;
+  font-weight:700;
+}
+.template-classic .oe-payment-value{font-weight:400}
+.template-classic .oe-payment-row.oe-payment-free .oe-payment-key{display:none}
+.template-classic .oe-payment-row.oe-payment-free{grid-template-columns:1fr}
+.template-classic .footer{display:none!important}
+@media print{
+  .invoice.template-classic{padding:16mm 8mm 14mm!important}
+  .invoice.template-classic .invtable thead{display:table-row-group!important}
+  .invoice.template-classic .invtable tr{break-inside:auto!important;page-break-inside:auto!important}
+  .invoice.template-classic .paymentgrid{break-before:auto!important;page-break-before:auto!important}
+}
+body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
 .invoice.template-royalty{padding:13mm 13mm;font-family:var(--font-royalty)}.template-royalty .inv-header{grid-template-columns:1fr .72fr}.template-royalty .companywrap{display:block}.template-royalty .logobox{margin-bottom:8px;border:0;border-radius:0}.template-royalty .companyname{font-size:17px}.template-royalty .invtitle h2{font-size:26px;font-weight:650}.template-royalty .metatable{table-layout:fixed}.template-royalty .metatable td:first-child{width:62%;text-align:right;padding-right:24px}.template-royalty .metatable td:last-child{width:38%;text-align:right}.template-royalty .balance{display:grid;grid-template-columns:62% 38%;background:#f4f4f4;border:0;border-radius:3px;color:#303030;margin-top:18px;padding:8px 14px}.template-royalty .balance span{text-align:right;padding-right:24px}.template-royalty .balance strong{color:#303030;font-size:17px;text-align:right}.template-royalty .billrow{margin:15px 0}.template-royalty .clientname{white-space:pre-line;line-height:1.55}.template-royalty .invtable th{background:#e5e5e5;border-color:#777;color:#111;font-family:var(--font-royalty);font-weight:700}.template-royalty .invtable td{border-color:#777;font-family:var(--font-royalty)}.template-royalty .bottomgrid{grid-template-columns:minmax(0,1fr) 220px;align-items:start}.template-royalty .notebox{min-width:0}.template-royalty .notebox .label,.template-royalty .paymentgrid .label{text-transform:none;letter-spacing:0;font-size:10px;line-height:1.25;margin-bottom:7px;color:#333}.template-royalty .notebox .metaText{white-space:pre-wrap;line-height:1.5;overflow-wrap:anywhere;word-break:normal;font-weight:700;font-style:italic}.template-royalty .paymentgrid .metaText{white-space:pre-wrap;line-height:1.5;overflow-wrap:anywhere;word-break:normal;font-weight:400;font-style:normal}.template-royalty .summary{border-top:1px solid #111}.template-royalty .status{border-radius:2px}
 .toast{position:fixed;right:20px;bottom:20px;background:#172033;color:#fff;padding:11px 14px;border-radius:10px;box-shadow:0 12px 35px rgba(0,0,0,.25);font-size:12px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s;z-index:99}.toast.show{opacity:1;transform:none}
 
@@ -502,6 +739,7 @@ body.pdf-exporting .invoice.template-minimal{padding:23px 33px 30px 33px!importa
       <div class="invtitle">
         <h2 id="pInvoiceTitle">INVOICE</h2><div class="invno" id="pInvoiceNo">#INV-1001</div>
         <table class="metatable">
+          <tr class="classic-only" id="classicInvoiceNoRow"><td>Invoice no.</td><td id="pClassicInvoiceNo">—</td></tr>
           <tr data-section="invoiceDate"><td>Invoice date</td><td id="pDate">—</td></tr>
           <tr data-section="dueDate"><td>Due date</td><td id="pDue">—</td></tr>
           <tr data-section="reference"><td>Reference</td><td id="pReference">—</td></tr>
@@ -514,7 +752,7 @@ body.pdf-exporting .invoice.template-minimal{padding:23px 33px 30px 33px!importa
       <div data-section="status"><div class="label" id="pStatusLabel">Invoice status</div><span class="status" id="pStatus">● Due</span></div>
     </section>
     </div>
-    <table class="invtable"><colgroup id="pCols"></colgroup><thead><tr id="pHeaders"></tr></thead><tbody id="pItems"></tbody></table>
+    <table class="invtable"><colgroup id="pCols"></colgroup><thead><tr id="pHeaders"></tr></thead><tbody id="pItems"></tbody><tfoot id="pClassicTotals"></tfoot></table>
     <section class="bottomgrid">
       <div class="notebox" data-section="notes"><div class="label" id="pNoteLabel">Invoice note</div><div class="metaText" id="pNotes"></div></div>
       <div class="summary">
@@ -569,6 +807,16 @@ function plusDays(s,n){let d=new Date(s+"T00:00:00");d.setDate(d.getDate()+n);re
 function num(v){v=Number(v);return Number.isFinite(v)?v:0}
 function esc(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;")}
 function dateFmt(v){if(!v)return"—";return new Intl.DateTimeFormat(undefined,{day:"numeric",month:"long",year:"numeric"}).format(new Date(v+"T00:00:00"))}
+function oneEducationDateFmt(v){if(!v)return"—";const [y,m,d]=String(v).split("-");return d&&m&&y?`${d}/${m}/${y}`:dateFmt(v)}
+function oneEducationCompanyMeta(){let a=[];if($("companyAddress").value.trim())a.push($("companyAddress").value.trim());if($("companyPhone").value.trim())a.push($("companyPhone").value.trim());if($("companyEmail").value.trim())a.push($("companyEmail").value.trim());if($("companyWebsite").value.trim())a.push($("companyWebsite").value.trim());return a.join("\n")||"Add your company details"}
+function oneEducationPaymentRows(text){
+ const known=["Account Name","Account Number","Bank Name","Bank Branch","Sort Code","BIC","IBAN","Paypal"];
+ return String(text||"").split(/\r?\n/).map(x=>x.trim()).filter(Boolean).map(line=>{
+   for(const label of known){const re=new RegExp("^"+label.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\s*:?[\\s\t-]*(.*)$","i"),m=line.match(re);if(m)return{key:label,value:(m[1]||"").trim()}}
+   const colon=line.indexOf(":");if(colon>0)return{key:line.slice(0,colon).trim(),value:line.slice(colon+1).trim()};
+   return{key:"",value:line};
+ });
+}
 function money(v){let c=$("currency").value;try{return new Intl.NumberFormat(undefined,{style:"currency",currency:c,minimumFractionDigits:2}).format(num(v))}catch{return c+" "+num(v).toFixed(2)}}
 function toast(s){let e=$("toast");e.textContent=s;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("show"),2200)}
 function safeColor(v){return /^#[0-9a-f]{6}$/i.test(v)?v:"#2563eb"}
@@ -584,14 +832,14 @@ function renderPreview(){
  const fontNames={
   modern:"Inter / Segoe UI / Arial",
   minimal:"Nimbus Sans Regular + Bold",
-  classic:"Times New Roman + Arial Black + Arial + Lucida Sans",
+  classic:"Arial / Liberation Sans",
   royalty:"Calibri Regular + Bold"
  };
  $("fontHint").textContent="PDF font stack: "+fontNames[tpl];
  const cases={
   modern:{title:"INVOICE",bill:"Bill to",status:"Invoice status",balance:"Balance due",note:"Invoice note",payment:"Payment details",terms:"Terms",date:"Invoice date",due:"Due date",ref:"Reference"},
   minimal:{title:"INVOICE",bill:"Bill To:",status:"Status:",balance:":",note:"Notes:",payment:"Notes:",terms:"Terms:",date:"Date:",due:"Due date:",ref:":"},
-  classic:{title:"Invoice",bill:"Bill To",status:"Status",balance:"Balance Due",note:"Notes",payment:"Payment Details:",terms:"Terms",date:"Date",due:"Due Date",ref:"Invoice no."},
+  classic:{title:"Invoice",bill:"Bill To",status:"Status",balance:"Balance Due",note:"Notes",payment:"Payment Details:",terms:"Terms",date:"Date",due:"Due Date",ref:"Reference"},
   royalty:{title:"INVOICE",bill:"To:",status:"Status:",balance:"Balance Due:",note:"Invoice Note:",payment:"Payment Details:",terms:"Terms:",date:"Date:",due:"Due Date:",ref:"Reference:"}
  }[tpl];
  $("pInvoiceTitle").textContent=cases.title;
@@ -601,12 +849,18 @@ function renderPreview(){
  $("pNoteLabel").textContent=cases.note;
  $("pPaymentLabel").textContent=cases.payment;
  $("pTermsLabel").textContent=cases.terms;
- const metaLabels=document.querySelectorAll(".metatable td:first-child");
- if(metaLabels[0])metaLabels[0].textContent=cases.date;
- if(metaLabels[1])metaLabels[1].textContent=cases.due;
- if(metaLabels[2])metaLabels[2].textContent=cases.ref;
- $("pCompanyName").textContent=$("companyName").value.trim()||"Your Company";$("pCompanyMeta").textContent=metaCompany();
- let no=$("invoiceNumber").value.trim()||"Untitled";$("pInvoiceNo").textContent=(tpl==="minimal"?"# ":"#")+no;$("pDate").textContent=dateFmt($("invoiceDate").value);$("pDue").textContent=dateFmt($("dueDate").value);$("pReference").textContent=$("reference").value.trim()||"—";
+ const invoiceDateLabel=document.querySelector('.metatable tr[data-section="invoiceDate"] td:first-child');
+ const dueDateLabel=document.querySelector('.metatable tr[data-section="dueDate"] td:first-child');
+ const referenceLabel=document.querySelector('.metatable tr[data-section="reference"] td:first-child');
+ if(invoiceDateLabel)invoiceDateLabel.textContent=cases.date;
+ if(dueDateLabel)dueDateLabel.textContent=cases.due;
+ if(referenceLabel)referenceLabel.textContent=cases.ref;
+ $("pCompanyName").textContent=$("companyName").value.trim()||"Your Company";$("pCompanyMeta").textContent=tpl==="classic"?oneEducationCompanyMeta():metaCompany();
+ let no=$("invoiceNumber").value.trim()||"Untitled";$("pInvoiceNo").textContent=(tpl==="minimal"?"# ":"#")+no;
+ if($("pClassicInvoiceNo"))$("pClassicInvoiceNo").textContent=no;
+ $("pDate").textContent=tpl==="classic"?oneEducationDateFmt($("invoiceDate").value):dateFmt($("invoiceDate").value);
+ $("pDue").textContent=tpl==="classic"?oneEducationDateFmt($("dueDate").value):dateFmt($("dueDate").value);
+ $("pReference").textContent=$("reference").value.trim()||"—";
  $("pClientName").textContent=$("clientName").value.trim()||"Client company";$("pClientMeta").textContent=metaClient();
  let notesText=$("notes").value.trim();
  // Repair the known Alpha invoice-note typo without changing unrelated wording.
@@ -616,7 +870,11 @@ function renderPreview(){
  }
  const termsText=$("terms").value.trim();
  $("pNotes").textContent=notesText;
- $("pPayment").textContent=$("paymentDetails").value.trim();
+ const rawPayment=$("paymentDetails").value.trim();
+ if(tpl==="classic"){
+   const rows=oneEducationPaymentRows(rawPayment);
+   $("pPayment").innerHTML=rows.map(r=>`<div class="oe-payment-row ${r.key?"":"oe-payment-free"}">${r.key?`<div class="oe-payment-key">${esc(r.key)}</div>`:""}<div class="oe-payment-value">${esc(r.value)}</div></div>`).join("");
+ }else $("pPayment").textContent=rawPayment;
  $("pTerms").textContent=termsText;
  $("pFooterCompany").textContent=$("companyName").value.trim()||"Your Company";$("pFooterInvoice").textContent="Invoice #"+no;
  let status=$("status").value,p=$("pStatus"),styles={Draft:["#475467","#f2f4f7","#d0d5dd"],Due:["#18794e","#ecfdf3","#abefc6"],Paid:["#175cd3","#eff8ff","#b2ddff"],"Partially Paid":["#9a6700","#fffaeb","#fedf89"],Overdue:["#b42318","#fef3f2","#fecdca"],Cancelled:["#667085","#f2f4f7","#d0d5dd"]}[status]||["#475467","#f2f4f7","#d0d5dd"];p.textContent="● "+status;p.style.color=styles[0];p.style.background=styles[1];p.style.borderColor=styles[2];
@@ -637,7 +895,7 @@ function renderPreview(){
  // Alpha/Fanatical statements use one Royalty value column. The generic invoice
  // model has both Rate and Amount roles, so hide Rate when Amount is available
  // instead of rendering two columns with the same "Royalty" heading.
- if(tpl==="royalty"){
+ if(tpl==="royalty"||tpl==="classic"){
    const amountCol=visible.find(c=>c.role==="amount");
    const rateCol=visible.find(c=>c.role==="rate");
    if(amountCol&&rateCol)visible=visible.filter(c=>c!==rateCol);
@@ -646,7 +904,10 @@ function renderPreview(){
    const desc=visible.find(c=>String(c.key).toLowerCase()==="description");
    const sku=visible.find(c=>String(c.key).toLowerCase()==="sku");
    if(desc&&sku)visible=visible.filter(c=>c!==sku);
- }if(tpl==="minimal"&&visible.length===4){
+ }if(tpl==="classic"&&visible.length===4){
+   // One Education statement: Description (SKU), Name, Net Qty, Royalty.
+   $("pCols").innerHTML='<col style="width:13%"><col style="width:64%"><col style="width:11%"><col style="width:12%">';
+ }else if(tpl==="minimal"&&visible.length===4){
    $("pCols").innerHTML='<col style="width:55%"><col style="width:15%"><col style="width:15%"><col style="width:15%">';
  }else if(tpl==="royalty"&&visible.length===4){
    // Fanatical royalty layout: SKU, Name, Net Qty, Royalty.
@@ -677,7 +938,15 @@ function renderPreview(){
  };
  $("pHeaders").innerHTML=visible.map(c=>`<th class="${c.align==="right"?"right":""}">${esc(headerLabel(c))}</th>`).join("");
  let body=$("pItems");body.innerHTML="";if(!state.items.length)body.innerHTML=`<tr><td class="empty" colspan="${Math.max(1,visible.length)}">No line items added.</td></tr>`;else state.items.forEach(item=>{let tr=document.createElement("tr");tr.innerHTML=visible.map(c=>`<td class="${c.align==="right"?"right":""}">${fmtCell(itemValue(item,c),c)}</td>`).join("");body.appendChild(tr)});
- let t=calc();$("pSubtotal").textContent=money(t.subtotal);$("discountLabel").textContent=`Discount (${t.dr.toFixed(2).replace(/\.00$/,"")}%)`;$("pDiscount").textContent="−"+money(t.disc);$("taxLabel").textContent=`Tax (${t.tr.toFixed(2).replace(/\.00$/,"")}%)`;$("pTax").textContent=money(t.tax);$("pShipping").textContent=money(t.ship);$("pTotal").textContent=$("pBalance").textContent=money(t.total);
+ let t=calc();
+ const classicTotals=$("pClassicTotals");
+ if(classicTotals){
+   if(tpl==="classic"&&state.items.length){
+     const qcol=roleCol("quantity"), qtyTotal=qcol?state.items.reduce((sum,item)=>sum+num(item[qcol.key]),0):0;
+     classicTotals.innerHTML=`<tr class="classic-total-row">${visible.map(c=>{const key=String(c.key||"").toLowerCase();if(key==="description")return `<td class="classic-total-label">Total</td>`;if(c.role==="quantity")return `<td class="classic-total-qty">${qtyTotal.toLocaleString(undefined,{maximumFractionDigits:2})}</td>`;if(c.role==="amount"||c.role==="rate")return `<td class="classic-total-money">${money(t.subtotal)}</td>`;return `<td></td>`}).join("")}</tr>`;
+   }else classicTotals.innerHTML="";
+ }
+ $("pSubtotal").textContent=money(t.subtotal);$("discountLabel").textContent=`Discount (${t.dr.toFixed(2).replace(/\.00$/,"")}%)`;$("pDiscount").textContent="−"+money(t.disc);$("taxLabel").textContent=`Tax (${t.tr.toFixed(2).replace(/\.00$/,"")}%)`;$("pTax").textContent=money(t.tax);$("pShipping").textContent=money(t.ship);$("pTotal").textContent=$("pBalance").textContent=money(t.total);
  $("discountRow").style.display=t.disc&&state.sections.discount?"flex":"none";$("taxRow").style.display=t.tax&&state.sections.tax?"flex":"none";$("shippingRow").style.display=t.ship&&state.sections.shipping?"flex":"none";
  $("pLogoFallback").textContent=($("companyName").value.trim()[0]||"I").toUpperCase();
  let img=$("pLogo"),box=img.closest(".logobox");
@@ -955,6 +1224,13 @@ function buildInvoicePrintDocument(autoPrint=true){
     .invoice.template-classic .paymentgrid {
       break-before: auto !important;
       page-break-before: auto !important;
+    }
+    /* The supplied One Education PDF continues a row across the page break and
+       does not repeat the table heading on page two. */
+    .invoice.template-classic .invtable thead { display: table-row-group !important; }
+    .invoice.template-classic .invtable tr {
+      break-inside: auto !important;
+      page-break-inside: auto !important;
     }
 
     /* Hide any controls accidentally nested inside invoice content. */
