@@ -480,6 +480,7 @@ body.pdf-exporting .invoice.template-minimal{padding:23px 33px 30px 33px!importa
 <button class="btn small primary" id="saveTemplateBtn">Save Template</button>
 <button class="btn small" id="saveBrandBtn">Save Brand</button>
 </div>
+<div class="hint" style="margin-top:6px">Brands save your seller/company identity and visual setup without replacing client details, invoice numbers, dates or line items.</div>
 <div id="savedTemplates" class="hint"></div>
 <div id="savedBrands" class="hint"></div>
 </div>
@@ -1108,6 +1109,13 @@ function renderLibraryList(root,items,type){
       deleteBtn.textContent="Delete";
       deleteBtn.onclick=()=>window.deleteInvoiceTemplate(i);
       row.appendChild(deleteBtn);
+    }else{
+      const removeBtn=document.createElement("button");
+      removeBtn.type="button";
+      removeBtn.className="btn small danger";
+      removeBtn.textContent="Remove";
+      removeBtn.onclick=()=>window.deleteInvoiceBrand(i);
+      row.appendChild(removeBtn);
     }
     list.appendChild(row);
   });
@@ -1133,16 +1141,43 @@ This cannot be undone.`))return;
   refreshLibraries();
   toast("Template deleted: "+x.name);
 }
+const BRAND_FIELD_IDS=[
+  "companyName","companyReg","companyVat","companyAddress","companyPhone","companyEmail","companyWebsite",
+  "currency","template","accent","accentHex","logoWidth","logoHeight","logoFit","logoAlign",
+  "paymentDetails","terms"
+];
+function serializeBrand(){
+  const brandFields={};
+  BRAND_FIELD_IDS.forEach(id=>brandFields[id]=$(id).value);
+  return{version:2,logo:state.logo,fields:brandFields};
+}
 window.loadInvoiceBrand=function(i){
   const x=getLibrary(BRAND_KEY)[i];
-  if(x){
-    const d=JSON.parse(JSON.stringify(x.data));
-    state.company=d.company||state.company;
-    state.logo=d.logo||state.logo;
-    state.currency=d.currency||state.currency;
-    state.template=d.template||state.template;
-    renderPreview();save();toast("Brand loaded: "+x.name);
+  if(!x)return;
+  const d=JSON.parse(JSON.stringify(x.data||{}));
+  // v2 brands store only reusable seller/design fields, so invoice-specific data stays untouched.
+  if(d.fields&&typeof d.fields==="object") BRAND_FIELD_IDS.forEach(id=>{if(id in d.fields)$(id).value=d.fields[id]});
+  // Backward compatibility for older brand records that stored top-level values.
+  if(d.company&&typeof d.company==="object") {
+    const legacy={companyName:"name",companyReg:"reg",companyVat:"vat",companyAddress:"address",companyPhone:"phone",companyEmail:"email",companyWebsite:"website"};
+    Object.entries(legacy).forEach(([id,key])=>{if(key in d.company)$(id).value=d.company[key]??""});
   }
+  if(typeof d.currency==="string")$("currency").value=d.currency;
+  if(typeof d.template==="string")$("template").value=d.template;
+  state.logo=typeof d.logo==="string"?d.logo:state.logo;
+  setAccent($("accentHex").value);
+  renderPreview();save();toast("Brand loaded: "+x.name);
+}
+window.deleteInvoiceBrand=function(i){
+  const list=getLibrary(BRAND_KEY), x=list[i];
+  if(!x)return;
+  if(!confirm(`Remove brand "${x.name}"?
+
+This removes it from the saved Brand Library only. The current invoice will not be changed.`))return;
+  list.splice(i,1);
+  setLibrary(BRAND_KEY,list);
+  refreshLibraries();
+  toast("Brand removed: "+x.name);
 }
 function promptTemplateOverwrite(existingName,onOverwrite){
   const dialog=$("templateOverwriteDialog");
@@ -1188,21 +1223,15 @@ $("saveTemplateBtn").onclick=()=>{
   toast("Template saved: "+name);
 };
 $("saveBrandBtn").onclick=()=>{
-  const name=prompt("Brand name");
-  if(!name)return;
-  const data=serialize();
+  const entered=prompt("Brand name");
+  if(entered===null)return;
+  const name=entered.trim();
+  if(!name)return toast("Brand name cannot be empty.");
   const list=getLibrary(BRAND_KEY);
-  list.push({name,data:{
-    company:data.company,
-    logo:data.logo,
-    currency:data.currency,
-    template:data.template,
-    columns:data.columns,
-    settings:data.settings
-  }});
+  list.push({name,data:serializeBrand()});
   setLibrary(BRAND_KEY,list);
   refreshLibraries();
-  toast("Brand saved");
+  toast("Brand saved: "+name);
 };
 refreshLibraries();
 </script>
