@@ -839,20 +839,31 @@ function buildInvoicePrintDocument(autoPrint=true){
   const css=[...document.querySelectorAll("style")].map(s=>s.textContent||"").join("\n");
 
   const printOverrides=`
-    @page { size: A4 portrait; margin: 0; }
+    /* Use the PDF page box as the source of truth. This prevents the document
+       from growing wider than A4 and removes the extra strip on the right. */
+    @page {
+      size: 210mm 297mm;
+      margin: 12mm 0 0 0;
+    }
+    @page :first {
+      margin-top: 0;
+    }
     html, body {
       margin: 0 !important;
       padding: 0 !important;
-      width: 210mm !important;
+      width: 100% !important;
+      max-width: 210mm !important;
       background: #fff !important;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
     body {
-      overflow: visible !important;
+      overflow-x: hidden !important;
+      overflow-y: visible !important;
     }
     .invoice {
-      width: 210mm !important;
+      width: 100% !important;
+      max-width: 210mm !important;
       min-height: 297mm !important;
       height: auto !important;
       margin: 0 !important;
@@ -892,8 +903,8 @@ function buildInvoicePrintDocument(autoPrint=true){
     .invoice.template-minimal .paymentgrid:not(.section-hidden) {
       break-before: page !important;
       page-break-before: always !important;
-      min-height: 297mm !important;
-      padding-top: 14mm !important;
+      min-height: 0 !important;
+      padding-top: 0 !important;
       margin-top: 0 !important;
     }
 
@@ -910,8 +921,8 @@ function buildInvoicePrintDocument(autoPrint=true){
     }
 
     @media print {
-      html, body { width: 210mm !important; }
-      .invoice { width: 210mm !important; }
+      html, body { width: 100% !important; max-width: 210mm !important; }
+      .invoice { width: 100% !important; max-width: 210mm !important; }
     }
   `;
 
