@@ -582,63 +582,6 @@ body.pdf-exporting .invoice.template-minimal{padding:23px 33px 30px 33px!importa
 }
 body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
 .invoice.template-royalty{padding:13mm 13mm;font-family:var(--font-royalty)}.template-royalty .inv-header{grid-template-columns:1fr .72fr}.template-royalty .companywrap{display:block}.template-royalty .logobox{margin-bottom:8px;border:0;border-radius:0}.template-royalty .companyname{font-size:17px}.template-royalty .invtitle h2{font-size:26px;font-weight:650}.template-royalty .metatable{table-layout:fixed}.template-royalty .metatable td:first-child{width:62%;text-align:right;padding-right:24px}.template-royalty .metatable td:last-child{width:38%;text-align:right}.template-royalty .balance{display:grid;grid-template-columns:62% 38%;background:#f4f4f4;border:0;border-radius:3px;color:#303030;margin-top:18px;padding:8px 14px}.template-royalty .balance span{text-align:right;padding-right:24px}.template-royalty .balance strong{color:#303030;font-size:17px;text-align:right}.template-royalty .billrow{margin:15px 0}.template-royalty .clientname{white-space:pre-line;line-height:1.55}.template-royalty .invtable th{background:#e5e5e5;border-color:#777;color:#111;font-family:var(--font-royalty);font-weight:700}.template-royalty .invtable td{border-color:#777;font-family:var(--font-royalty)}.template-royalty .bottomgrid{grid-template-columns:minmax(0,1fr) 220px;align-items:start}.template-royalty .notebox{min-width:0}.template-royalty .notebox .label,.template-royalty .paymentgrid .label{text-transform:none;letter-spacing:0;font-size:10px;line-height:1.25;margin-bottom:7px;color:#333}.template-royalty .notebox .metaText{white-space:pre-wrap;line-height:1.5;overflow-wrap:anywhere;word-break:normal;font-weight:700;font-style:italic}.template-royalty .paymentgrid .metaText{white-space:pre-wrap;line-height:1.5;overflow-wrap:anywhere;word-break:normal;font-weight:400;font-style:normal}.template-royalty .summary{border-top:1px solid #111}.template-royalty .status{border-radius:2px}
-/* ===== HF FANATICAL — reference PDF template only ===== */
-.invoice.template-hf-fanatical{width:210mm;min-height:297mm;height:auto;padding:13mm 12.7mm 12mm;position:relative;overflow:hidden;background:#fff;color:#111;font-family:Verdana,Arial,sans-serif}
-.template-hf-fanatical .hf-watermark{position:absolute;z-index:0;left:50%;top:45%;width:136mm;height:136mm;transform:translate(-50%,-50%);opacity:.105;pointer-events:none;display:flex;align-items:center;justify-content:center}
-.template-hf-fanatical .hf-watermark img{width:100%;height:100%;object-fit:contain;display:block}
-.template-hf-fanatical > *:not(.hf-watermark){position:relative;z-index:1}
-.template-hf-fanatical .topdetails{display:block;margin:0;padding:0}
-.template-hf-fanatical .inv-header{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:47mm;align-items:start}
-.template-hf-fanatical .companywrap{display:block;width:auto;margin:0;padding:0}
-.template-hf-fanatical .companywrap > div:not(.logobox){display:none}
-.template-hf-fanatical .logobox{width:42mm!important;height:30mm!important;margin:0 0 0 8mm;padding:0;border:0;border-radius:0;background:transparent;display:flex;align-items:flex-start;justify-content:flex-start;overflow:visible}
-.template-hf-fanatical .logobox img{width:100%;height:100%;object-fit:contain;object-position:left top;display:block}
-.template-hf-fanatical .logofallback{display:none!important}
-.template-hf-fanatical .invtitle{position:static;width:auto;height:auto;margin:1mm 5mm 0 0;padding:0;text-align:left;font-family:Verdana,Arial,sans-serif}
-.template-hf-fanatical .invtitle h2{position:static;margin:0 0 1.5mm;padding:0;font-family:Verdana,Arial,sans-serif;font-size:25px;line-height:1.05;font-weight:400;letter-spacing:0;color:#222;white-space:nowrap}
-.template-hf-fanatical .invno{position:static;margin:0;padding:0;font-family:Verdana,Arial,sans-serif;font-size:11px;line-height:1.25;font-weight:400;color:#111;white-space:nowrap}
-.template-hf-fanatical .metatable{width:100%;margin:0;border:0;table-layout:auto;font-family:Verdana,Arial,sans-serif;font-size:10.5px}
-.template-hf-fanatical .metatable tr.classic-only{display:none!important}
-.template-hf-fanatical .metatable tr[data-section="invoiceDate"] td:first-child{padding-top:5mm}
-.template-hf-fanatical .metatable tr[data-section="dueDate"],.template-hf-fanatical .metatable tr[data-section="reference"]{display:none!important}
-.template-hf-fanatical .metatable td{padding:0;height:auto;border:0;font-size:10.5px;line-height:1.45;color:#111;white-space:nowrap}
-.template-hf-fanatical .metatable td:first-child{width:52%;text-align:left;color:#111;padding-right:8px}
-.template-hf-fanatical .metatable td:last-child{width:48%;text-align:left;font-weight:400;color:#111}
-.template-hf-fanatical .balance{display:none!important}
-.template-hf-fanatical .billrow{display:grid;grid-template-columns:1fr 1fr;gap:18mm;margin:0 0 28mm 0;padding:0;min-height:32mm}
-.template-hf-fanatical .billrow > [data-section="client"]{display:block;min-width:0;padding-left:8mm}
-.template-hf-fanatical .billrow > [data-section="status"]{display:block;min-width:0;padding-left:1mm}
-.template-hf-fanatical .billrow .label{margin:0 0 1.3mm;padding:0;text-transform:none;letter-spacing:0;font-family:Verdana,Arial,sans-serif;font-size:11px;line-height:1.25;font-weight:400;color:#111}
-.template-hf-fanatical .clientname{margin:0 0 1mm;padding:0;font-family:Verdana,Arial,sans-serif;font-size:11px;line-height:1.35;font-weight:700;color:#111;white-space:pre-line}
-.template-hf-fanatical .billrow .metaText{font-family:Verdana,Arial,sans-serif;font-size:10.5px;line-height:1.35;font-weight:400;color:#111;white-space:pre-line}
-.template-hf-fanatical .billrow > [data-section="status"] .label{font-size:11px;font-weight:700;margin-bottom:1mm}
-.template-hf-fanatical .billrow > [data-section="status"] .status{display:block;padding:0;border:0!important;border-radius:0;background:transparent!important;color:#111!important;font-family:Verdana,Arial,sans-serif;font-size:10.5px;line-height:1.35;font-weight:400;white-space:pre-line}
-.template-hf-fanatical .invtable{position:relative;z-index:2;width:calc(100% - 3mm);margin:0 1.5mm;border-collapse:collapse;table-layout:fixed;font-family:Calibri,Arial,sans-serif;font-size:9.6px;color:#111}
-.template-hf-fanatical .invtable th{padding:1.6mm 2mm;height:7.5mm;border:1px solid #222;background:#fff;color:#111;font-family:Calibri,Arial,sans-serif;font-size:9.6px;line-height:1.1;font-weight:700;text-transform:none;letter-spacing:0;text-align:center;vertical-align:middle}
-.template-hf-fanatical .invtable td{padding:1.25mm 2mm;min-height:6mm;border:1px solid #222;background:rgba(255,255,255,.78);color:#111;font-family:Calibri,Arial,sans-serif;font-size:9.6px;line-height:1.18;vertical-align:middle;overflow-wrap:anywhere;word-break:normal}
-.template-hf-fanatical .invtable th:first-child,.template-hf-fanatical .invtable td:first-child{text-align:left}
-.template-hf-fanatical .invtable th:nth-child(2),.template-hf-fanatical .invtable td:nth-child(2){text-align:center}
-.template-hf-fanatical .invtable th:nth-child(3),.template-hf-fanatical .invtable td:nth-child(3){text-align:right}
-.template-hf-fanatical .invtable .right{text-align:right}
-.template-hf-fanatical .invtable tfoot td{font-family:Verdana,Arial,sans-serif;font-weight:400;background:rgba(255,255,255,.86)}
-.template-hf-fanatical .invtable tfoot td:first-child{text-align:right}
-.template-hf-fanatical .bottomgrid{display:none!important}
-.template-hf-fanatical .paymentgrid{display:block;margin:25mm 0 0;padding:0;border:0;font-family:Verdana,Arial,sans-serif}
-.template-hf-fanatical .paymentgrid > [data-section="payment"]{display:block}
-.template-hf-fanatical .paymentgrid > [data-section="terms"]{display:none!important}
-.template-hf-fanatical .paymentgrid .label{margin:0 0 1.8mm;padding:0;text-transform:none;letter-spacing:0;font-family:Verdana,Arial,sans-serif;font-size:10.5px;line-height:1.25;font-weight:700;color:#111}
-.template-hf-fanatical .hf-paypal-line{margin:0 0 7mm;font-family:Verdana,Arial,sans-serif;font-size:10px;line-height:1.35;color:#111}
-.template-hf-fanatical .hf-paypal-line strong{font-weight:700}
-.template-hf-fanatical .hf-bank-title{margin:0 0 5mm;font-family:Verdana,Arial,sans-serif;font-size:10.5px;line-height:1.25;font-weight:700}
-.template-hf-fanatical .hf-bank-table{width:51%;border-collapse:collapse;table-layout:fixed;font-family:Calibri,Arial,sans-serif;font-size:9.8px;line-height:1.2}
-.template-hf-fanatical .hf-bank-table td{border:1px solid #222;padding:2.2mm 2.4mm;color:#111;vertical-align:middle;overflow-wrap:anywhere}
-.template-hf-fanatical .hf-bank-table td:first-child{width:35%;font-weight:400}.template-hf-fanatical .hf-bank-table td:last-child{width:65%;font-weight:400}
-.template-hf-fanatical .footer{left:0;right:0;bottom:10mm;display:flex;justify-content:center;align-items:center;font-family:"Times New Roman",Times,serif;font-size:10.5px;line-height:1.2;font-weight:700;font-style:italic;color:#222}
-.template-hf-fanatical .footer span:first-child{display:none}.template-hf-fanatical .footer span:last-child{font-size:0}.template-hf-fanatical .footer span:last-child:after{content:"Thank you for your Partnership!";font-size:10.5px}
-.template-hf-fanatical .section-hidden{display:none!important}
-@media(max-width:760px){.invoice.template-hf-fanatical{padding:10mm 7mm 11mm}.template-hf-fanatical .inv-header{min-height:48mm}.template-hf-fanatical .logobox{margin-left:3mm}.template-hf-fanatical .invtitle{margin-right:1mm}.template-hf-fanatical .invtitle h2{font-size:22px}.template-hf-fanatical .invno,.template-hf-fanatical .metatable td{font-size:9.5px}.template-hf-fanatical .billrow{gap:8mm;margin-bottom:18mm}.template-hf-fanatical .invtable{width:100%;margin:0}.template-hf-fanatical .invtable th,.template-hf-fanatical .invtable td{font-size:8.2px;padding:1.2mm 1.4mm}.template-hf-fanatical .paymentgrid{margin-top:18mm}.template-hf-fanatical .hf-bank-table{width:62%}}
-@media print{.invoice.template-hf-fanatical{width:210mm!important;min-height:297mm!important;padding:13mm 12.7mm 12mm!important;transform:none!important;box-shadow:none!important}.template-hf-fanatical .hf-watermark{opacity:.105!important}.template-hf-fanatical .invtable th,.template-hf-fanatical .invtable td,.template-hf-fanatical .hf-bank-table td{border-color:#222!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}.template-hf-fanatical .invtable tr{break-inside:avoid!important;page-break-inside:avoid!important}.template-hf-fanatical .paymentgrid{break-inside:avoid!important;page-break-inside:avoid!important}.template-hf-fanatical .footer{position:absolute!important}}
-
 .toast{position:fixed;right:20px;bottom:20px;background:#172033;color:#fff;padding:11px 14px;border-radius:10px;box-shadow:0 12px 35px rgba(0,0,0,.25);font-size:12px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s;z-index:99}.toast.show{opacity:1;transform:none}
 
 
@@ -647,155 +590,6 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
 /* ===== ISOLATED IN-PLACE PRINT SUPPORT ===== */
 @media print{
   @page{size:A4 portrait;margin:0}
-}
-
-
-/* HF FANATICAL — watermark + invoice metadata alignment */
-.invoice.template-hf-fanatical,
-.invoice.template-hf-fanatical * { box-sizing: border-box; }
-
-.invoice.template-hf-fanatical {
-  position: relative;
-  overflow: hidden;
-}
-
-.invoice.template-hf-fanatical .hf-watermark {
-  position: absolute !important;
-  z-index: 0 !important;
-  left: 50% !important;
-  top: 53% !important;
-  width: 78% !important;
-  max-width: 165mm !important;
-  height: auto !important;
-  transform: translate(-50%, -50%) !important;
-  opacity: .095 !important;
-  pointer-events: none !important;
-  object-fit: contain !important;
-}
-
-.invoice.template-hf-fanatical > *:not(.hf-watermark) {
-  position: relative;
-  z-index: 1;
-}
-
-.invoice.template-hf-fanatical .hf-head {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: start;
-}
-
-.invoice.template-hf-fanatical .hf-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start !important;
-  justify-self: end;
-  width: 46%;
-  text-align: left !important;
-}
-
-.invoice.template-hf-fanatical .hf-meta h1,
-.invoice.template-hf-fanatical .hf-meta h2,
-.invoice.template-hf-fanatical .hf-meta .hf-invoice-title {
-  width: 100%;
-  text-align: left !important;
-  margin-left: 0 !important;
-}
-
-.invoice.template-hf-fanatical .hf-meta .hf-meta-row {
-  display: grid !important;
-  grid-template-columns: 58px minmax(0, 1fr) !important;
-  column-gap: 8px !important;
-  width: 100% !important;
-  align-items: baseline !important;
-  text-align: left !important;
-}
-
-.invoice.template-hf-fanatical .hf-meta .hf-meta-label,
-.invoice.template-hf-fanatical .hf-meta .hf-meta-value {
-  text-align: left !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-@media (max-width: 700px) {
-  .invoice.template-hf-fanatical .hf-head {
-    grid-template-columns: 1fr;
-    row-gap: 18px;
-  }
-  .invoice.template-hf-fanatical .hf-meta {
-    justify-self: start;
-    width: 100%;
-  }
-  .invoice.template-hf-fanatical .hf-watermark {
-    width: 88% !important;
-    top: 52% !important;
-  }
-}
-
-@media print {
-  .invoice.template-hf-fanatical .hf-watermark {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-}
-
-
-/* HF Fanatical payment details */
-.invoice.template-hf-fanatical .hf-paypal-details,
-.invoice.hf-fanatical .hf-paypal-details {
-  font-family: Verdana, Arial, sans-serif;
-  font-size: 10pt;
-  margin-top: 7mm;
-  text-align: left;
-}
-
-.invoice.template-hf-fanatical .hf-payment-label,
-.invoice.hf-fanatical .hf-payment-label {
-  font-weight: 700;
-}
-
-.invoice.template-hf-fanatical .hf-bank-table,
-.invoice.hf-fanatical .hf-bank-table {
-  border-collapse: collapse;
-  width: 50%;
-  min-width: 85mm;
-  max-width: 105mm;
-  margin-top: 5mm;
-  font-family: Verdana, Arial, sans-serif;
-  font-size: 9pt;
-}
-
-.invoice.template-hf-fanatical .hf-bank-table td,
-.invoice.hf-fanatical .hf-bank-table td {
-  border: 1px solid #111;
-  padding: 1.8mm 3mm;
-  line-height: 1.15;
-  vertical-align: middle;
-  text-align: left;
-}
-
-.invoice.template-hf-fanatical .hf-bank-table td:first-child,
-.invoice.hf-fanatical .hf-bank-table td:first-child {
-  width: 35%;
-  font-weight: 400;
-  white-space: nowrap;
-}
-
-@media (max-width:700px){
-  .invoice.template-hf-fanatical .hf-bank-table,
-  .invoice.hf-fanatical .hf-bank-table {
-    width:100%;
-    min-width:0;
-    max-width:none;
-  }
-}
-@media print{
-  .invoice.template-hf-fanatical .hf-bank-table,
-  .invoice.hf-fanatical .hf-bank-table {
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
-  }
 }
 
 </style>
@@ -902,7 +696,7 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
           <option value="modern">Modern Professional</option>
           <option value="minimal">Janets PDF - Exact Layout</option>
           <option value="classic">One Education Classic</option>
-          <option value="royalty">Alpha / Fanatical Royalty</option><option value="hf-fanatical">HF Fanatical</option>
+          <option value="royalty">Alpha / Fanatical Royalty</option>
         </select>
         <div class="hint" id="fontHint" style="margin-top:6px">Font: Inter / Segoe UI</div><div class="hint" style="margin-top:3px">Measured PDF sizes: 27.75 pt invoice title, 12 pt invoice number, 11.25 pt balance, and 9.75 pt body/table text. Nimbus Sans is used when installed; Helvetica/Arial is the fallback.</div>
       </div>
@@ -935,7 +729,7 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
 
 <main class="workspace">
   <div class="canvasbar"><div class="meta" id="previewMeta">A4 portrait preview</div><div class="actions"><button class="btn small" id="zoomOut">−</button><span class="meta" id="zoomLabel">100%</span><button class="btn small" id="zoomIn">+</button></div></div>
-  <article class="invoice template-modern" id="invoice"><div class="hf-watermark" aria-hidden="true"><img src="hf-assets/hf-watermark.png" alt=""></div>
+  <article class="invoice template-modern" id="invoice">
     <div class="topdetails">
     <header class="inv-header">
       <div class="companywrap" data-section="company">
@@ -1039,16 +833,14 @@ function renderPreview(){
   modern:"Inter / Segoe UI / Arial",
   minimal:"Nimbus Sans Regular + Bold",
   classic:"Arial / Liberation Sans",
-  royalty:"Calibri Regular + Bold",
-  "hf-fanatical":"Verdana + Calibri + Times New Roman"
+  royalty:"Calibri Regular + Bold"
  };
  $("fontHint").textContent="PDF font stack: "+fontNames[tpl];
  const cases={
   modern:{title:"INVOICE",bill:"Bill to",status:"Invoice status",balance:"Balance due",note:"Invoice note",payment:"Payment details",terms:"Terms",date:"Invoice date",due:"Due date",ref:"Reference"},
   minimal:{title:"INVOICE",bill:"Bill To:",status:"Status:",balance:":",note:"Notes:",payment:"Notes:",terms:"Terms:",date:"Date:",due:"Due date:",ref:":"},
   classic:{title:"Invoice",bill:"Bill To",status:"Status",balance:"Balance Due",note:"Notes",payment:"Payment Details:",terms:"Terms",date:"Date",due:"Due Date",ref:"Reference"},
-  royalty:{title:"INVOICE",bill:"To:",status:"Status:",balance:"Balance Due:",note:"Invoice Note:",payment:"Payment Details:",terms:"Terms:",date:"Date:",due:"Due Date:",ref:"Reference:"},
-  "hf-fanatical":{title:"INVOICE",bill:"Invoice for [Period]",status:"Recipient / Client",balance:"",note:"",payment:"",terms:"",date:"Date:",due:"",ref:""}
+  royalty:{title:"INVOICE",bill:"To:",status:"Status:",balance:"Balance Due:",note:"Invoice Note:",payment:"Payment Details:",terms:"Terms:",date:"Date:",due:"Due Date:",ref:"Reference:"}
  }[tpl];
  $("pInvoiceTitle").textContent=cases.title;
  $("pBillToLabel").textContent=cases.bill;
@@ -1069,9 +861,7 @@ function renderPreview(){
  $("pDate").textContent=tpl==="classic"?oneEducationDateFmt($("invoiceDate").value):dateFmt($("invoiceDate").value);
  $("pDue").textContent=tpl==="classic"?oneEducationDateFmt($("dueDate").value):dateFmt($("dueDate").value);
  $("pReference").textContent=$("reference").value.trim()||"—";
- if(tpl==="hf-fanatical"){ $("pInvoiceNo").textContent="INVOICE #"+(no==="Untitled"?"[Invoice Number]":no); $("pDate").textContent=$("invoiceDate").value?dateFmt($("invoiceDate").value):"[Invoice Date]"; $("pDue").textContent=""; $("pReference").textContent=""; }
  $("pClientName").textContent=$("clientName").value.trim()||"Client company";$("pClientMeta").textContent=metaClient();
- if(tpl==="hf-fanatical"){ $("pBillToLabel").textContent="Invoice for [Period]"; $("pClientName").textContent=$("companyName").value.trim()||"Your Company Ltd."; $("pClientMeta").textContent=metaCompany(); $("pStatusLabel").textContent=$("clientName").value.trim()||"Recipient / Client"; $("pStatus").textContent=metaClient(); }
  let notesText=$("notes").value.trim();
  // Repair the known Alpha invoice-note typo without changing unrelated wording.
  if(tpl==="royalty"&&/\bbank detailsfor payment\b/i.test(notesText)){
@@ -1081,10 +871,7 @@ function renderPreview(){
  const termsText=$("terms").value.trim();
  $("pNotes").textContent=notesText;
  const rawPayment=$("paymentDetails").value.trim();
- if(tpl==="hf-fanatical"){
-   const bank=[["Bank Name","[Bank name]"],["Account Name","[Account name]"],["A /C no:","[Account number]"],["Sort Code","[Sort code]"],["SWIFT/BIC","[SWIFT/BIC]"],["IBAN","[IBAN]"]];
-   $("pPayment").innerHTML=`<div class="hf-paypal-line"><strong>PayPal Details:</strong> [PayPal email]</div><div class="hf-bank-title">Bank Details:</div><table class="hf-bank-table"><tbody>${bank.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join("")}</tbody></table>`;
- }else if(tpl==="classic"){
+ if(tpl==="classic"){
    const rows=oneEducationPaymentRows(rawPayment);
    $("pPayment").innerHTML=rows.map(r=>`<div class="oe-payment-row ${r.key?"":"oe-payment-free"}">${r.key?`<div class="oe-payment-key">${esc(r.key)}</div>`:""}<div class="oe-payment-value">${esc(r.value)}</div></div>`).join("");
  }else $("pPayment").textContent=rawPayment;
@@ -1100,7 +887,7 @@ function renderPreview(){
  if(termsSection)termsSection.classList.toggle("section-hidden",!state.sections.terms||!termsText);
  const paymentSection=document.querySelector('[data-section="payment"]');
  const paymentText=$("paymentDetails").value.trim();
- if(paymentSection)paymentSection.classList.toggle("section-hidden",tpl!=="hf-fanatical" && (!state.sections.payment||!paymentText));
+ if(paymentSection)paymentSection.classList.toggle("section-hidden",!state.sections.payment||!paymentText);
  if(tpl==="minimal"&&paymentSection){
    paymentSection.classList.toggle("section-hidden",!paymentText);
  }
@@ -1112,13 +899,6 @@ function renderPreview(){
    const amountCol=visible.find(c=>c.role==="amount");
    const rateCol=visible.find(c=>c.role==="rate");
    if(amountCol&&rateCol)visible=visible.filter(c=>c!==rateCol);
- }
- if(tpl==="hf-fanatical"){
-   const desc=visible.find(c=>String(c.key).toLowerCase()==="description");
-   const sku=visible.find(c=>String(c.key).toLowerCase()==="sku");
-   const qty=visible.find(c=>c.role==="quantity");
-   const amount=visible.find(c=>c.role==="amount");
-   visible=[desc||sku,qty,amount].filter(Boolean);
  }
  if(tpl==="minimal"){
    const desc=visible.find(c=>String(c.key).toLowerCase()==="description");
@@ -1132,8 +912,6 @@ function renderPreview(){
  }else if(tpl==="royalty"&&visible.length===4){
    // Fanatical royalty layout: SKU, Name, Net Qty, Royalty.
    $("pCols").innerHTML='<col style="width:20%"><col style="width:50%"><col style="width:12%"><col style="width:18%">';
- }else if(tpl==="hf-fanatical"&&visible.length>=3){
-   $("pCols").innerHTML='<col style="width:57%"><col style="width:22%"><col style="width:21%">';
  }else{
    $("pCols").innerHTML=visible.map(c=>`<col style="width:${Math.max(5,num(c.width))}%">`).join("");
  }const headerLabel=(c)=>{
@@ -1156,11 +934,6 @@ function renderPreview(){
      if(role==="quantity")return "Net Qty";
      if(role==="amount"||role==="rate")return "Royalty";
    }
-   if(tpl==="hf-fanatical"){
-     if(key==="sku"||key==="description")return "Bundle Name";
-     if(role==="quantity")return "Net Qty";
-     if(role==="amount"||role==="rate")return "Royalty";
-   }
    return c.label;
  };
  $("pHeaders").innerHTML=visible.map(c=>`<th class="${c.align==="right"?"right":""}">${esc(headerLabel(c))}</th>`).join("");
@@ -1168,7 +941,7 @@ function renderPreview(){
  let t=calc();
  const classicTotals=$("pClassicTotals");
  if(classicTotals){
-   if((tpl==="classic"||tpl==="hf-fanatical")&&state.items.length){
+   if(tpl==="classic"&&state.items.length){
      const qcol=roleCol("quantity"), qtyTotal=qcol?state.items.reduce((sum,item)=>sum+num(item[qcol.key]),0):0;
      classicTotals.innerHTML=`<tr class="classic-total-row">${visible.map(c=>{const key=String(c.key||"").toLowerCase();if(key==="description")return `<td class="classic-total-label">Total</td>`;if(c.role==="quantity")return `<td class="classic-total-qty">${qtyTotal.toLocaleString(undefined,{maximumFractionDigits:2})}</td>`;if(c.role==="amount"||c.role==="rate")return `<td class="classic-total-money">${money(t.subtotal)}</td>`;return `<td></td>`}).join("")}</tr>`;
    }else classicTotals.innerHTML="";
@@ -1187,8 +960,6 @@ function renderPreview(){
  $("logoHeightValue").textContent=logoHeight;
  if(state.logo){
    img.src=state.logo;box.classList.add("has-logo");img.style.display="block";$("pLogoFallback").style.display="none";
- }else if(tpl==="hf-fanatical"){
-   img.src="hf-assets/hf-logo-transparent.png";box.classList.add("has-logo");img.style.display="block";$("pLogoFallback").style.display="none";
  }else{
    img.removeAttribute("src");box.classList.remove("has-logo");img.style.display="none";$("pLogoFallback").style.display="grid";
  }
@@ -1508,140 +1279,7 @@ function buildInvoicePrintDocument(autoPrint=true){
 <title>${($("invoiceNumber").value||"Invoice").replace(/[<>]/g,"")}</title>
 <style>${css}\n${printOverrides}</style>
 </head>
-<body>
-<script>
-(function(){
-  function syncHFFanaticalWatermark(){
-    const invoice=document.querySelector('.invoice.template-hf-fanatical,.invoice.hf-fanatical');
-    if(!invoice) return;
-    let logo=invoice.querySelector('img.hf-logo,img.logo,.hf-logo img');
-    if(!logo){
-      for(const img of invoice.querySelectorAll('img')){
-        if(img.src && !img.classList.contains('hf-watermark')){ logo=img; break; }
-      }
-    }
-    if(!logo || !logo.src) return;
-    let wm=invoice.querySelector('.hf-watermark');
-    if(!wm){
-      wm=document.createElement('img');
-      wm.className='hf-watermark';
-      wm.alt='';
-      wm.setAttribute('aria-hidden','true');
-      invoice.insertBefore(wm,invoice.firstChild);
-    }
-    wm.src=logo.src;
-  }
-  window.syncHFFanaticalWatermark=syncHFFanaticalWatermark;
-  document.addEventListener('DOMContentLoaded',syncHFFanaticalWatermark);
-  const observe=new MutationObserver(syncHFFanaticalWatermark);
-  observe.observe(document.documentElement,{childList:true,subtree:true});
-})();
-</script>
-
-
-<script>
-(function(){
-  function cleanText(v){
-    return String(v ?? '').replace(/\s+/g,' ').trim();
-  }
-
-  function parseHFPaymentDetails(raw){
-    const text=cleanText(raw);
-    if(!text) return {paypal:'', bank:[]};
-
-    const parts=text.split(/\n|;|(?=\bPayPal\s*Details?\s*:)|(?=\bBank\s*Details?\s*:)/i)
-      .map(cleanText).filter(Boolean);
-
-    let paypal='';
-    const bank=[];
-    let bankMode=false;
-
-    for(let part of parts){
-      if(/^paypal\s*details?\s*:/i.test(part)){
-        paypal=part.replace(/^paypal\s*details?\s*:\s*/i,'').trim();
-        bankMode=false;
-        continue;
-      }
-      if(/^bank\s*details?\s*:/i.test(part)){
-        bankMode=true;
-        const rest=part.replace(/^bank\s*details?\s*:\s*/i,'').trim();
-        if(rest) bank.push(rest);
-        continue;
-      }
-
-      if(/^paypal\s*:/i.test(part)){
-        paypal=part.replace(/^paypal\s*:\s*/i,'').trim();
-        continue;
-      }
-
-      if(bankMode) bank.push(part);
-      else if(/^(natwest|hsbc|barclays|lloyds|santander|account|a\/?c|sort\s*code|swift|bic|iban|bank)/i.test(part))
-        bank.push(part);
-    }
-
-    return {paypal,bank};
-  }
-
-  function applyHFPaymentDetails(){
-    const inv=document.querySelector('.invoice.template-hf-fanatical,.invoice.hf-fanatical');
-    if(!inv) return;
-
-    const source=inv.querySelector('[data-payment-details],textarea[name*="payment"],textarea[id*="payment"],input[name*="payment"],input[id*="payment"]');
-    const raw=source ? source.value || source.textContent : '';
-
-    if(!raw) return;
-    const parsed=parseHFPaymentDetails(raw);
-
-    const paypal=inv.querySelector('.hf-paypal-details,[data-hf-paypal]');
-    if(paypal && parsed.paypal){
-      const label=paypal.querySelector('.hf-payment-label');
-      if(label) label.textContent='PayPal Details:';
-      const value=paypal.querySelector('.hf-payment-value');
-      if(value) value.textContent=parsed.paypal;
-      else paypal.textContent='PayPal Details: '+parsed.paypal;
-      paypal.style.display='';
-    }
-
-    const table=inv.querySelector('.hf-bank-table,[data-hf-bank-table]');
-    if(table && parsed.bank.length){
-      const tbody=table.querySelector('tbody') || table;
-      const existing=tbody.querySelectorAll('tr');
-      parsed.bank.forEach((line,i)=>{
-        let row=existing[i];
-        if(!row){
-          row=document.createElement('tr');
-          row.innerHTML='<td></td><td></td>';
-          tbody.appendChild(row);
-        }
-        const cells=row.querySelectorAll('td');
-        if(cells.length<2) return;
-
-        const m=line.match(/^([^:]+)\s*:\s*(.+)$/);
-        if(m){
-          cells[0].textContent=cleanText(m[1]);
-          cells[1].textContent=cleanText(m[2]);
-        }else{
-          cells[0].textContent='';
-          cells[1].textContent=line;
-        }
-      });
-      for(let i=parsed.bank.length;i<existing.length;i++){
-        existing[i].style.display='none';
-      }
-      table.style.display='';
-    }
-  }
-
-  window.parseHFPaymentDetails=parseHFPaymentDetails;
-  window.applyHFPaymentDetails=applyHFPaymentDetails;
-
-  document.addEventListener('DOMContentLoaded',applyHFPaymentDetails);
-  const observer=new MutationObserver(applyHFPaymentDetails);
-  observer.observe(document.documentElement,{childList:true,subtree:true});
-})();
-</script>
-
-</body>
+<body></body>
 </html>`);
   doc.close();
 
@@ -1873,138 +1511,5 @@ $("saveBrandBtn").onclick=()=>{
 };
 refreshLibraries();
 </script>
-
-<script>
-(function(){
-  function syncHFFanaticalWatermark(){
-    const invoice=document.querySelector('.invoice.template-hf-fanatical,.invoice.hf-fanatical');
-    if(!invoice) return;
-    let logo=invoice.querySelector('img.hf-logo,img.logo,.hf-logo img');
-    if(!logo){
-      for(const img of invoice.querySelectorAll('img')){
-        if(img.src && !img.classList.contains('hf-watermark')){ logo=img; break; }
-      }
-    }
-    if(!logo || !logo.src) return;
-    let wm=invoice.querySelector('.hf-watermark');
-    if(!wm){
-      wm=document.createElement('img');
-      wm.className='hf-watermark';
-      wm.alt='';
-      wm.setAttribute('aria-hidden','true');
-      invoice.insertBefore(wm,invoice.firstChild);
-    }
-    wm.src=logo.src;
-  }
-  window.syncHFFanaticalWatermark=syncHFFanaticalWatermark;
-  document.addEventListener('DOMContentLoaded',syncHFFanaticalWatermark);
-  const observe=new MutationObserver(syncHFFanaticalWatermark);
-  observe.observe(document.documentElement,{childList:true,subtree:true});
-})();
-</script>
-
-
-<script>
-(function(){
-  function cleanText(v){
-    return String(v ?? '').replace(/\s+/g,' ').trim();
-  }
-
-  function parseHFPaymentDetails(raw){
-    const text=cleanText(raw);
-    if(!text) return {paypal:'', bank:[]};
-
-    const parts=text.split(/\n|;|(?=\bPayPal\s*Details?\s*:)|(?=\bBank\s*Details?\s*:)/i)
-      .map(cleanText).filter(Boolean);
-
-    let paypal='';
-    const bank=[];
-    let bankMode=false;
-
-    for(let part of parts){
-      if(/^paypal\s*details?\s*:/i.test(part)){
-        paypal=part.replace(/^paypal\s*details?\s*:\s*/i,'').trim();
-        bankMode=false;
-        continue;
-      }
-      if(/^bank\s*details?\s*:/i.test(part)){
-        bankMode=true;
-        const rest=part.replace(/^bank\s*details?\s*:\s*/i,'').trim();
-        if(rest) bank.push(rest);
-        continue;
-      }
-
-      if(/^paypal\s*:/i.test(part)){
-        paypal=part.replace(/^paypal\s*:\s*/i,'').trim();
-        continue;
-      }
-
-      if(bankMode) bank.push(part);
-      else if(/^(natwest|hsbc|barclays|lloyds|santander|account|a\/?c|sort\s*code|swift|bic|iban|bank)/i.test(part))
-        bank.push(part);
-    }
-
-    return {paypal,bank};
-  }
-
-  function applyHFPaymentDetails(){
-    const inv=document.querySelector('.invoice.template-hf-fanatical,.invoice.hf-fanatical');
-    if(!inv) return;
-
-    const source=inv.querySelector('[data-payment-details],textarea[name*="payment"],textarea[id*="payment"],input[name*="payment"],input[id*="payment"]');
-    const raw=source ? source.value || source.textContent : '';
-
-    if(!raw) return;
-    const parsed=parseHFPaymentDetails(raw);
-
-    const paypal=inv.querySelector('.hf-paypal-details,[data-hf-paypal]');
-    if(paypal && parsed.paypal){
-      const label=paypal.querySelector('.hf-payment-label');
-      if(label) label.textContent='PayPal Details:';
-      const value=paypal.querySelector('.hf-payment-value');
-      if(value) value.textContent=parsed.paypal;
-      else paypal.textContent='PayPal Details: '+parsed.paypal;
-      paypal.style.display='';
-    }
-
-    const table=inv.querySelector('.hf-bank-table,[data-hf-bank-table]');
-    if(table && parsed.bank.length){
-      const tbody=table.querySelector('tbody') || table;
-      const existing=tbody.querySelectorAll('tr');
-      parsed.bank.forEach((line,i)=>{
-        let row=existing[i];
-        if(!row){
-          row=document.createElement('tr');
-          row.innerHTML='<td></td><td></td>';
-          tbody.appendChild(row);
-        }
-        const cells=row.querySelectorAll('td');
-        if(cells.length<2) return;
-
-        const m=line.match(/^([^:]+)\s*:\s*(.+)$/);
-        if(m){
-          cells[0].textContent=cleanText(m[1]);
-          cells[1].textContent=cleanText(m[2]);
-        }else{
-          cells[0].textContent='';
-          cells[1].textContent=line;
-        }
-      });
-      for(let i=parsed.bank.length;i<existing.length;i++){
-        existing[i].style.display='none';
-      }
-      table.style.display='';
-    }
-  }
-
-  window.parseHFPaymentDetails=parseHFPaymentDetails;
-  window.applyHFPaymentDetails=applyHFPaymentDetails;
-
-  document.addEventListener('DOMContentLoaded',applyHFPaymentDetails);
-  const observer=new MutationObserver(applyHFPaymentDetails);
-  observer.observe(document.documentElement,{childList:true,subtree:true});
-})();
-</script>
-
 </body>
 </html>
