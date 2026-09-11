@@ -592,6 +592,293 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
   @page{size:A4 portrait;margin:0}
 }
 
+
+/* ===== HF FANATICAL — reference-only invoice design ===== */
+.invoice.template-hf-fanatical{
+  padding:0;
+  width:210mm;
+  min-height:297mm;
+  height:297mm;
+  background:#fff;
+  border:1px solid #ececec;
+  box-shadow:none;
+  overflow:hidden;
+  position:relative;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#171717;
+}
+.template-hf-fanatical .topdetails{
+  display:block;
+  position:relative;
+  height:111mm;
+  padding:0;
+}
+.template-hf-fanatical .inv-header{
+  display:block;
+  position:relative;
+  height:111mm;
+}
+.template-hf-fanatical .companywrap{
+  display:block;
+  position:absolute;
+  left:13mm;
+  top:7mm;
+  width:75mm;
+  height:99mm;
+}
+.template-hf-fanatical .logobox{
+  width:48mm!important;
+  height:39mm!important;
+  margin:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  display:grid;
+  place-items:center;
+}
+.template-hf-fanatical .logobox img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:left top;
+}
+.template-hf-fanatical .logofallback{display:none!important}
+.template-hf-fanatical .companywrap>div:last-child{
+  position:absolute;
+  left:1mm;
+  top:54mm;
+  width:76mm;
+}
+.template-hf-fanatical .companywrap>div:last-child:before{
+  content:"Invoice for [Billing Period]";
+  display:block;
+  margin-bottom:2.5mm;
+  font-size:12px;
+  line-height:15px;
+  font-weight:400;
+  color:#222;
+}
+.template-hf-fanatical .companyname{
+  margin:0 0 1mm;
+  font-size:13px;
+  line-height:16px;
+  font-weight:700;
+  color:#171717;
+}
+.template-hf-fanatical .companywrap .metaText{
+  font-size:10.5px;
+  line-height:14px;
+  color:#171717;
+}
+.template-hf-fanatical .invtitle{
+  position:absolute;
+  right:13mm;
+  top:10mm;
+  width:65mm;
+  text-align:left;
+}
+.template-hf-fanatical .invtitle h2{
+  margin:0 0 1mm;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:27px;
+  line-height:31px;
+  font-weight:400;
+  letter-spacing:0;
+  color:#2b2b2b;
+}
+.template-hf-fanatical .invno{
+  margin:0;
+  font-size:11px;
+  line-height:15px;
+  font-weight:400;
+  color:#222;
+}
+.template-hf-fanatical .metatable{
+  width:100%;
+  margin-top:1mm;
+  border-collapse:collapse;
+  font-size:10.5px;
+}
+.template-hf-fanatical .metatable tr[data-section="dueDate"],
+.template-hf-fanatical .metatable tr[data-section="reference"],
+.template-hf-fanatical .classic-only{
+  display:none!important;
+}
+.template-hf-fanatical .metatable td{
+  padding:1mm 0 0;
+  color:#222;
+}
+.template-hf-fanatical .metatable td:first-child{
+  text-align:left;
+  width:38%;
+  color:#222;
+}
+.template-hf-fanatical .metatable td:last-child{
+  text-align:left;
+  width:62%;
+  font-weight:400;
+}
+.template-hf-fanatical .balance{display:none!important}
+.template-hf-fanatical .billrow{
+  position:absolute;
+  left:0;
+  right:0;
+  top:60mm;
+  height:46mm;
+  margin:0;
+  padding:0 13mm;
+  display:block;
+  z-index:3;
+}
+.template-hf-fanatical .billrow>[data-section="client"]{
+  position:absolute;
+  right:13mm;
+  top:0;
+  width:67mm;
+  display:block;
+}
+.template-hf-fanatical .billrow>[data-section="status"]{display:none!important}
+.template-hf-fanatical .billrow .label{
+  display:none;
+}
+.template-hf-fanatical .clientname{
+  margin:0 0 1mm;
+  font-size:13px;
+  line-height:16px;
+  font-weight:700;
+  color:#171717;
+}
+.template-hf-fanatical .billrow .metaText{
+  font-size:10.5px;
+  line-height:14px;
+  color:#171717;
+}
+.template-hf-fanatical .hf-watermark{
+  display:block;
+  position:absolute;
+  left:57mm;
+  top:91mm;
+  width:82mm;
+  height:104mm;
+  object-fit:contain;
+  object-position:center;
+  opacity:.075;
+  z-index:0;
+  pointer-events:none;
+}
+.template-hf-fanatical .invtable{
+  position:relative;
+  z-index:2;
+  width:calc(100% - 26mm);
+  margin:0 13mm;
+  border-collapse:collapse;
+  table-layout:fixed;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:10px;
+  color:#171717;
+}
+.template-hf-fanatical .invtable th,
+.template-hf-fanatical .invtable td{
+  border:1px solid #202020;
+}
+.template-hf-fanatical .invtable th{
+  height:7mm;
+  padding:1.5mm 2mm;
+  background:#fff;
+  color:#111;
+  font-size:10px;
+  line-height:12px;
+  font-weight:700;
+  text-align:left;
+}
+.template-hf-fanatical .invtable th.right,
+.template-hf-fanatical .invtable td.right{text-align:right}
+.template-hf-fanatical .invtable td{
+  height:6mm;
+  padding:1mm 2mm;
+  background:rgba(255,255,255,.88);
+  font-size:10px;
+  line-height:12px;
+  vertical-align:middle;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+.template-hf-fanatical .invtable tfoot td{
+  height:7mm;
+  padding:1mm 2mm;
+  background:rgba(255,255,255,.88);
+  font-weight:400;
+}
+.template-hf-fanatical .invtable tfoot td:first-child{text-align:right}
+.template-hf-fanatical .invtable tfoot td:nth-child(2),
+.template-hf-fanatical .invtable tfoot td:last-child{text-align:right}
+.template-hf-fanatical .bottomgrid{
+  display:none!important;
+}
+.template-hf-fanatical .paymentgrid{
+  position:absolute;
+  left:13mm;
+  top:166mm;
+  width:92mm;
+  margin:0;
+  display:block;
+  z-index:3;
+}
+.template-hf-fanatical .paymentgrid>[data-section="terms"]{display:none!important}
+.template-hf-fanatical .paymentgrid>[data-section="payment"]{display:block}
+.template-hf-fanatical .paymentgrid .label{
+  margin:0 0 2.5mm;
+  text-transform:none;
+  letter-spacing:0;
+  font-size:10.5px;
+  line-height:13px;
+  font-weight:700;
+  color:#171717;
+}
+.template-hf-fanatical .paymentgrid .metaText{
+  font-size:10px;
+  line-height:13px;
+  color:#171717;
+  white-space:pre-line;
+}
+.template-hf-fanatical .footer{
+  position:absolute;
+  left:13mm;
+  right:13mm;
+  bottom:9mm;
+  height:12mm;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  z-index:3;
+  color:#222;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:10px;
+  font-weight:700;
+  font-style:italic;
+}
+.template-hf-fanatical .footer span{display:none!important}
+.template-hf-fanatical .footer:after{
+  content:"Thank you for your Partnership!";
+}
+@media print{
+  .invoice.template-hf-fanatical{
+    width:210mm!important;
+    height:297mm!important;
+    min-height:297mm!important;
+    margin:0!important;
+    padding:0!important;
+    border:1px solid #ececec!important;
+    box-shadow:none!important;
+    transform:none!important;
+  }
+  .template-hf-fanatical .invtable th,
+  .template-hf-fanatical .invtable td{
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -697,6 +984,7 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
           <option value="minimal">Janets PDF - Exact Layout</option>
           <option value="classic">One Education Classic</option>
           <option value="royalty">Alpha / Fanatical Royalty</option>
+          <option value="hf-fanatical">HF Fanatical</option>
         </select>
         <div class="hint" id="fontHint" style="margin-top:6px">Font: Inter / Segoe UI</div><div class="hint" style="margin-top:3px">Measured PDF sizes: 27.75 pt invoice title, 12 pt invoice number, 11.25 pt balance, and 9.75 pt body/table text. Nimbus Sans is used when installed; Helvetica/Arial is the fallback.</div>
       </div>
@@ -752,6 +1040,7 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
       <div data-section="status"><div class="label" id="pStatusLabel">Invoice status</div><span class="status" id="pStatus">● Due</span></div>
     </section>
     </div>
+    <img class="hf-watermark" id="pHfWatermark" alt="" aria-hidden="true">
     <table class="invtable"><colgroup id="pCols"></colgroup><thead><tr id="pHeaders"></tr></thead><tbody id="pItems"></tbody><tfoot id="pClassicTotals"></tfoot></table>
     <section class="bottomgrid">
       <div class="notebox" data-section="notes"><div class="label" id="pNoteLabel">Invoice note</div><div class="metaText" id="pNotes"></div></div>
@@ -833,14 +1122,16 @@ function renderPreview(){
   modern:"Inter / Segoe UI / Arial",
   minimal:"Nimbus Sans Regular + Bold",
   classic:"Arial / Liberation Sans",
-  royalty:"Calibri Regular + Bold"
+  royalty:"Calibri Regular + Bold",
+  "hf-fanatical":"Arial / Helvetica"
  };
  $("fontHint").textContent="PDF font stack: "+fontNames[tpl];
  const cases={
   modern:{title:"INVOICE",bill:"Bill to",status:"Invoice status",balance:"Balance due",note:"Invoice note",payment:"Payment details",terms:"Terms",date:"Invoice date",due:"Due date",ref:"Reference"},
   minimal:{title:"INVOICE",bill:"Bill To:",status:"Status:",balance:":",note:"Notes:",payment:"Notes:",terms:"Terms:",date:"Date:",due:"Due date:",ref:":"},
   classic:{title:"Invoice",bill:"Bill To",status:"Status",balance:"Balance Due",note:"Notes",payment:"Payment Details:",terms:"Terms",date:"Date",due:"Due Date",ref:"Reference"},
-  royalty:{title:"INVOICE",bill:"To:",status:"Status:",balance:"Balance Due:",note:"Invoice Note:",payment:"Payment Details:",terms:"Terms:",date:"Date:",due:"Due Date:",ref:"Reference:"}
+  royalty:{title:"INVOICE",bill:"To:",status:"Status:",balance:"Balance Due:",note:"Invoice Note:",payment:"Payment Details:",terms:"Terms:",date:"Date:",due:"Due Date:",ref:"Reference:"},
+  "hf-fanatical":{title:"INVOICE",bill:"",status:"",balance:"",note:"",payment:"Bank Details:",terms:"",date:"Date:",due:"Due Date:",ref:"Reference:"}
  }[tpl];
  $("pInvoiceTitle").textContent=cases.title;
  $("pBillToLabel").textContent=cases.bill;
@@ -895,10 +1186,14 @@ function renderPreview(){
  // Alpha/Fanatical statements use one Royalty value column. The generic invoice
  // model has both Rate and Amount roles, so hide Rate when Amount is available
  // instead of rendering two columns with the same "Royalty" heading.
- if(tpl==="royalty"||tpl==="classic"){
+ if(tpl==="royalty"||tpl==="classic"||tpl==="hf-fanatical"){
    const amountCol=visible.find(c=>c.role==="amount");
    const rateCol=visible.find(c=>c.role==="rate");
    if(amountCol&&rateCol)visible=visible.filter(c=>c!==rateCol);
+ }
+ if(tpl==="hf-fanatical"){
+   const sku=visible.find(c=>String(c.key).toLowerCase()==="sku");
+   if(sku)visible=visible.filter(c=>c!==sku);
  }
  if(tpl==="minimal"){
    const desc=visible.find(c=>String(c.key).toLowerCase()==="description");
@@ -912,6 +1207,8 @@ function renderPreview(){
  }else if(tpl==="royalty"&&visible.length===4){
    // Fanatical royalty layout: SKU, Name, Net Qty, Royalty.
    $("pCols").innerHTML='<col style="width:20%"><col style="width:50%"><col style="width:12%"><col style="width:18%">';
+ }else if(tpl==="hf-fanatical"&&visible.length===3){
+   $("pCols").innerHTML='<col style="width:60%"><col style="width:21.5%"><col style="width:18.5%">';
  }else{
    $("pCols").innerHTML=visible.map(c=>`<col style="width:${Math.max(5,num(c.width))}%">`).join("");
  }const headerLabel=(c)=>{
@@ -934,6 +1231,11 @@ function renderPreview(){
      if(role==="quantity")return "Net Qty";
      if(role==="amount"||role==="rate")return "Royalty";
    }
+   if(tpl==="hf-fanatical"){
+     if(key==="description")return "Bundle Name";
+     if(role==="quantity")return "Net Qty";
+     if(role==="amount"||role==="rate")return "Royalty";
+   }
    return c.label;
  };
  $("pHeaders").innerHTML=visible.map(c=>`<th class="${c.align==="right"?"right":""}">${esc(headerLabel(c))}</th>`).join("");
@@ -941,14 +1243,19 @@ function renderPreview(){
  let t=calc();
  const classicTotals=$("pClassicTotals");
  if(classicTotals){
-   if(tpl==="classic"&&state.items.length){
+   if((tpl==="classic"||tpl==="hf-fanatical")&&state.items.length){
      const qcol=roleCol("quantity"), qtyTotal=qcol?state.items.reduce((sum,item)=>sum+num(item[qcol.key]),0):0;
-     classicTotals.innerHTML=`<tr class="classic-total-row">${visible.map(c=>{const key=String(c.key||"").toLowerCase();if(key==="description")return `<td class="classic-total-label">Total</td>`;if(c.role==="quantity")return `<td class="classic-total-qty">${qtyTotal.toLocaleString(undefined,{maximumFractionDigits:2})}</td>`;if(c.role==="amount"||c.role==="rate")return `<td class="classic-total-money">${money(t.subtotal)}</td>`;return `<td></td>`}).join("")}</tr>`;
+     classicTotals.innerHTML=`<tr class="${tpl==="hf-fanatical"?"hf-total-row":"classic-total-row"}">${visible.map(c=>{const key=String(c.key||"").toLowerCase();if(key==="description")return `<td class="classic-total-label">${tpl==="hf-fanatical"?"Total =":"Total"}</td>`;if(c.role==="quantity")return `<td class="classic-total-qty">${qtyTotal.toLocaleString(undefined,{maximumFractionDigits:2})}</td>`;if(c.role==="amount"||c.role==="rate")return `<td class="classic-total-money">${money(t.subtotal)}</td>`;return `<td></td>`}).join("")}</tr>`;
    }else classicTotals.innerHTML="";
  }
  $("pSubtotal").textContent=money(t.subtotal);$("discountLabel").textContent=`Discount (${t.dr.toFixed(2).replace(/\.00$/,"")}%)`;$("pDiscount").textContent="−"+money(t.disc);$("taxLabel").textContent=`Tax (${t.tr.toFixed(2).replace(/\.00$/,"")}%)`;$("pTax").textContent=money(t.tax);$("pShipping").textContent=money(t.ship);$("pTotal").textContent=$("pBalance").textContent=money(t.total);
  $("discountRow").style.display=t.disc&&state.sections.discount?"flex":"none";$("taxRow").style.display=t.tax&&state.sections.tax?"flex":"none";$("shippingRow").style.display=t.ship&&state.sections.shipping?"flex":"none";
  $("pLogoFallback").textContent=($("companyName").value.trim()[0]||"I").toUpperCase();
+ const hfWatermark=$("pHfWatermark");
+ if(hfWatermark){
+   if(state.logo){hfWatermark.src=state.logo;hfWatermark.style.display=tpl==="hf-fanatical"?"block":"none";}
+   else{hfWatermark.removeAttribute("src");hfWatermark.style.display="none";}
+ }
  let img=$("pLogo"),box=img.closest(".logobox");
  const logoWidth=Math.max(40,Math.min(240,num($("logoWidth").value)||120));
  const logoHeight=Math.max(30,Math.min(140,num($("logoHeight").value)||54));
