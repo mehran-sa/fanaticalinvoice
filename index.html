@@ -740,6 +740,64 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
   }
 }
 
+
+/* HF Fanatical payment details */
+.invoice.template-hf-fanatical .hf-paypal-details,
+.invoice.hf-fanatical .hf-paypal-details {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 10pt;
+  margin-top: 7mm;
+  text-align: left;
+}
+
+.invoice.template-hf-fanatical .hf-payment-label,
+.invoice.hf-fanatical .hf-payment-label {
+  font-weight: 700;
+}
+
+.invoice.template-hf-fanatical .hf-bank-table,
+.invoice.hf-fanatical .hf-bank-table {
+  border-collapse: collapse;
+  width: 50%;
+  min-width: 85mm;
+  max-width: 105mm;
+  margin-top: 5mm;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 9pt;
+}
+
+.invoice.template-hf-fanatical .hf-bank-table td,
+.invoice.hf-fanatical .hf-bank-table td {
+  border: 1px solid #111;
+  padding: 1.8mm 3mm;
+  line-height: 1.15;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.invoice.template-hf-fanatical .hf-bank-table td:first-child,
+.invoice.hf-fanatical .hf-bank-table td:first-child {
+  width: 35%;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+@media (max-width:700px){
+  .invoice.template-hf-fanatical .hf-bank-table,
+  .invoice.hf-fanatical .hf-bank-table {
+    width:100%;
+    min-width:0;
+    max-width:none;
+  }
+}
+@media print{
+  .invoice.template-hf-fanatical .hf-bank-table,
+  .invoice.hf-fanatical .hf-bank-table {
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1480,6 +1538,109 @@ function buildInvoicePrintDocument(autoPrint=true){
 })();
 </script>
 
+
+<script>
+(function(){
+  function cleanText(v){
+    return String(v ?? '').replace(/\s+/g,' ').trim();
+  }
+
+  function parseHFPaymentDetails(raw){
+    const text=cleanText(raw);
+    if(!text) return {paypal:'', bank:[]};
+
+    const parts=text.split(/\n|;|(?=\bPayPal\s*Details?\s*:)|(?=\bBank\s*Details?\s*:)/i)
+      .map(cleanText).filter(Boolean);
+
+    let paypal='';
+    const bank=[];
+    let bankMode=false;
+
+    for(let part of parts){
+      if(/^paypal\s*details?\s*:/i.test(part)){
+        paypal=part.replace(/^paypal\s*details?\s*:\s*/i,'').trim();
+        bankMode=false;
+        continue;
+      }
+      if(/^bank\s*details?\s*:/i.test(part)){
+        bankMode=true;
+        const rest=part.replace(/^bank\s*details?\s*:\s*/i,'').trim();
+        if(rest) bank.push(rest);
+        continue;
+      }
+
+      if(/^paypal\s*:/i.test(part)){
+        paypal=part.replace(/^paypal\s*:\s*/i,'').trim();
+        continue;
+      }
+
+      if(bankMode) bank.push(part);
+      else if(/^(natwest|hsbc|barclays|lloyds|santander|account|a\/?c|sort\s*code|swift|bic|iban|bank)/i.test(part))
+        bank.push(part);
+    }
+
+    return {paypal,bank};
+  }
+
+  function applyHFPaymentDetails(){
+    const inv=document.querySelector('.invoice.template-hf-fanatical,.invoice.hf-fanatical');
+    if(!inv) return;
+
+    const source=inv.querySelector('[data-payment-details],textarea[name*="payment"],textarea[id*="payment"],input[name*="payment"],input[id*="payment"]');
+    const raw=source ? source.value || source.textContent : '';
+
+    if(!raw) return;
+    const parsed=parseHFPaymentDetails(raw);
+
+    const paypal=inv.querySelector('.hf-paypal-details,[data-hf-paypal]');
+    if(paypal && parsed.paypal){
+      const label=paypal.querySelector('.hf-payment-label');
+      if(label) label.textContent='PayPal Details:';
+      const value=paypal.querySelector('.hf-payment-value');
+      if(value) value.textContent=parsed.paypal;
+      else paypal.textContent='PayPal Details: '+parsed.paypal;
+      paypal.style.display='';
+    }
+
+    const table=inv.querySelector('.hf-bank-table,[data-hf-bank-table]');
+    if(table && parsed.bank.length){
+      const tbody=table.querySelector('tbody') || table;
+      const existing=tbody.querySelectorAll('tr');
+      parsed.bank.forEach((line,i)=>{
+        let row=existing[i];
+        if(!row){
+          row=document.createElement('tr');
+          row.innerHTML='<td></td><td></td>';
+          tbody.appendChild(row);
+        }
+        const cells=row.querySelectorAll('td');
+        if(cells.length<2) return;
+
+        const m=line.match(/^([^:]+)\s*:\s*(.+)$/);
+        if(m){
+          cells[0].textContent=cleanText(m[1]);
+          cells[1].textContent=cleanText(m[2]);
+        }else{
+          cells[0].textContent='';
+          cells[1].textContent=line;
+        }
+      });
+      for(let i=parsed.bank.length;i<existing.length;i++){
+        existing[i].style.display='none';
+      }
+      table.style.display='';
+    }
+  }
+
+  window.parseHFPaymentDetails=parseHFPaymentDetails;
+  window.applyHFPaymentDetails=applyHFPaymentDetails;
+
+  document.addEventListener('DOMContentLoaded',applyHFPaymentDetails);
+  const observer=new MutationObserver(applyHFPaymentDetails);
+  observer.observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+
 </body>
 </html>`);
   doc.close();
@@ -1739,6 +1900,109 @@ refreshLibraries();
   document.addEventListener('DOMContentLoaded',syncHFFanaticalWatermark);
   const observe=new MutationObserver(syncHFFanaticalWatermark);
   observe.observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+
+
+<script>
+(function(){
+  function cleanText(v){
+    return String(v ?? '').replace(/\s+/g,' ').trim();
+  }
+
+  function parseHFPaymentDetails(raw){
+    const text=cleanText(raw);
+    if(!text) return {paypal:'', bank:[]};
+
+    const parts=text.split(/\n|;|(?=\bPayPal\s*Details?\s*:)|(?=\bBank\s*Details?\s*:)/i)
+      .map(cleanText).filter(Boolean);
+
+    let paypal='';
+    const bank=[];
+    let bankMode=false;
+
+    for(let part of parts){
+      if(/^paypal\s*details?\s*:/i.test(part)){
+        paypal=part.replace(/^paypal\s*details?\s*:\s*/i,'').trim();
+        bankMode=false;
+        continue;
+      }
+      if(/^bank\s*details?\s*:/i.test(part)){
+        bankMode=true;
+        const rest=part.replace(/^bank\s*details?\s*:\s*/i,'').trim();
+        if(rest) bank.push(rest);
+        continue;
+      }
+
+      if(/^paypal\s*:/i.test(part)){
+        paypal=part.replace(/^paypal\s*:\s*/i,'').trim();
+        continue;
+      }
+
+      if(bankMode) bank.push(part);
+      else if(/^(natwest|hsbc|barclays|lloyds|santander|account|a\/?c|sort\s*code|swift|bic|iban|bank)/i.test(part))
+        bank.push(part);
+    }
+
+    return {paypal,bank};
+  }
+
+  function applyHFPaymentDetails(){
+    const inv=document.querySelector('.invoice.template-hf-fanatical,.invoice.hf-fanatical');
+    if(!inv) return;
+
+    const source=inv.querySelector('[data-payment-details],textarea[name*="payment"],textarea[id*="payment"],input[name*="payment"],input[id*="payment"]');
+    const raw=source ? source.value || source.textContent : '';
+
+    if(!raw) return;
+    const parsed=parseHFPaymentDetails(raw);
+
+    const paypal=inv.querySelector('.hf-paypal-details,[data-hf-paypal]');
+    if(paypal && parsed.paypal){
+      const label=paypal.querySelector('.hf-payment-label');
+      if(label) label.textContent='PayPal Details:';
+      const value=paypal.querySelector('.hf-payment-value');
+      if(value) value.textContent=parsed.paypal;
+      else paypal.textContent='PayPal Details: '+parsed.paypal;
+      paypal.style.display='';
+    }
+
+    const table=inv.querySelector('.hf-bank-table,[data-hf-bank-table]');
+    if(table && parsed.bank.length){
+      const tbody=table.querySelector('tbody') || table;
+      const existing=tbody.querySelectorAll('tr');
+      parsed.bank.forEach((line,i)=>{
+        let row=existing[i];
+        if(!row){
+          row=document.createElement('tr');
+          row.innerHTML='<td></td><td></td>';
+          tbody.appendChild(row);
+        }
+        const cells=row.querySelectorAll('td');
+        if(cells.length<2) return;
+
+        const m=line.match(/^([^:]+)\s*:\s*(.+)$/);
+        if(m){
+          cells[0].textContent=cleanText(m[1]);
+          cells[1].textContent=cleanText(m[2]);
+        }else{
+          cells[0].textContent='';
+          cells[1].textContent=line;
+        }
+      });
+      for(let i=parsed.bank.length;i<existing.length;i++){
+        existing[i].style.display='none';
+      }
+      table.style.display='';
+    }
+  }
+
+  window.parseHFPaymentDetails=parseHFPaymentDetails;
+  window.applyHFPaymentDetails=applyHFPaymentDetails;
+
+  document.addEventListener('DOMContentLoaded',applyHFPaymentDetails);
+  const observer=new MutationObserver(applyHFPaymentDetails);
+  observer.observe(document.documentElement,{childList:true,subtree:true});
 })();
 </script>
 
