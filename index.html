@@ -593,50 +593,66 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
 }
 
 
-/* ===== HF FANATICAL — reference-only invoice design ===== */
+/* ===== HF FANATICAL — reference-matched template ===== */
 .invoice.template-hf-fanatical{
-  padding:0;
   width:210mm;
   min-height:297mm;
-  height:297mm;
-  background:#fff;
-  border:1px solid #ececec;
-  box-shadow:none;
-  overflow:hidden;
+  height:auto;
+  padding:0;
+  margin:auto;
   position:relative;
-  font-family:Arial,Helvetica,sans-serif;
-  color:#171717;
+  overflow:visible;
+  background:#fff;
+  border:0;
+  box-shadow:none;
+  color:#111;
+  font-family:Verdana, Geneva, sans-serif;
+}
+.template-hf-fanatical::before{
+  content:"";
+  position:absolute;
+  left:6.5mm;
+  right:6.5mm;
+  top:27mm;
+  bottom:61mm;
+  border:1px solid #eeeeee;
+  pointer-events:none;
+  z-index:0;
 }
 .template-hf-fanatical .topdetails{
   display:block;
   position:relative;
-  height:111mm;
+  height:115mm;
+  margin:0;
   padding:0;
 }
 .template-hf-fanatical .inv-header{
   display:block;
   position:relative;
-  height:111mm;
+  width:100%;
+  height:115mm;
 }
 .template-hf-fanatical .companywrap{
-  display:block;
   position:absolute;
-  left:13mm;
-  top:7mm;
-  width:75mm;
-  height:99mm;
+  left:16.5mm;
+  top:15mm;
+  width:78mm;
+  height:92mm;
+  display:block;
 }
 .template-hf-fanatical .logobox{
-  width:48mm!important;
-  height:39mm!important;
+  width:42mm!important;
+  height:30mm!important;
   margin:0;
-  border:0;
+  padding:0;
+  border:0!important;
   border-radius:0;
   background:transparent;
-  display:grid;
-  place-items:center;
+  display:block;
+  overflow:visible;
 }
 .template-hf-fanatical .logobox img{
+  display:block;
   width:100%;
   height:100%;
   object-fit:contain;
@@ -645,121 +661,143 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
 .template-hf-fanatical .logofallback{display:none!important}
 .template-hf-fanatical .companywrap>div:last-child{
   position:absolute;
-  left:1mm;
-  top:54mm;
-  width:76mm;
+  left:0;
+  top:49mm;
+  width:82mm;
 }
 .template-hf-fanatical .companywrap>div:last-child:before{
   content:"Invoice for [Billing Period]";
   display:block;
-  margin-bottom:2.5mm;
+  margin:0 0 2.2mm;
+  font-family:Verdana, Geneva, sans-serif;
   font-size:12px;
   line-height:15px;
   font-weight:400;
-  color:#222;
+  color:#111;
 }
 .template-hf-fanatical .companyname{
   margin:0 0 1mm;
-  font-size:13px;
-  line-height:16px;
+  padding:0;
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:12.5px;
+  line-height:15px;
   font-weight:700;
-  color:#171717;
+  color:#111;
 }
 .template-hf-fanatical .companywrap .metaText{
+  margin:0;
+  font-family:Verdana, Geneva, sans-serif;
   font-size:10.5px;
   line-height:14px;
-  color:#171717;
+  font-weight:400;
+  color:#111;
+  white-space:pre-line;
 }
 .template-hf-fanatical .invtitle{
   position:absolute;
-  right:13mm;
-  top:10mm;
-  width:65mm;
+  left:133mm;
+  top:25mm;
+  width:59mm;
+  height:30mm;
+  margin:0;
+  padding:0;
   text-align:left;
 }
 .template-hf-fanatical .invtitle h2{
-  margin:0 0 1mm;
-  font-family:Arial,Helvetica,sans-serif;
+  margin:0;
+  padding:0;
+  font-family:Calibri, Carlito, Arial, sans-serif;
   font-size:27px;
   line-height:31px;
   font-weight:400;
   letter-spacing:0;
-  color:#2b2b2b;
+  color:#2d2d2d;
 }
 .template-hf-fanatical .invno{
+  position:absolute;
+  left:0;
+  top:14mm;
   margin:0;
+  padding:0;
+  font-family:Verdana, Geneva, sans-serif;
   font-size:11px;
-  line-height:15px;
+  line-height:14px;
   font-weight:400;
-  color:#222;
+  color:#111;
+  white-space:nowrap;
 }
 .template-hf-fanatical .metatable{
+  position:absolute;
+  left:0;
+  top:9mm;
   width:100%;
-  margin-top:1mm;
+  margin:0;
+  padding:0;
   border-collapse:collapse;
+  table-layout:fixed;
+  font-family:Verdana, Geneva, sans-serif;
   font-size:10.5px;
 }
 .template-hf-fanatical .metatable tr[data-section="dueDate"],
 .template-hf-fanatical .metatable tr[data-section="reference"],
-.template-hf-fanatical .classic-only{
-  display:none!important;
-}
+.template-hf-fanatical .classic-only{display:none!important}
 .template-hf-fanatical .metatable td{
-  padding:1mm 0 0;
-  color:#222;
+  padding:0;
+  height:14px;
+  border:0;
+  vertical-align:top;
+  line-height:14px;
+  color:#111;
 }
-.template-hf-fanatical .metatable td:first-child{
-  text-align:left;
-  width:38%;
-  color:#222;
-}
-.template-hf-fanatical .metatable td:last-child{
-  text-align:left;
-  width:62%;
-  font-weight:400;
-}
+.template-hf-fanatical .metatable td:first-child{width:16mm;text-align:left;font-weight:400}
+.template-hf-fanatical .metatable td:last-child{width:auto;text-align:left;font-weight:400}
 .template-hf-fanatical .balance{display:none!important}
 .template-hf-fanatical .billrow{
   position:absolute;
   left:0;
   right:0;
-  top:60mm;
-  height:46mm;
+  top:64mm;
+  height:43mm;
   margin:0;
-  padding:0 13mm;
+  padding:0;
   display:block;
   z-index:3;
 }
 .template-hf-fanatical .billrow>[data-section="client"]{
   position:absolute;
-  right:13mm;
+  left:133mm;
   top:0;
-  width:67mm;
+  width:64mm;
   display:block;
 }
 .template-hf-fanatical .billrow>[data-section="status"]{display:none!important}
-.template-hf-fanatical .billrow .label{
-  display:none;
-}
+.template-hf-fanatical .billrow .label{display:none!important}
 .template-hf-fanatical .clientname{
   margin:0 0 1mm;
-  font-size:13px;
-  line-height:16px;
+  padding:0;
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:12.5px;
+  line-height:15px;
   font-weight:700;
-  color:#171717;
+  color:#111;
+  white-space:pre-line;
 }
 .template-hf-fanatical .billrow .metaText{
+  margin:0;
+  font-family:Verdana, Geneva, sans-serif;
   font-size:10.5px;
   line-height:14px;
-  color:#171717;
+  font-weight:400;
+  color:#111;
+  white-space:pre-line;
 }
 .template-hf-fanatical .hf-watermark{
   display:block;
   position:absolute;
-  left:57mm;
-  top:91mm;
-  width:82mm;
-  height:104mm;
+  left:31mm;
+  top:72mm;
+  width:153mm;
+  height:123mm;
   object-fit:contain;
   object-position:center;
   opacity:.075;
@@ -769,116 +807,171 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
 .template-hf-fanatical .invtable{
   position:relative;
   z-index:2;
-  width:calc(100% - 26mm);
-  margin:0 13mm;
+  width:160mm;
+  margin:0 0 0 16.5mm;
   border-collapse:collapse;
   table-layout:fixed;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Verdana, Geneva, sans-serif;
   font-size:10px;
-  color:#171717;
+  color:#111;
 }
 .template-hf-fanatical .invtable th,
 .template-hf-fanatical .invtable td{
-  border:1px solid #202020;
+  border:1px solid #1a1a1a;
 }
 .template-hf-fanatical .invtable th{
-  height:7mm;
-  padding:1.5mm 2mm;
+  height:6.8mm;
+  padding:1mm 2mm;
   background:#fff;
   color:#111;
+  font-family:Verdana, Geneva, sans-serif;
   font-size:10px;
   line-height:12px;
   font-weight:700;
-  text-align:left;
+  text-align:center;
+  vertical-align:middle;
 }
+.template-hf-fanatical .invtable th:first-child{text-align:center}
 .template-hf-fanatical .invtable th.right,
-.template-hf-fanatical .invtable td.right{text-align:right}
+.template-hf-fanatical .invtable td.right{text-align:center}
 .template-hf-fanatical .invtable td{
-  height:6mm;
+  min-height:5.9mm;
   padding:1mm 2mm;
-  background:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.90);
+  font-family:Verdana, Geneva, sans-serif;
   font-size:10px;
   line-height:12px;
   vertical-align:middle;
-  overflow-wrap:normal;
+  overflow-wrap:anywhere;
   word-break:normal;
 }
+.template-hf-fanatical .invtable td:first-child{text-align:left}
+.template-hf-fanatical .invtable td.right{text-align:center}
 .template-hf-fanatical .invtable tfoot td{
-  height:7mm;
+  min-height:6.5mm;
   padding:1mm 2mm;
-  background:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.90);
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:10px;
+  line-height:12px;
   font-weight:400;
+  vertical-align:middle;
 }
 .template-hf-fanatical .invtable tfoot td:first-child{text-align:right}
 .template-hf-fanatical .invtable tfoot td:nth-child(2),
-.template-hf-fanatical .invtable tfoot td:last-child{text-align:right}
-.template-hf-fanatical .bottomgrid{
-  display:none!important;
-}
+.template-hf-fanatical .invtable tfoot td:last-child{text-align:center}
+.template-hf-fanatical .bottomgrid{display:none!important}
 .template-hf-fanatical .paymentgrid{
-  position:absolute;
-  left:13mm;
-  top:166mm;
-  width:92mm;
-  margin:0;
-  display:block;
+  position:relative;
   z-index:3;
+  width:92mm;
+  margin:14mm 0 0 11mm;
+  padding:0;
+  display:block;
+  border:0;
 }
 .template-hf-fanatical .paymentgrid>[data-section="terms"]{display:none!important}
 .template-hf-fanatical .paymentgrid>[data-section="payment"]{display:block}
-.template-hf-fanatical .paymentgrid .label{
-  margin:0 0 2.5mm;
-  text-transform:none;
-  letter-spacing:0;
+.template-hf-fanatical .hf-paypal{
+  margin:0 0 7mm;
+  font-family:Verdana, Geneva, sans-serif;
   font-size:10.5px;
-  line-height:13px;
-  font-weight:700;
-  color:#171717;
+  line-height:14px;
+  color:#111;
 }
-.template-hf-fanatical .paymentgrid .metaText{
+.template-hf-fanatical .hf-paypal strong,
+.template-hf-fanatical .hf-bank-title{font-weight:700}
+.template-hf-fanatical .hf-bank-title{
+  margin:0 0 5mm;
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:10.5px;
+  line-height:14px;
+  color:#111;
+}
+.template-hf-fanatical .hf-bank-table{
+  width:92mm;
+  border-collapse:collapse;
+  table-layout:fixed;
+  font-family:Verdana, Geneva, sans-serif;
   font-size:10px;
-  line-height:13px;
-  color:#171717;
-  white-space:pre-line;
+  color:#111;
 }
+.template-hf-fanatical .hf-bank-table td{
+  height:7mm;
+  padding:1.3mm 3mm;
+  border:1px solid #111;
+  vertical-align:middle;
+  line-height:12px;
+  overflow-wrap:anywhere;
+}
+.template-hf-fanatical .hf-bank-table td:first-child{width:33mm;font-weight:400}
+.template-hf-fanatical .hf-bank-table td:last-child{width:auto;font-weight:400}
+.template-hf-fanatical .paymentgrid .label{display:none!important}
+.template-hf-fanatical .paymentgrid .metaText{display:none!important}
 .template-hf-fanatical .footer{
   position:absolute;
-  left:13mm;
-  right:13mm;
-  bottom:9mm;
-  height:12mm;
+  left:0;
+  right:0;
+  bottom:8.5mm;
+  height:8mm;
   display:flex;
   justify-content:center;
   align-items:flex-end;
   z-index:3;
-  color:#222;
-  font-family:Georgia,"Times New Roman",serif;
+  color:#111;
+  font-family:"Times New Roman", Times, serif;
   font-size:10px;
+  line-height:12px;
   font-weight:700;
   font-style:italic;
 }
 .template-hf-fanatical .footer span{display:none!important}
-.template-hf-fanatical .footer:after{
-  content:"Thank you for your Partnership!";
+.template-hf-fanatical .footer:after{content:"Thank you for your Partnership!"}
+.template-hf-fanatical .hf-placeholder{color:#777;font-style:italic;font-weight:400}
+@media (max-width:1180px){
+  .invoice.template-hf-fanatical{transform-origin:top center}
+}
+@media (max-width:760px){
+  .invoice.template-hf-fanatical{
+    width:min(210mm,100%);
+    min-height:0;
+    padding:0;
+    overflow:visible;
+  }
+  .template-hf-fanatical .topdetails{height:auto;min-height:118mm}
+  .template-hf-fanatical .inv-header{height:auto;min-height:118mm}
+  .template-hf-fanatical .companywrap{left:8mm;top:10mm;width:82mm}
+  .template-hf-fanatical .invtitle{left:auto;right:8mm;top:18mm;width:62mm}
+  .template-hf-fanatical .billrow{top:64mm}
+  .template-hf-fanatical .billrow>[data-section="client"]{left:auto;right:8mm;width:62mm}
+  .template-hf-fanatical .invtable{width:calc(100% - 16mm);margin-left:8mm}
+  .template-hf-fanatical .hf-watermark{left:16mm;width:calc(100% - 32mm)}
+  .template-hf-fanatical .paymentgrid{width:calc(100% - 16mm);margin-left:8mm}
+  .template-hf-fanatical .hf-bank-table{width:100%}
+  .template-hf-fanatical .footer{position:relative;bottom:auto;margin:28mm 0 8mm}
 }
 @media print{
   .invoice.template-hf-fanatical{
     width:210mm!important;
-    height:297mm!important;
     min-height:297mm!important;
+    height:auto!important;
     margin:0!important;
     padding:0!important;
-    border:1px solid #ececec!important;
+    border:0!important;
     box-shadow:none!important;
     transform:none!important;
-  }
-  .template-hf-fanatical .invtable th,
-  .template-hf-fanatical .invtable td{
+    overflow:visible!important;
     -webkit-print-color-adjust:exact!important;
     print-color-adjust:exact!important;
   }
+  .template-hf-fanatical .invtable th,
+  .template-hf-fanatical .invtable td,
+  .template-hf-fanatical .hf-bank-table td{
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .template-hf-fanatical .invtable tr{break-inside:avoid!important;page-break-inside:avoid!important}
 }
-
 </style>
 </head>
 <body>
@@ -1096,6 +1189,7 @@ function plusDays(s,n){let d=new Date(s+"T00:00:00");d.setDate(d.getDate()+n);re
 function num(v){v=Number(v);return Number.isFinite(v)?v:0}
 function esc(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;")}
 function dateFmt(v){if(!v)return"—";return new Intl.DateTimeFormat(undefined,{day:"numeric",month:"long",year:"numeric"}).format(new Date(v+"T00:00:00"))}
+function hfDateFmt(v){if(!v)return"[Invoice Date]";const d=new Date(v+"T00:00:00");if(Number.isNaN(d.getTime()))return"[Invoice Date]";const m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];return String(d.getDate()).padStart(2,"0")+"-"+m[d.getMonth()]+"-"+d.getFullYear()}
 function oneEducationDateFmt(v){if(!v)return"—";const [y,m,d]=String(v).split("-");return d&&m&&y?`${d}/${m}/${y}`:dateFmt(v)}
 function oneEducationCompanyMeta(){let a=[];if($("companyAddress").value.trim())a.push($("companyAddress").value.trim());if($("companyPhone").value.trim())a.push($("companyPhone").value.trim());if($("companyEmail").value.trim())a.push($("companyEmail").value.trim());if($("companyWebsite").value.trim())a.push($("companyWebsite").value.trim());return a.join("\n")||"Add your company details"}
 function oneEducationPaymentRows(text){
@@ -1116,6 +1210,34 @@ function calc(){let ac=roleCol("amount"),subtotal=state.items.reduce((s,i)=>s+nu
 function metaCompany(){let a=[];if($("companyReg").value.trim())a.push("Registration: "+$("companyReg").value.trim());if($("companyVat").value.trim())a.push("VAT / Tax: "+$("companyVat").value.trim());if($("companyAddress").value.trim())a.push($("companyAddress").value.trim());if($("companyPhone").value.trim())a.push("Phone: "+$("companyPhone").value.trim());if($("companyEmail").value.trim())a.push("Email: "+$("companyEmail").value.trim());if($("companyWebsite").value.trim())a.push($("companyWebsite").value.trim());return a.join("\n")||"Add your company details"}
 function metaClient(){let a=[];if($("clientContact").value.trim())a.push($("clientContact").value.trim());if($("clientTax").value.trim())a.push("VAT / Tax: "+$("clientTax").value.trim());if($("clientAddress").value.trim())a.push($("clientAddress").value.trim());if($("clientEmail").value.trim())a.push($("clientEmail").value.trim());return a.join("\n")||"Add client details"}
 function fmtCell(v,col){if(col.type==="currency")return money(v);if(col.type==="number")return num(v).toLocaleString(undefined,{maximumFractionDigits:2});if(col.type==="percentage")return num(v).toFixed(2).replace(/\.00$/,"")+"%";if(col.type==="date")return dateFmt(v);return String(v??"").replaceAll("\n","<br>")}
+function renderHfPayment(raw){
+  const text=String(raw||"").trim();
+  let paypal="[PayPal email]";
+  const bank=[];
+  const lines=text.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+  const known=[["NatWest A/C","NatWest A/C"],["A/C no","A/C no"],["A /C no","A /C no"],["Sort Code","Sort Code"],["SWIFT/BIC","SWIFT/BIC"],["WWIFT/BIC","WWIFT/BIC"],["IBAN","IBAN"]];
+  for(const line of lines){
+    const pm=line.match(/^PayPal\s*Details?\s*:\s*(.*)$/i);
+    if(pm){paypal=pm[1].trim()||"[PayPal email]";continue}
+    if(/^Bank\s*Details?\s*:?\s*$/i.test(line))continue;
+    let matched=false;
+    for(const [pattern,label] of known){
+      const escaped=pattern.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+      const m=line.match(new RegExp("^"+escaped+"\\s*:?[\\s-]*(.*)$","i"));
+      if(m){bank.push([label,m[1].trim()||"[Enter value]"]);matched=true;break}
+    }
+    if(!matched){
+      const m=line.match(/^([^:]{2,32})\s*:\s*(.+)$/);
+      if(m)bank.push([m[1].trim(),m[2].trim()]);
+      else if(line)bank.push(["[Bank detail]",line]);
+    }
+  }
+  if(!bank.length){
+    bank.push(["Bank Name","[Bank name]"],["A/C no","[Account number]"],["Sort Code","[Sort code]"],["SWIFT/BIC","[SWIFT/BIC]"],["IBAN","[IBAN]"]);
+  }
+  return `<div class="hf-paypal"><strong>PayPal Details:</strong> ${esc(paypal)}</div><div class="hf-bank-title">Bank Details:</div><table class="hf-bank-table"><tbody>${bank.map(([k,v])=>`<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join("")}</tbody></table>`;
+}
+
 function renderPreview(){
  let inv=$("invoice"),tpl=$("template").value;inv.className="invoice template-"+tpl;
  const fontNames={
@@ -1149,7 +1271,7 @@ function renderPreview(){
  $("pCompanyName").textContent=$("companyName").value.trim()||"Your Company";$("pCompanyMeta").textContent=tpl==="classic"?oneEducationCompanyMeta():metaCompany();
  let no=$("invoiceNumber").value.trim()||"Untitled";$("pInvoiceNo").textContent=(tpl==="minimal"?"# ":"#")+no;
  if($("pClassicInvoiceNo"))$("pClassicInvoiceNo").textContent=no;
- $("pDate").textContent=tpl==="classic"?oneEducationDateFmt($("invoiceDate").value):dateFmt($("invoiceDate").value);
+ $("pDate").textContent=tpl==="classic"?oneEducationDateFmt($("invoiceDate").value):tpl==="hf-fanatical"?hfDateFmt($("invoiceDate").value):dateFmt($("invoiceDate").value);
  $("pDue").textContent=tpl==="classic"?oneEducationDateFmt($("dueDate").value):dateFmt($("dueDate").value);
  $("pReference").textContent=$("reference").value.trim()||"—";
  $("pClientName").textContent=$("clientName").value.trim()||"Client company";$("pClientMeta").textContent=metaClient();
@@ -1165,6 +1287,8 @@ function renderPreview(){
  if(tpl==="classic"){
    const rows=oneEducationPaymentRows(rawPayment);
    $("pPayment").innerHTML=rows.map(r=>`<div class="oe-payment-row ${r.key?"":"oe-payment-free"}">${r.key?`<div class="oe-payment-key">${esc(r.key)}</div>`:""}<div class="oe-payment-value">${esc(r.value)}</div></div>`).join("");
+ }else if(tpl==="hf-fanatical"){
+   $("pPayment").innerHTML=renderHfPayment(rawPayment);
  }else $("pPayment").textContent=rawPayment;
  $("pTerms").textContent=termsText;
  $("pFooterCompany").textContent=$("companyName").value.trim()||"Your Company";$("pFooterInvoice").textContent="Invoice #"+no;
@@ -1178,7 +1302,7 @@ function renderPreview(){
  if(termsSection)termsSection.classList.toggle("section-hidden",!state.sections.terms||!termsText);
  const paymentSection=document.querySelector('[data-section="payment"]');
  const paymentText=$("paymentDetails").value.trim();
- if(paymentSection)paymentSection.classList.toggle("section-hidden",!state.sections.payment||!paymentText);
+ if(paymentSection)paymentSection.classList.toggle("section-hidden",tpl==="hf-fanatical"?false:(!state.sections.payment||!paymentText));
  if(tpl==="minimal"&&paymentSection){
    paymentSection.classList.toggle("section-hidden",!paymentText);
  }
