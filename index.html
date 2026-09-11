@@ -649,6 +649,97 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
   @page{size:A4 portrait;margin:0}
 }
 
+
+/* HF FANATICAL — watermark + invoice metadata alignment */
+.invoice.template-hf-fanatical,
+.invoice.template-hf-fanatical * { box-sizing: border-box; }
+
+.invoice.template-hf-fanatical {
+  position: relative;
+  overflow: hidden;
+}
+
+.invoice.template-hf-fanatical .hf-watermark {
+  position: absolute !important;
+  z-index: 0 !important;
+  left: 50% !important;
+  top: 53% !important;
+  width: 78% !important;
+  max-width: 165mm !important;
+  height: auto !important;
+  transform: translate(-50%, -50%) !important;
+  opacity: .095 !important;
+  pointer-events: none !important;
+  object-fit: contain !important;
+}
+
+.invoice.template-hf-fanatical > *:not(.hf-watermark) {
+  position: relative;
+  z-index: 1;
+}
+
+.invoice.template-hf-fanatical .hf-head {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+
+.invoice.template-hf-fanatical .hf-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  justify-self: end;
+  width: 46%;
+  text-align: left !important;
+}
+
+.invoice.template-hf-fanatical .hf-meta h1,
+.invoice.template-hf-fanatical .hf-meta h2,
+.invoice.template-hf-fanatical .hf-meta .hf-invoice-title {
+  width: 100%;
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+.invoice.template-hf-fanatical .hf-meta .hf-meta-row {
+  display: grid !important;
+  grid-template-columns: 58px minmax(0, 1fr) !important;
+  column-gap: 8px !important;
+  width: 100% !important;
+  align-items: baseline !important;
+  text-align: left !important;
+}
+
+.invoice.template-hf-fanatical .hf-meta .hf-meta-label,
+.invoice.template-hf-fanatical .hf-meta .hf-meta-value {
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 700px) {
+  .invoice.template-hf-fanatical .hf-head {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+  .invoice.template-hf-fanatical .hf-meta {
+    justify-self: start;
+    width: 100%;
+  }
+  .invoice.template-hf-fanatical .hf-watermark {
+    width: 88% !important;
+    top: 52% !important;
+  }
+}
+
+@media print {
+  .invoice.template-hf-fanatical .hf-watermark {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1359,7 +1450,37 @@ function buildInvoicePrintDocument(autoPrint=true){
 <title>${($("invoiceNumber").value||"Invoice").replace(/[<>]/g,"")}</title>
 <style>${css}\n${printOverrides}</style>
 </head>
-<body></body>
+<body>
+<script>
+(function(){
+  function syncHFFanaticalWatermark(){
+    const invoice=document.querySelector('.invoice.template-hf-fanatical,.invoice.hf-fanatical');
+    if(!invoice) return;
+    let logo=invoice.querySelector('img.hf-logo,img.logo,.hf-logo img');
+    if(!logo){
+      for(const img of invoice.querySelectorAll('img')){
+        if(img.src && !img.classList.contains('hf-watermark')){ logo=img; break; }
+      }
+    }
+    if(!logo || !logo.src) return;
+    let wm=invoice.querySelector('.hf-watermark');
+    if(!wm){
+      wm=document.createElement('img');
+      wm.className='hf-watermark';
+      wm.alt='';
+      wm.setAttribute('aria-hidden','true');
+      invoice.insertBefore(wm,invoice.firstChild);
+    }
+    wm.src=logo.src;
+  }
+  window.syncHFFanaticalWatermark=syncHFFanaticalWatermark;
+  document.addEventListener('DOMContentLoaded',syncHFFanaticalWatermark);
+  const observe=new MutationObserver(syncHFFanaticalWatermark);
+  observe.observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+
+</body>
 </html>`);
   doc.close();
 
@@ -1591,5 +1712,35 @@ $("saveBrandBtn").onclick=()=>{
 };
 refreshLibraries();
 </script>
+
+<script>
+(function(){
+  function syncHFFanaticalWatermark(){
+    const invoice=document.querySelector('.invoice.template-hf-fanatical,.invoice.hf-fanatical');
+    if(!invoice) return;
+    let logo=invoice.querySelector('img.hf-logo,img.logo,.hf-logo img');
+    if(!logo){
+      for(const img of invoice.querySelectorAll('img')){
+        if(img.src && !img.classList.contains('hf-watermark')){ logo=img; break; }
+      }
+    }
+    if(!logo || !logo.src) return;
+    let wm=invoice.querySelector('.hf-watermark');
+    if(!wm){
+      wm=document.createElement('img');
+      wm.className='hf-watermark';
+      wm.alt='';
+      wm.setAttribute('aria-hidden','true');
+      invoice.insertBefore(wm,invoice.firstChild);
+    }
+    wm.src=logo.src;
+  }
+  window.syncHFFanaticalWatermark=syncHFFanaticalWatermark;
+  document.addEventListener('DOMContentLoaded',syncHFFanaticalWatermark);
+  const observe=new MutationObserver(syncHFFanaticalWatermark);
+  observe.observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+
 </body>
 </html>
