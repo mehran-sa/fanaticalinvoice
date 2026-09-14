@@ -592,6 +592,56 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
   @page{size:A4 portrait;margin:0}
 }
 
+
+/* ================================================================
+   JANETS / MINIMAL TEMPLATE — FINAL LAYOUT OVERRIDES
+   Scoped exclusively to .template-minimal.
+   ================================================================ */
+.invoice.template-minimal{
+  overflow:visible !important;
+  height:auto !important;
+  min-height:297mm;
+}
+.invoice.template-minimal .topdetails{
+  overflow:visible !important;
+}
+.invoice.template-minimal .invtable{
+  overflow:visible !important;
+}
+.invoice.template-minimal .invtable tbody tr{
+  break-inside:avoid;
+  page-break-inside:avoid;
+}
+/* In the screen/PWA preview, don't insert an artificial 190px gap before
+   payment/notes. The reference puts Notes at the top of the following page. */
+.invoice.template-minimal .paymentgrid{
+  margin:42px 0 0 20px !important;
+  min-height:0 !important;
+}
+.invoice.template-minimal .paymentgrid[data-section].section-hidden{
+  display:none !important;
+}
+@media print{
+  .invoice.template-minimal{
+    overflow:visible !important;
+    height:auto !important;
+    min-height:297mm !important;
+  }
+  .invoice.template-minimal .paymentgrid{
+    margin:0 0 0 20px !important;
+    padding-top:0 !important;
+    page-break-before:always !important;
+    break-before:page !important;
+  }
+  .invoice.template-minimal .invtable thead{
+    display:table-header-group !important;
+  }
+  .invoice.template-minimal .invtable tbody tr{
+    break-inside:avoid !important;
+    page-break-inside:avoid !important;
+  }
+}
+
 </style>
 </head>
 <body>
