@@ -1341,21 +1341,7 @@ function buildInvoicePrintDocument(autoPrint=true){
 <style>${css}\n${printOverrides}</style>
 </head>
 <body>
-<script>
-(function(){
-  const oldBuild = window.buildInvoicePrintDocument;
-  if(typeof oldBuild !== "function" || window.__janetsFontWaitPatched) return;
-  window.__janetsFontWaitPatched = true;
-  window.buildInvoicePrintDocument = function(autoPrint=true){
-    const run = () => oldBuild.call(this, autoPrint);
-    if(document.fonts && document.fonts.ready){
-      document.fonts.ready.then(() => setTimeout(run, 80));
-    }else{
-      run();
-    }
-  };
-})();
-</script>
+
 
 </body>
 </html>`);
