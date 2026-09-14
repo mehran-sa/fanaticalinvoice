@@ -593,52 +593,63 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
 }
 
 
-/* ================================================================
-   JANETS / MINIMAL TEMPLATE — FINAL LAYOUT OVERRIDES
-   Scoped exclusively to .template-minimal.
-   ================================================================ */
+/* Janets reference font: JF2026-07 embeds Nimbus Sans Regular/Bold. */
+@font-face{
+  font-family:"Janets Nimbus Sans";
+  src:url("./fonts/NimbusSans-Regular.otf") format("opentype");
+  font-weight:400;
+  font-style:normal;
+  font-display:block;
+}
+@font-face{
+  font-family:"Janets Nimbus Sans";
+  src:url("./fonts/NimbusSans-Bold.otf") format("opentype");
+  font-weight:700;
+  font-style:normal;
+  font-display:block;
+}
+
+/* Keep the Janets template on the reference font; do not affect other designs. */
 .invoice.template-minimal{
-  overflow:visible !important;
-  height:auto !important;
-  min-height:297mm;
+  font-family:"Janets Nimbus Sans", "Nimbus Sans", Arial, sans-serif !important;
 }
-.invoice.template-minimal .topdetails{
-  overflow:visible !important;
+.invoice.template-minimal .companyname,
+.invoice.template-minimal .invtitle,
+.invoice.template-minimal .invtitle h2,
+.invoice.template-minimal .invno,
+.invoice.template-minimal .metatable td,
+.invoice.template-minimal .balance span,
+.invoice.template-minimal .balance strong,
+.invoice.template-minimal .billrow,
+.invoice.template-minimal .invtable,
+.invoice.template-minimal .invtable th,
+.invoice.template-minimal .invtable td,
+.invoice.template-minimal .summary,
+.invoice.template-minimal .paymentgrid,
+.invoice.template-minimal .notebox,
+.invoice.template-minimal .footer{
+  font-family:"Janets Nimbus Sans", "Nimbus Sans", Arial, sans-serif !important;
 }
-.invoice.template-minimal .invtable{
-  overflow:visible !important;
+
+/* Explicit weights match the embedded reference fonts. */
+.invoice.template-minimal .companyname,
+.invoice.template-minimal .invtable th,
+.invoice.template-minimal .balance strong{
+  font-weight:700 !important;
 }
-.invoice.template-minimal .invtable tbody tr{
-  break-inside:avoid;
-  page-break-inside:avoid;
+.invoice.template-minimal .invtitle h2,
+.invoice.template-minimal .invno,
+.invoice.template-minimal .metatable td,
+.invoice.template-minimal .balance span,
+.invoice.template-minimal .invtable td{
+  font-weight:400 !important;
 }
-/* In the screen/PWA preview, don't insert an artificial 190px gap before
-   payment/notes. The reference puts Notes at the top of the following page. */
-.invoice.template-minimal .paymentgrid{
-  margin:42px 0 0 20px !important;
-  min-height:0 !important;
-}
-.invoice.template-minimal .paymentgrid[data-section].section-hidden{
-  display:none !important;
-}
+
+/* Ensure print/PDF waits for the embedded font instead of falling back. */
 @media print{
-  .invoice.template-minimal{
-    overflow:visible !important;
-    height:auto !important;
-    min-height:297mm !important;
-  }
-  .invoice.template-minimal .paymentgrid{
-    margin:0 0 0 20px !important;
-    padding-top:0 !important;
-    page-break-before:always !important;
-    break-before:page !important;
-  }
-  .invoice.template-minimal .invtable thead{
-    display:table-header-group !important;
-  }
-  .invoice.template-minimal .invtable tbody tr{
-    break-inside:avoid !important;
-    page-break-inside:avoid !important;
+  .invoice.template-minimal,
+  .invoice.template-minimal *{
+    font-family:"Janets Nimbus Sans", "Nimbus Sans", Arial, sans-serif !important;
   }
 }
 
@@ -1329,7 +1340,24 @@ function buildInvoicePrintDocument(autoPrint=true){
 <title>${($("invoiceNumber").value||"Invoice").replace(/[<>]/g,"")}</title>
 <style>${css}\n${printOverrides}</style>
 </head>
-<body></body>
+<body>
+<script>
+(function(){
+  const oldBuild = window.buildInvoicePrintDocument;
+  if(typeof oldBuild !== "function" || window.__janetsFontWaitPatched) return;
+  window.__janetsFontWaitPatched = true;
+  window.buildInvoicePrintDocument = function(autoPrint=true){
+    const run = () => oldBuild.call(this, autoPrint);
+    if(document.fonts && document.fonts.ready){
+      document.fonts.ready.then(() => setTimeout(run, 80));
+    }else{
+      run();
+    }
+  };
+})();
+</script>
+
+</body>
 </html>`);
   doc.close();
 
@@ -1561,5 +1589,22 @@ $("saveBrandBtn").onclick=()=>{
 };
 refreshLibraries();
 </script>
+
+<script>
+(function(){
+  const oldBuild = window.buildInvoicePrintDocument;
+  if(typeof oldBuild !== "function" || window.__janetsFontWaitPatched) return;
+  window.__janetsFontWaitPatched = true;
+  window.buildInvoicePrintDocument = function(autoPrint=true){
+    const run = () => oldBuild.call(this, autoPrint);
+    if(document.fonts && document.fonts.ready){
+      document.fonts.ready.then(() => setTimeout(run, 80));
+    }else{
+      run();
+    }
+  };
+})();
+</script>
+
 </body>
 </html>
