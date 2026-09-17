@@ -1,0 +1,367 @@
+/* Janets / Minimal template + its embedded Nimbus Sans faces */
+/* Extracted verbatim from the original index.html <style> block. */
+
+/* JANETS TEMPLATE - matched to Invoice JF2026-04 PDF. Do not add competing minimal-template rules. */
+.invoice.template-minimal{
+  padding:23px 33px 30px 33px;
+  font-family:var(--font-edujanets);
+  color:#303030;
+  overflow:hidden;
+}
+.template-minimal:before{display:none!important}
+.template-minimal .topdetails{
+  display:block;
+  position:relative;
+  min-height:190px;
+  margin:0 0 42px;
+  padding:0;
+}
+.template-minimal .inv-header{
+  display:contents;
+}
+.template-minimal .companywrap{
+  display:block;
+  width:316px;
+  margin:0;
+  padding:0;
+}
+.template-minimal .logobox{
+  display:block;
+  width:126px;
+  height:62px;
+  margin:0 0 25px 9px;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  overflow:hidden;
+}
+.template-minimal .logobox img{width:100%;height:100%;object-fit:contain;object-position:left center}
+.template-minimal .logofallback{display:none!important}
+.template-minimal .companyname{
+  margin:0 0 1px 20px;
+  padding:0;
+  text-transform:uppercase;
+  font-family:var(--font-edujanets-bold);
+  font-size:12.5px;
+  line-height:15px;
+  font-weight:700;
+  color:#303030;
+}
+.template-minimal .companywrap .metaText{
+  margin-left:20px;
+  font-family:var(--font-edujanets);
+  font-size:12px;
+  line-height:14.2px;
+  font-weight:400;
+  color:#303030;
+}
+.template-minimal .invtitle{
+  position:absolute;
+  top:0;
+  right:0;
+  width:calc(100% - 334px);
+  height:190px;
+  margin:0;
+  padding:0;
+  text-align:right;
+  font-family:var(--font-edujanets);
+}
+.template-minimal .invtitle h2{
+  position:absolute;
+  top:2px;
+  right:14px;
+  margin:0;
+  padding:0;
+  font-family:var(--font-edujanets);
+  font-size:35.5px;
+  line-height:39px;
+  font-weight:400;
+  letter-spacing:0;
+  color:#303030;
+  white-space:nowrap;
+}
+.template-minimal .invno{
+  position:absolute;
+  top:43px;
+  right:17px;
+  margin:0;
+  padding:0;
+  font-family:var(--font-edujanets);
+  font-size:15.5px;
+  line-height:19px;
+  font-weight:400;
+  color:#777;
+  white-space:nowrap;
+}
+.template-minimal .metatable{
+  position:absolute;
+  top:106px;
+  left:0;
+  width:100%;
+  margin:0;
+  padding:0;
+  table-layout:fixed;
+  border-collapse:collapse;
+  border-spacing:0;
+}
+.template-minimal .metatable tr{height:25px}
+.template-minimal .metatable td{
+  height:25px;
+  margin:0;
+  padding:0;
+  border:0;
+  vertical-align:middle;
+  font-family:var(--font-edujanets);
+  font-size:12px;
+  line-height:25px;
+  font-weight:400;
+  white-space:nowrap;
+}
+.template-minimal .metatable td:first-child{width:58%;padding-right:27px;text-align:right;color:#777}
+.template-minimal .metatable td:last-child{width:42%;padding-right:17px;text-align:right;color:#303030}
+.template-minimal .balance{
+  position:absolute;
+  top:157px;
+  left:0;
+  display:grid;
+  grid-template-columns:58% 42%;
+  align-items:center;
+  width:100%;
+  height:30px;
+  margin:0;
+  padding:0;
+  border:0;
+  border-radius:4px;
+  background:#f2f2f2;
+  overflow:hidden;
+}
+.template-minimal .balance span{
+  margin:0;
+  padding:0 27px 0 0;
+  text-align:right;
+  font-family:var(--font-edujanets-bold);
+  font-size:13px;
+  line-height:30px;
+  font-weight:700;
+  color:#303030;
+  white-space:nowrap;
+}
+.template-minimal .balance strong{
+  margin:0;
+  padding:0 17px 0 0;
+  text-align:right;
+  font-family:var(--font-edujanets-bold);
+  font-size:14px;
+  line-height:30px;
+  font-weight:700;
+  color:#303030;
+  white-space:nowrap;
+}
+.template-minimal .billrow{
+  display:block;
+  width:296px;
+  margin:14px 0 0 20px;
+  padding:0;
+  border:0;
+}
+.template-minimal .billrow>[data-section="client"]{display:block}
+.template-minimal .billrow>[data-section="status"]{display:none!important}
+.template-minimal .billrow .label{
+  margin:0 0 3px;
+  padding:0;
+  text-transform:none;
+  letter-spacing:0;
+  font-family:var(--font-edujanets);
+  font-size:12px;
+  line-height:15px;
+  font-weight:400;
+  color:#777;
+}
+.template-minimal .clientname{
+  margin:0;
+  font-family:var(--font-edujanets-bold);
+  font-size:12.5px;
+  line-height:15px;
+  font-weight:700;
+  color:#303030;
+}
+.template-minimal .billrow .metaText{
+  font-family:var(--font-edujanets);
+  font-size:12px;
+  line-height:14.2px;
+  font-weight:400;
+  color:#303030;
+}
+.template-minimal .invtable{
+  width:100%;
+  margin:0;
+  border-collapse:separate;
+  border-spacing:0;
+  table-layout:fixed;
+  font-family:var(--font-edujanets);
+  font-size:11px;
+}
+.template-minimal .invtable th{
+  height:25px;
+  padding:0 17px;
+  border:0;
+  background:#383838;
+  color:#fff;
+  font-family:var(--font-edujanets);
+  font-size:11px;
+  line-height:25px;
+  font-weight:400;
+  letter-spacing:0;
+  text-align:left;
+  vertical-align:middle;
+}
+.template-minimal .invtable th:first-child{border-radius:4px 0 0 4px;padding-left:17px}
+.template-minimal .invtable th:last-child{border-radius:0 4px 4px 0;padding-right:17px}
+.template-minimal .invtable th.right{text-align:right}
+.template-minimal .invtable td{
+  padding:3px 17px 0;
+  border:0;
+  background:#fff;
+  color:#303030;
+  font-family:var(--font-edujanets);
+  font-size:11px;
+  line-height:16px;
+  font-weight:400;
+  vertical-align:top;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+.template-minimal .invtable td:first-child{
+  padding-left:17px;
+  font-family:var(--font-edujanets-bold);
+  font-weight:700;
+}
+.template-minimal .invtable td:last-child{padding-right:17px}
+.template-minimal .bottomgrid{
+  display:block;
+  margin:57px 0 0;
+}
+.template-minimal .bottomgrid .notebox{display:none!important}
+.template-minimal .summary{
+  width:100%;
+  margin:0;
+  padding:0;
+  border:0;
+}
+.template-minimal .summary .sumrow:not(.total){display:none!important}
+.template-minimal .summary .sumrow.total{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 118px;
+  align-items:center;
+  margin:0;
+  padding:0;
+  border:0;
+  font-family:var(--font-edujanets);
+  font-size:11px;
+  line-height:18px;
+  font-weight:400;
+}
+.template-minimal .summary .sumrow.total span:first-child{
+  padding-right:17px;
+  text-align:right;
+  color:#777;
+  font-weight:400;
+}
+.template-minimal .summary .sumrow.total span:last-child{
+  padding-right:17px;
+  text-align:right;
+  color:#303030;
+  font-weight:400;
+}
+.template-minimal .paymentgrid{
+  display:block;
+  margin:190px 0 0 20px;
+  padding:0;
+  border:0;
+  page-break-before:always;
+  break-before:page;
+}
+.template-minimal .paymentgrid>[data-section="terms"]{display:none!important}
+.template-minimal .paymentgrid .label{
+  margin:0 0 8px;
+  text-transform:none;
+  letter-spacing:0;
+  font-family:var(--font-edujanets-bold);
+  font-size:12.5px;
+  line-height:15px;
+  font-weight:700;
+  color:#303030;
+}
+.template-minimal .paymentgrid .metaText{
+  font-family:var(--font-edujanets);
+  font-size:12px;
+  line-height:14.5px;
+  color:#303030;
+}
+.template-minimal .footer{display:none!important}
+@media print{
+  .invoice.template-minimal{padding:23px 33px 30px 33px!important}
+  .template-minimal .paymentgrid{page-break-before:always;break-before:page}
+}
+body.pdf-exporting .invoice.template-minimal{padding:23px 33px 30px 33px!important}
+
+/* Janets reference font: JF2026-07 embeds Nimbus Sans Regular/Bold. */
+@font-face{
+  font-family:"Janets Nimbus Sans";
+  src:url("../../assets/fonts/NimbusSans-Regular.otf") format("opentype");
+  font-weight:400;
+  font-style:normal;
+  font-display:block;
+}
+@font-face{
+  font-family:"Janets Nimbus Sans";
+  src:url("../../assets/fonts/NimbusSans-Bold.otf") format("opentype");
+  font-weight:700;
+  font-style:normal;
+  font-display:block;
+}
+
+/* Keep the Janets template on the reference font; do not affect other designs. */
+.invoice.template-minimal{
+  font-family:"Janets Nimbus Sans", "Nimbus Sans", Arial, sans-serif !important;
+}
+.invoice.template-minimal .companyname,
+.invoice.template-minimal .invtitle,
+.invoice.template-minimal .invtitle h2,
+.invoice.template-minimal .invno,
+.invoice.template-minimal .metatable td,
+.invoice.template-minimal .balance span,
+.invoice.template-minimal .balance strong,
+.invoice.template-minimal .billrow,
+.invoice.template-minimal .invtable,
+.invoice.template-minimal .invtable th,
+.invoice.template-minimal .invtable td,
+.invoice.template-minimal .summary,
+.invoice.template-minimal .paymentgrid,
+.invoice.template-minimal .notebox,
+.invoice.template-minimal .footer{
+  font-family:"Janets Nimbus Sans", "Nimbus Sans", Arial, sans-serif !important;
+}
+
+/* Explicit weights match the embedded reference fonts. */
+.invoice.template-minimal .companyname,
+.invoice.template-minimal .invtable th,
+.invoice.template-minimal .balance strong{
+  font-weight:700 !important;
+}
+.invoice.template-minimal .invtitle h2,
+.invoice.template-minimal .invno,
+.invoice.template-minimal .metatable td,
+.invoice.template-minimal .balance span,
+.invoice.template-minimal .invtable td{
+  font-weight:400 !important;
+}
+
+/* Ensure print/PDF waits for the embedded font instead of falling back. */
+@media print{
+  .invoice.template-minimal,
+  .invoice.template-minimal *{
+    font-family:"Janets Nimbus Sans", "Nimbus Sans", Arial, sans-serif !important;
+  }
+}

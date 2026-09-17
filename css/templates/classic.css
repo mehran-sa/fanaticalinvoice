@@ -1,0 +1,241 @@
+/* One Education Classic template */
+/* Extracted verbatim from the original index.html <style> block. */
+
+/* ONE EDUCATION TEMPLATE - matched to One Education - Fanatical Invoice 2026-0228.pdf. */
+.invoice.template-classic{
+  padding:16mm 8mm 14mm;
+  font-family:var(--font-oneeducation-sans);
+  color:#111;
+  overflow:hidden;
+}
+.template-classic .topdetails{display:block}
+.template-classic .inv-header{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  min-height:17mm;
+  margin:0 8mm;
+  padding:0 0 3px;
+  border-bottom:4px double #111;
+}
+.template-classic .companywrap{
+  display:block;
+  margin:0;
+  padding:0;
+}
+.template-classic .logobox,
+.template-classic .companyname{display:none!important}
+.template-classic .companywrap .metaText{
+  margin:0;
+  padding:0;
+  text-align:left;
+  white-space:pre-line;
+  font-family:var(--font-oneeducation-sans);
+  font-size:11px;
+  line-height:1.28;
+  font-weight:700;
+  color:#111;
+}
+.template-classic .invtitle{
+  position:static;
+  margin:0;
+  padding:0;
+  text-align:right;
+}
+.template-classic .invtitle h2{
+  margin:6.5mm 1mm 0 0;
+  padding:0;
+  font-family:var(--font-oneeducation-sans);
+  font-size:25px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:0;
+  color:#111;
+}
+.template-classic .invno{display:none!important}
+.template-classic .metatable{
+  position:absolute;
+  top:calc(100% + 12mm);
+  right:0;
+  width:43%;
+  margin:0;
+  border-collapse:collapse;
+  table-layout:fixed;
+  font-family:var(--font-oneeducation-sans);
+  font-size:11px;
+  line-height:1.2;
+}
+.template-classic .metatable tr{height:20px}
+.template-classic .metatable td{
+  padding:1px 0;
+  border:0;
+  color:#111;
+  white-space:nowrap;
+}
+.template-classic .metatable td:first-child{
+  width:58%;
+  padding-right:8px;
+  text-align:right;
+  font-weight:700;
+  color:#111;
+}
+.template-classic .metatable td:last-child{
+  width:42%;
+  text-align:right;
+  font-weight:400;
+}
+.classic-only{display:none}
+.template-classic .classic-only{display:table-row}
+.template-classic .metatable tr[data-section="reference"]{display:none!important}
+.template-classic .balance{display:none!important}
+.template-classic .billrow{
+  display:block;
+  min-height:24mm;
+  margin:9mm 8mm 8.5mm;
+  padding:0;
+}
+.template-classic .billrow>[data-section="status"]{display:none!important}
+.template-classic .billrow .label{
+  margin:0 0 1px;
+  padding:0;
+  text-transform:none;
+  letter-spacing:0;
+  font-family:var(--font-oneeducation-sans);
+  font-size:12px;
+  line-height:1.25;
+  font-weight:700;
+  color:#111;
+}
+.template-classic .clientname{
+  margin:0 0 1px;
+  padding:0;
+  white-space:pre-line;
+  font-family:var(--font-oneeducation-sans);
+  font-size:12px;
+  line-height:1.35;
+  font-weight:700;
+  color:#111;
+}
+.template-classic .billrow .metaText{
+  max-width:58%;
+  margin:0;
+  padding:0;
+  text-align:left;
+  white-space:pre-line;
+  font-family:var(--font-oneeducation-sans);
+  font-size:11px;
+  line-height:1.52;
+  font-weight:400;
+  color:#111;
+}
+.template-classic .invtable{
+  width:100%;
+  margin:0;
+  border-collapse:collapse;
+  border-spacing:0;
+  table-layout:fixed;
+  font-family:var(--font-oneeducation-sans);
+  font-size:10.5px;
+  color:#111;
+}
+.template-classic .invtable th{
+  padding:10px 7px;
+  border:1px solid #111;
+  background:#fff;
+  color:#111;
+  text-transform:none;
+  letter-spacing:0;
+  font-family:var(--font-oneeducation-sans);
+  font-size:11px;
+  line-height:1.15;
+  font-weight:400;
+  text-align:left;
+  vertical-align:middle;
+}
+.template-classic .invtable th:nth-child(n+2){text-align:center}
+.template-classic .invtable td{
+  padding:12.7px 7px;
+  border:1px solid #111;
+  background:#fff;
+  color:#111;
+  font-family:var(--font-oneeducation-sans);
+  font-size:10.5px;
+  line-height:1.28;
+  font-weight:400;
+  vertical-align:top;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+.template-classic .invtable td:first-child{text-align:center}
+.template-classic .invtable td.right{text-align:right}
+.template-classic .invtable tbody td:nth-last-child(2){text-align:center}
+.template-classic .invtable tfoot{display:table-row-group}
+.template-classic .invtable .classic-total-row td{
+  padding:7px;
+  font-size:11px;
+  line-height:1.15;
+  vertical-align:middle;
+}
+.template-classic .invtable .classic-total-label{text-align:center!important}
+.template-classic .invtable .classic-total-qty{text-align:center!important}
+.template-classic .invtable .classic-total-money{text-align:right!important}
+.template-classic .bottomgrid{display:none!important}
+.template-classic .paymentgrid{
+  display:block;
+  margin:14mm 0 0;
+  padding:0;
+  border:0;
+}
+.template-classic .paymentgrid>[data-section="terms"]{display:none!important}
+.template-classic .paymentgrid>[data-section="payment"]{display:block;break-inside:avoid;page-break-inside:avoid}
+.template-classic .paymentgrid .label{
+  margin:0 0 9mm;
+  padding:0;
+  text-transform:none;
+  letter-spacing:0;
+  font-family:var(--font-oneeducation-sans);
+  font-size:19px;
+  line-height:1.1;
+  font-weight:700;
+  color:#111;
+}
+.template-classic .paymentgrid .metaText{
+  width:78%;
+  margin:0 auto;
+  padding:0;
+  border:2px solid #111;
+  font-family:var(--font-oneeducation-sans);
+  font-size:11px;
+  line-height:1.2;
+  color:#111;
+}
+.template-classic .oe-payment-row{
+  display:grid;
+  grid-template-columns:28% 72%;
+  min-height:40px;
+}
+.template-classic .oe-payment-row+.oe-payment-row{border-top:2px solid #111}
+.template-classic .oe-payment-key,
+.template-classic .oe-payment-value{
+  display:flex;
+  align-items:center;
+  padding:10px 7px;
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+.template-classic .oe-payment-key{
+  border-right:2px solid #111;
+  font-weight:700;
+}
+.template-classic .oe-payment-value{font-weight:400}
+.template-classic .oe-payment-row.oe-payment-free .oe-payment-key{display:none}
+.template-classic .oe-payment-row.oe-payment-free{grid-template-columns:1fr}
+.template-classic .footer{display:none!important}
+@media print{
+  .invoice.template-classic{padding:16mm 8mm 14mm!important}
+  .invoice.template-classic .invtable thead{display:table-row-group!important}
+  .invoice.template-classic .invtable tr{break-inside:auto!important;page-break-inside:auto!important}
+  .invoice.template-classic .paymentgrid{break-before:auto!important;page-break-before:auto!important}
+}
+body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}

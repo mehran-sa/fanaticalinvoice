@@ -1,0 +1,7 @@
+/* Global print page box */
+/* Extracted verbatim from the original index.html <style> block. */
+
+/* ===== ISOLATED IN-PLACE PRINT SUPPORT ===== */
+@media print{
+  @page{size:A4 portrait;margin:0}
+}
