@@ -1,0 +1,7 @@
+/* Base: design tokens, resets, focus styles */
+/* Extracted verbatim from the original index.html <style> block. */
+
+:root{--accent:#2563eb;--accent-rgb:37,99,235;--ink:#1f2937;--font-modern:Inter,"Segoe UI",Arial,sans-serif;--font-edujanets:"Nimbus Sans","NimbusSans-Regular","Liberation Sans",Arial,Helvetica,sans-serif;--font-edujanets-bold:"Nimbus Sans","NimbusSans-Bold","Liberation Sans",Arial,Helvetica,sans-serif;--font-oneeducation:"Times New Roman","TimesNewRomanPSMT",Tinos,Times,serif;--font-oneeducation-sans:Arial,"ArialMT",Arimo,"Liberation Sans",sans-serif;--font-oneeducation-black:"Arial Black","ArialBlack",Arial,sans-serif;--font-oneeducation-lucida:"Lucida Sans","LucidaSans","Lucida Sans Unicode","Lucida Grande",Arial,sans-serif;--font-royalty:Calibri,Carlito,"Segoe UI",Arial,sans-serif;--muted:#667085;--line:#d7dde7;--bg:#edf1f6;--panel:#fff;--danger:#b42318;--radius:12px}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(var(--accent-rgb),.22);outline-offset:2px}

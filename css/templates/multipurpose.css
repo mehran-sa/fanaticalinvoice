@@ -1,0 +1,99 @@
+/*
+ * Multipurpose template (js/templates/multipurpose.js).
+ * Uses the invoice accent colour (Design, Accent colour), so each brand gets
+ * its own colour. Backgrounds print (print-color-adjust: exact).
+ */
+
+.invoice.template-multipurpose{
+  --mp-accent:var(--accent);
+  --mp-tint:rgba(var(--accent-rgb),.07);
+  --mp-ink:#1d2433;
+  --mp-muted:#5d6678;
+  --mp-line:#e3e7ee;
+  padding:20mm 15mm 22mm;
+  font-family:var(--font-modern);
+  color:var(--mp-ink);
+  font-size:10.5px;
+}
+/* Accent band across the top of the first page */
+.invoice.template-multipurpose::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:7mm;background:var(--mp-accent);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+
+/* ---------------------------------------------------------- header */
+.template-multipurpose .inv-header{grid-template-columns:minmax(0,1fr) 72mm;gap:14mm;align-items:start}
+.template-multipurpose .companywrap{display:flex;flex-direction:column;gap:9px}
+.template-multipurpose .logobox{border:0;background:transparent;border-radius:0}
+.template-multipurpose .logobox:not(.has-logo){background:var(--mp-accent);border-radius:6px}
+.template-multipurpose .logofallback{color:#fff;background:transparent}
+.template-multipurpose .companyname{font-size:15px;font-weight:750;color:var(--mp-ink)}
+.template-multipurpose .companywrap .metaText{font-size:10px;color:var(--mp-muted);line-height:1.5}
+
+.template-multipurpose .invtitle{text-align:right}
+.template-multipurpose .invtitle h2{font-size:30px;font-weight:800;letter-spacing:.14em;color:var(--mp-accent);margin:0;line-height:1.05}
+.template-multipurpose .invno{font-size:12px;font-weight:650;color:var(--mp-muted);margin:4px 0 12px;letter-spacing:.02em}
+.template-multipurpose .metatable{width:100%;border-collapse:collapse;border-top:1px solid var(--mp-line)}
+.template-multipurpose .metatable td{padding:5px 0;border-bottom:1px solid var(--mp-line);font-size:10px}
+.template-multipurpose .metatable td:first-child{color:var(--mp-muted);text-align:left}
+.template-multipurpose .metatable td:last-child{text-align:right;font-weight:650}
+.template-multipurpose .balance{
+  margin-top:10px;padding:9px 12px;border:0;border-radius:6px;background:var(--mp-tint);
+  display:flex;justify-content:space-between;align-items:center;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.template-multipurpose .balance span{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mp-muted)}
+.template-multipurpose .balance strong{font-size:17px;color:var(--mp-accent)}
+
+/* ---------------------------------------------------------- bill to */
+.template-multipurpose .billrow{display:block;margin:9mm 0 7mm}
+.template-multipurpose .billrow [data-section="client"]{
+  border-left:3px solid var(--mp-accent);background:#f7f8fb;padding:9px 13px;border-radius:0 6px 6px 0;max-width:95mm;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.template-multipurpose .billrow .label,
+.template-multipurpose .notebox .label,
+.template-multipurpose .paymentgrid .label{
+  font-size:8.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mp-accent);margin-bottom:4px
+}
+.template-multipurpose .clientname{font-size:12.5px;font-weight:750;white-space:pre-line;color:var(--mp-ink)}
+.template-multipurpose .billrow .metaText{color:var(--mp-muted);font-size:10px;line-height:1.5}
+
+/* ----------------------------------------------------------- table */
+.template-multipurpose .invtable{border-collapse:separate;border-spacing:0;font-size:10px}
+.template-multipurpose .invtable th{
+  background:var(--mp-accent);color:#fff;border:0;padding:8px 9px;font-size:8.5px;font-weight:750;letter-spacing:.08em;text-transform:uppercase;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.template-multipurpose .invtable th:first-child{border-radius:5px 0 0 0}
+.template-multipurpose .invtable th:last-child{border-radius:0 5px 0 0}
+.template-multipurpose .invtable td{border:0;border-bottom:1px solid var(--mp-line);padding:8px 9px;color:var(--mp-ink)}
+.template-multipurpose .invtable tbody tr:nth-child(even) td{background:#f8f9fb;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.template-multipurpose .invtable tr{break-inside:avoid}
+
+/* ------------------------------------------------- notes and totals */
+.template-multipurpose .bottomgrid{grid-template-columns:minmax(0,1fr) 72mm;gap:12mm;margin-top:7mm;align-items:start;break-inside:avoid}
+.template-multipurpose .notebox{border:0;background:transparent;padding:0;min-height:0}
+.template-multipurpose .notebox .metaText{color:var(--mp-ink);line-height:1.55}
+.template-multipurpose .summary{border-top:0}
+.template-multipurpose .sumrow{padding:6px 0;border-bottom:1px solid var(--mp-line);font-size:10.5px}
+.template-multipurpose .sumrow span{color:var(--mp-muted)}
+.template-multipurpose .sumrow.total{
+  margin-top:8px;padding:10px 12px;border:0;border-radius:6px;background:var(--mp-accent);color:#fff;font-size:13px;font-weight:800;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.template-multipurpose .sumrow.total span{color:#fff}
+
+/* ---------------------------------------------- payment and terms */
+.template-multipurpose .paymentgrid{grid-template-columns:1fr 1fr;gap:12mm;border-top:1px solid var(--mp-line);margin-top:9mm;padding-top:6mm;break-inside:avoid}
+.template-multipurpose .paymentgrid .metaText{color:var(--mp-ink);line-height:1.55}
+
+/* ----------------------------------------------------------- footer */
+.template-multipurpose .footer{
+  left:15mm;right:15mm;bottom:9mm;justify-content:center;text-align:center;
+  border-top:1px solid var(--mp-line);padding-top:4px;font-size:8px;color:var(--mp-muted)
+}
+.template-multipurpose #pFooterInvoice{display:none}
+/* No cell dividers in the accent header row or the body rows */
+.template-multipurpose .invtable th,
+.template-multipurpose .invtable td{border-left:0!important;border-right:0!important;box-shadow:none}
