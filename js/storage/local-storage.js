@@ -5,16 +5,33 @@
  * the application loading or interrupt editing.
  */
 
+/**
+ * Listeners told the key of every successful write or removal in this tab.
+ * Google Drive sync (js/cloud/cloud-sync.js) uses this to notice changes to
+ * saved invoices, clients, templates and brands, whichever feature made them.
+ */
+const writeListeners = new Set();
+export const onLocalWrite = fn => { writeListeners.add(fn); };
+function notify(key) {
+  for (const fn of writeListeners) {
+    try { fn(key); } catch (err) { console.error(err); }
+  }
+}
+
 export function readRaw(key) {
   try { return localStorage.getItem(key); } catch { return null; }
 }
 
 export function writeRaw(key, value) {
-  try { localStorage.setItem(key, value); return true; } catch { return false; }
+  try { localStorage.setItem(key, value); } catch { return false; }
+  notify(key);
+  return true;
 }
 
 export function remove(key) {
-  try { localStorage.removeItem(key); return true; } catch { return false; }
+  try { localStorage.removeItem(key); } catch { return false; }
+  notify(key);
+  return true;
 }
 
 /** Reads and parses JSON, returning the fallback on any failure. */

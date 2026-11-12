@@ -259,8 +259,12 @@ try:
         check("start-up failure banner is removed once the app runs", page.locator("#bootError").count() == 0)
         check("page and scripts are the same release (no mixed-version warning)",
               "older version" not in (page.text_content("#toast") or ""))
-        check("content security policy blocks outbound connections",
-              "connect-src 'none'" in (page.get_attribute('meta[http-equiv="Content-Security-Policy"]', "content") or ""))
+        csp = page.get_attribute('meta[http-equiv="Content-Security-Policy"]', "content") or ""
+        connect = re.search(r"connect-src ([^;]*)", csp)
+        check("content security policy blocks outbound connections (only Google Drive sync is allowed)",
+              connect is not None and set(connect.group(1).split()) <= (
+                  {"'none'"} if SINGLE else {"https://www.googleapis.com", "https://accounts.google.com/gsi/"}))
+        check("Google Drive sync stays hidden until a client ID is configured", page.is_hidden("#panel-cloud") and page.is_hidden("#cloudChip"))
         inv, due = page.input_value("#invoiceDate"), page.input_value("#dueDate")
         check("due date defaults to invoice date + 14 days",
               page.evaluate("([a, b]) => (new Date(b) - new Date(a)) / 864e5", [inv, due]) == 14)

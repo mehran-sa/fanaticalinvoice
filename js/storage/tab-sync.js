@@ -96,6 +96,15 @@ async function ask() {
   toast("Loaded the version saved in the other tab.");
 }
 
+/**
+ * Re-reads the open invoice's stored record as this tab's known copy, after
+ * something in this tab replaced it without saving from the editor (Google
+ * Drive sync bringing a newer version from another device).
+ */
+export function refreshKnownRecord() {
+  lastKnown = readRecordText(state.invoiceId);
+}
+
 export function initTabSync() {
   lastKnown = readRecordText(state.invoiceId);
   onInvoiceWritten((_text, recordText) => { if (recordText) lastKnown = recordText; });

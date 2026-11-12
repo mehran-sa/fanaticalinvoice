@@ -1,13 +1,13 @@
 {
   "name": "sa-invoice-generator",
-  "version": "2.10.1",
+  "version": "2.11.0",
   "private": true,
   "description": "SA Invoice Generator: browser-based invoice editor that keeps all data on this device.",
   "type": "module",
   "scripts": {
     "start": "python3 serve.py",
     "build": "node tools/build-single-file.mjs",
-    "test": "node --test tests/unit.test.mjs tests/storage.test.mjs",
+    "test": "node --test tests/unit.test.mjs tests/storage.test.mjs tests/cloud-sync.test.mjs",
     "test:e2e": "python3 tests/e2e_workflows.py"
   },
   "devDependencies": {

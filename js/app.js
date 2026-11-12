@@ -45,6 +45,7 @@ import { initMoreMenu } from "./editor/menu.js";
 import { DEFAULT_ACCENT } from "./constants.js";
 import { installCompatibilityGlobals } from "./compat.js";
 import { initTabSync } from "./storage/tab-sync.js";
+import { initCloudSync } from "./cloud/cloud-sync.js";
 
 /** Runs a startup step, reporting rather than aborting on failure. */
 function step(name, fn) {
@@ -130,6 +131,8 @@ export function init() {
   step("fit preview", fitPreviewOnNarrowScreens);
   // After the autosave is restored, so the starting point is this tab's view.
   step("tab sync", initTabSync);
+  // Last: it may bring newer invoices from Google Drive into the editor.
+  step("google drive sync", initCloudSync);
   step("version check", checkVersion);
   step("compatibility globals", installCompatibilityGlobals);
 }

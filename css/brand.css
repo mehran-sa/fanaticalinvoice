@@ -231,3 +231,26 @@ input[type=range],input[type=checkbox],input[type=radio]{accent-color:var(--sa-g
 /* Keep the visually hidden file input inside its row (it caused sideways scroll on phones). */
 .logo-actions{position:relative}
 .logo-actions>#logoFile{left:0;top:0}
+
+/* ------------------------------------------------- Google Drive sync (2.11.0) */
+.status-stack{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex:none}
+.status-stack>[hidden]{display:none}
+.cloud-chip{border:0;cursor:pointer;font:inherit;font-size:11.5px;font-weight:600;font-family:var(--sa-font-ui)}
+.cloud-chip .cloud-icon{flex:none}
+.cloud-chip.saved{background:var(--sa-green-tint);color:var(--sa-green-dark)}
+.cloud-chip.pending,.cloud-chip.syncing{background:var(--sa-surface);color:var(--sa-text)}
+.cloud-chip.reconnect,.cloud-chip.offline{background:#fffaeb;color:#7a4d00}
+.cloud-chip.error{background:#fef3f2;color:#b42318}
+.cloud-chip:hover{filter:brightness(.96)}
+.panel[hidden]{display:none}
+/* Google's sign-in button style: white, grey outline, the four-colour G. */
+.google-btn{display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 14px 0 12px;border:1px solid #747775;border-radius:4px;background:#fff;color:#1f1f1f;font:500 14px/1 Roboto,"Segoe UI",Arial,sans-serif;cursor:pointer;margin:2px 0 4px}
+.google-btn:hover{background:#f8faff;box-shadow:0 1px 2px rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15)}
+.google-btn svg{flex:none}
+.cloud-small{font-size:11px;margin-top:8px}
+.cloud-account{display:flex;align-items:center;gap:10px;margin-bottom:8px;min-width:0}
+.cloud-avatar{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--sa-green);color:#fff;font-weight:700;font-size:14px}
+.cloud-who{display:flex;flex-direction:column;min-width:0}
+.cloud-who strong{font-size:13px;color:var(--sa-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cloud-who span{font-size:11.5px;color:var(--sa-text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cloud-status{font-size:12px;line-height:1.45;color:var(--sa-ink);margin:0 0 10px}

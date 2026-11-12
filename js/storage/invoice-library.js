@@ -179,13 +179,44 @@ export function saveInvoiceRecord(id, snapshot, summary, updatedAt = new Date().
   return { ok: true, text };
 }
 
-/** Deletes a saved invoice and any logo only it used. */
-export function deleteInvoiceRecord(id) {
+/**
+ * Deletes a saved invoice and any logo only it used.
+ * The deletion time is remembered (see readDeletedInvoices) so that Google
+ * Drive sync removes the invoice on other devices too, instead of bringing it
+ * back from them.
+ * @param {string} id
+ * @param {{deletedAt?: string}} [options] deletedAt: when it was deleted, for
+ *        a deletion made on another device; defaults to now
+ */
+export function deleteInvoiceRecord(id, { deletedAt = new Date().toISOString() } = {}) {
   remove(recordKey(id));
   const ok = writeIndex(listInvoices().filter(e => e.id !== id));
   removeUnusedLogos();
+  if (isInvoiceId(id)) {
+    const deleted = readDeletedInvoices();
+    if (!deleted[id] || deleted[id] < deletedAt) {
+      deleted[id] = deletedAt;
+      writeDeletedInvoices(deleted);
+    }
+  }
   return ok;
 }
+
+/* ---------------------------------------------------------- deletions */
+
+/** {invoiceId: ISO time it was deleted}. */
+export function readDeletedInvoices() {
+  const map = readJSON(STORAGE_KEYS.deletedInvoices, {});
+  const clean = {};
+  if (map && typeof map === "object" && !Array.isArray(map)) {
+    for (const [id, at] of Object.entries(map)) {
+      if (isInvoiceId(id) && typeof at === "string" && !Number.isNaN(new Date(at).getTime())) clean[id] = at;
+    }
+  }
+  return clean;
+}
+
+export const writeDeletedInvoices = map => writeJSON(STORAGE_KEYS.deletedInvoices, map);
 
 /** Raw stored record text (used by the multi-tab check). */
 export const readRecordText = id => (isInvoiceId(id) ? readRaw(recordKey(id)) : null);

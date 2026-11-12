@@ -5,7 +5,7 @@
 
 import { $, toast, download, trimmedField, toastError } from "../utils.js";
 import { BACKUP_REMINDER_DAYS, BACKUP_SNOOZE_DAYS, STORAGE_KEYS } from "../constants.js";
-import { readRaw, writeRaw } from "../storage/local-storage.js";
+import { readRaw, writeRaw, readJSON } from "../storage/local-storage.js";
 import { state } from "../state.js";
 import { money, dateFmt } from "../invoice/formatters.js";
 import { listInvoices, invoicesWithNumber, loadSavedInvoice } from "../storage/invoice-library.js";
@@ -88,10 +88,14 @@ export function renderInvoiceList() {
   }
 }
 
+/** Whether Google Drive sync is on (read directly to avoid an import cycle). */
+const isSyncSignedIn = () => Boolean(readJSON(STORAGE_KEYS.cloudSync, {})?.email);
+
 async function confirmDelete(entry) {
   const ok = await confirmAction({
     title: "Delete this invoice?",
-    message: `Invoice ${entry.number || "with no number"}${entry.client ? " for " + entry.client : ""} will be deleted from this browser. ` +
+    message: `Invoice ${entry.number || "with no number"}${entry.client ? " for " + entry.client : ""} will be deleted from this browser` +
+      (isSyncSignedIn() ? " and, through Google Drive sync, from your other devices. " : ". ") +
       "This cannot be undone unless you have a backup or an exported copy.",
     confirmLabel: "Delete invoice",
     danger: true

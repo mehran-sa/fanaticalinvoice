@@ -7,7 +7,7 @@
  * App release. index.html carries the same value in <meta name="sa-app-version">;
  * a mismatch means the browser mixed cached files from two releases.
  */
-export const APP_VERSION = "2.10.1";
+export const APP_VERSION = "2.11.0";
 
 /**
  * Paper sizes a template can print on (capabilities.paper, default "a4").
@@ -49,7 +49,14 @@ export const STORAGE_KEYS = {
   backupReminderSnoozedUntil: "invoiceStudio.backupReminderSnoozedUntil",
   undoHintShown: "invoiceStudio.undoHintShown",
   /** Which sidebar panels were left open (added in 2.6.0). */
-  panelsOpen: "invoiceStudio.panelsOpen"
+  panelsOpen: "invoiceStudio.panelsOpen",
+  /* Added in 2.11.0 for Google Drive sync: when each invoice was deleted
+     (so a deletion reaches other devices instead of the invoice coming back),
+     and the sync settings for this browser (signed-in account, Drive file). */
+  deletedInvoices: "invoiceStudio.deletedInvoices.v1",
+  cloudSync: "invoiceStudio.cloudSync.v1",
+  /** The short-lived Google access token (about an hour) and its expiry. */
+  cloudToken: "invoiceStudio.cloudToken.v1"
 };
 
 /** "Later" on the backup reminder hides it for this many days. */
