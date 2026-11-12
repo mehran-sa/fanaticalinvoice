@@ -8,7 +8,7 @@
  *
  * See GOOGLE-DRIVE-SYNC.md for the one-time setup.
  */
-export const GOOGLE_CLIENT_ID = "";
+export const GOOGLE_CLIENT_ID = "355317253211-r9uekdegqe8gb47sbrs7oha1ac7qomh2.apps.googleusercontent.com";
 
 /**
  * Optional: a Google Workspace domain (for example "staffasia.org"). When set,
@@ -16,4 +16,4 @@ export const GOOGLE_CLIENT_ID = "";
  * hint only; who may sign in is decided in Google Cloud Console (an "Internal"
  * consent screen allows only accounts from your organisation).
  */
-export const GOOGLE_HOSTED_DOMAIN = "";
+export const GOOGLE_HOSTED_DOMAIN = "staffasia.org";
