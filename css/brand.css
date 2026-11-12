@@ -1,0 +1,256 @@
+/*
+ * StaffAsia brand layer for the editor.
+ *
+ * Taken from www.staffasia.org:
+ *   colours   green #46B751 (hover #32823A), ink #1A1A1A, text #4F4F4F,
+ *             lines #EDEDED, surface #F6F6F6, green tint #EDF8EE
+ *   type      Epilogue for headings, Poppins for interface text, buttons in
+ *             bold uppercase Poppins
+ *   shape     square corners, flat surfaces, a faint 80px grid, and the
+ *             green-to-dark diagonal band
+ *
+ * Only the editor is restyled. The printed invoice keeps its own template
+ * styles and uses the invoice accent colour (--accent), which is now separate
+ * from these interface colours: choosing a red accent for an invoice no longer
+ * turns the editor red.
+ *
+ * Fonts are bundled in assets/fonts (SIL Open Font License, see
+ * assets/fonts/FONTS-LICENSE.txt); nothing is loaded from the internet.
+ */
+
+@font-face{font-family:"Epilogue";font-style:normal;font-weight:100 900;font-display:swap;src:url("../assets/fonts/Epilogue-latin-variable.woff2") format("woff2")}
+@font-face{font-family:"Poppins";font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/Poppins-latin-400.woff2") format("woff2")}
+@font-face{font-family:"Poppins";font-style:normal;font-weight:500;font-display:swap;src:url("../assets/fonts/Poppins-latin-500.woff2") format("woff2")}
+@font-face{font-family:"Poppins";font-style:normal;font-weight:600;font-display:swap;src:url("../assets/fonts/Poppins-latin-600.woff2") format("woff2")}
+@font-face{font-family:"Poppins";font-style:normal;font-weight:700;font-display:swap;src:url("../assets/fonts/Poppins-latin-700.woff2") format("woff2")}
+
+:root{
+  --sa-green:#46b751;
+  --sa-green-dark:#32823a;
+  --sa-green-tint:#edf8ee;
+  --sa-green-line:#aadeaf;
+  --sa-ink:#1a1a1a;
+  --sa-text:#4f4f4f;
+  --sa-line:#ededed;
+  --sa-line-strong:#c6c6c6;
+  --sa-surface:#f6f6f6;
+  --sa-font-ui:"Poppins","Segoe UI",Arial,sans-serif;
+  --sa-font-heading:"Epilogue","Poppins","Segoe UI",Arial,sans-serif;
+  /* Old shared tokens, pointed at the brand. */
+  --ink:var(--sa-ink);
+  --muted:var(--sa-text);
+  --line:var(--sa-line);
+  --bg:var(--sa-surface);
+  --radius:0px;
+}
+
+/* geometricPrecision: without it, small Poppins/Epilogue text can render with
+   uneven gaps between letters ("DET AILS") on some systems. The invoice keeps
+   the browser default so its printed text metrics do not change. */
+body{font-family:var(--sa-font-ui);color:var(--sa-ink);background:var(--sa-surface);text-rendering:geometricPrecision}
+/* Browsers reset text-rendering on form controls, so set it there too. */
+button,input,select,textarea{text-rendering:geometricPrecision}
+.invoice{text-rendering:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(70,183,81,.35);outline-offset:1px}
+
+/* ---------------------------------------------------------------- sidebar */
+.sidebar{background:#fff;border-right:1px solid var(--sa-line);padding-top:0}
+/* The site's green-to-dark diagonal, as a band across the top of the editor. */
+.brand-band{height:7px;margin:0 -20px 18px;background:linear-gradient(100deg,var(--sa-green) 0 58%,#252525 58.2% 100%)}
+
+.topbar{align-items:flex-start;margin-bottom:14px}
+.brand{flex-direction:column;align-items:flex-start;gap:10px}
+.brand-logo{display:block;line-height:0}
+.brand-logo svg{height:34px;width:auto;display:block}
+.brand-title h1{font-family:var(--sa-font-heading);font-weight:700;font-size:21px;line-height:1.2;letter-spacing:-.01em;color:var(--sa-ink);margin:0}
+.brand-title p{margin:3px 0 0;font-size:11.5px;color:var(--sa-text)}
+.mark{display:none}
+
+/* --------------------------------------------------------------- buttons */
+.btn{border-radius:0;border:1px solid var(--sa-line-strong);background:#fff;color:var(--sa-ink);font-family:var(--sa-font-ui);font-weight:600;font-size:11.5px;letter-spacing:.03em;text-transform:uppercase;padding:9px 11px;transition:background-color .15s,border-color .15s,color .15s}
+.btn:hover{transform:none;border-color:var(--sa-ink)}
+.btn.primary{background:var(--sa-green);border-color:var(--sa-green);color:#fff}
+.btn.primary:hover{background:var(--sa-green-dark);border-color:var(--sa-green-dark)}
+.btn.danger{color:#b42318}
+.btn.danger:hover{border-color:#b42318}
+.btn.small{padding:7px 10px;font-size:10.5px}
+.btn.icon{text-transform:none;letter-spacing:0;font-size:14px}
+.btn.icon-btn{display:inline-grid;place-items:center;width:38px;padding:0;height:36px}
+.btn:disabled,.btn:disabled:hover{color:#a3a3a3;background:#fafafa;border-color:var(--sa-line)}
+
+/* ------------------------------------------------------------------ menu */
+.menu{border-radius:0;border-color:var(--sa-line);box-shadow:0 16px 40px rgba(26,26,26,.14)}
+.menu-item{border-radius:0;font-family:var(--sa-font-ui);font-weight:500}
+.menu-item:hover,.menu-item:focus-visible{background:var(--sa-green-tint);color:var(--sa-green-dark)}
+
+/* ---------------------------------------------------------------- notices */
+.notice{border-radius:0;background:var(--sa-green-tint);border:1px solid var(--sa-green-line);color:var(--sa-ink)}
+.backup-reminder{background:#fff4f0;border-color:#fdc4b5;color:#7a2e17}
+.notice-close{border-radius:0}
+
+/* ------------------------------------------------------------------ tabs */
+.tabs{background:transparent;padding:0;gap:0;border-radius:0;border-bottom:1px solid var(--sa-line);margin-bottom:16px}
+.tab{border-radius:0;padding:10px 2px 9px;font-family:var(--sa-font-ui);font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--sa-text);border-bottom:3px solid transparent;margin-bottom:-1px}
+.tab:hover{color:var(--sa-ink)}
+.tab.active{background:transparent;box-shadow:none;color:var(--sa-green-dark);border-bottom-color:var(--sa-green)}
+
+/* ---------------------------------------------------------- panels, fields */
+.panel{border-radius:0;border-color:var(--sa-line)}
+.panelhead h2,.confirm-dialog h3{font-family:var(--sa-font-heading);font-weight:700;letter-spacing:-.005em;color:var(--sa-ink)}
+.panelhead h2{font-size:16px}
+.field label{color:var(--sa-ink);font-weight:500}
+.field input,.field select,.field textarea{border-radius:0;border-color:var(--sa-line-strong);color:var(--sa-ink)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--sa-green)}
+.hint{color:var(--sa-text)}
+.switch input:checked+.slider{background:var(--sa-green)}
+
+.itemrow,.columnrow,.library-item,.invoice-row{border-radius:0;border-color:var(--sa-line);background:#fff}
+.invoice-row.current{border-color:var(--sa-green);background:var(--sa-green-tint)}
+.invoice-row .invoice-open-now{color:var(--sa-green-dark)}
+.itemrow-total,.invoice-row .invoice-total{color:var(--sa-ink)}
+.import-check,.field-warning{border-radius:0}
+.import-check.ok{background:var(--sa-green-tint);border-color:var(--sa-green-line);color:var(--sa-green-dark)}
+
+/* ------------------------------------------------- status, dialogs, toast */
+.save-state{border-radius:0;background:var(--sa-green-tint);color:var(--sa-green-dark);font-weight:600}
+.save-state .save-dot{background:var(--sa-green)}
+.save-state.pending{background:var(--sa-surface);color:var(--sa-text)}
+.confirm-dialog{border-radius:0;box-shadow:0 24px 70px rgba(26,26,26,.25)}
+.confirm-dialog .dialog-actions{border-radius:0}
+.toast{border-radius:0;background:var(--sa-ink);font-family:var(--sa-font-ui)}
+.toast.error{background:#b42318}
+.toast-close{border-radius:0}
+
+/* ----------------------------------------------------- preview workspace */
+/* The site's faint grid behind the page. */
+.workspace{background-color:#fafafa;background-image:linear-gradient(var(--sa-line) 1px,transparent 1px),linear-gradient(90deg,var(--sa-line) 1px,transparent 1px);background-size:80px 80px;background-position:-1px -1px}
+.canvasbar .meta{font-family:var(--sa-font-ui);color:var(--sa-text)}
+.invoice-stage>.invoice{box-shadow:0 1px 0 var(--sa-line),0 20px 50px rgba(26,26,26,.10)}
+
+.jump-btn{border-radius:0;background:var(--sa-green);font-family:var(--sa-font-ui);text-transform:uppercase;letter-spacing:.04em;font-size:12px}
+.sidebar-resizer:hover,.sidebar-resizer.dragging,.sidebar-resizer:focus-visible{background:rgba(70,183,81,.3)}
+
+/* Bundle splitter tables */
+.bundle-table th{font-family:var(--sa-font-ui)}
+
+@media (max-width:1180px){.brand-band{margin-left:-20px;margin-right:-20px}}
+@media (max-width:520px){.brand-band{margin-left:-14px;margin-right:-14px}}
+@media print{.brand-band{display:none}}
+
+/* Poppins is wider than the old system font: let fields shrink to their grid
+   column (a date input's built-in minimum width overflowed on phones). */
+.grid2>*,.grid3>*,.colgrid>*,.itemrow-fields>*{min-width:0}
+.field input,.field select,.field textarea{min-width:0;max-width:100%}
+
+/* Tabs: three now, so they get more room and a larger label. */
+.tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tab{font-size:12px;padding:11px 4px 10px}
+details.panel{padding:0}
+details.panel>summary{padding:14px 38px 14px 14px;margin:0}
+details.panel>summary::after{right:16px;color:var(--sa-text)}
+details.panel>summary:hover h2{color:var(--sa-green-dark)}
+details.panel>.panel-body{padding:0 14px 14px}
+details.panel:not([open]){background:#fcfcfc}
+/* Phones: keep the toolbar on one line. */
+@media (max-width:420px){.sidebar-sticky > .actions{gap:5px}.sidebar-sticky > .actions .btn:not(.icon-btn){padding:9px 8px;letter-spacing:0}.sidebar-sticky > .actions .btn.icon-btn{width:34px}}
+
+/* ================================================== 2.7 spacing and layout */
+
+/* The hidden attribute always wins (some components set display). */
+[hidden]{display:none!important}
+
+/* Toolbar and tabs stay pinned at the top of the editor while it scrolls. */
+.sidebar-sticky{position:sticky;top:0;z-index:15;background:#fff;margin:0 -20px 14px;padding:10px 20px 0;border-bottom:1px solid var(--sa-line)}
+.sidebar-sticky>.actions{margin:0 0 8px}
+.sidebar-sticky>.tabs{margin:0;border-bottom:0}
+.topbar{margin-bottom:4px}
+.sidebar>.notice{margin-bottom:12px}
+
+/* Denser fields: easier to scan and quicker to fill. */
+.field label{margin-bottom:4px;font-size:12px}
+.grid2,.grid3{gap:10px 12px}
+.field input,.field select{min-height:38px;padding:7px 10px;font-size:14px}
+.field textarea{padding:8px 10px;font-size:14px;min-height:62px}
+.field textarea.compact-textarea{min-height:52px}
+input[type=color]{padding:3px;min-height:38px;cursor:pointer}
+input[type=range],input[type=checkbox],input[type=radio]{accent-color:var(--sa-green)}
+/* Phones keep 16px text in fields: iOS zooms the page into anything smaller. */
+@media (max-width:760px){.field input,.field select,.field textarea{font-size:16px}}
+
+.importbox{margin-bottom:10px}
+.panel-body>.hint{margin:0 0 10px}
+
+/* Due date shortcuts */
+.due-presets{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.due-presets-label{font-size:12px;font-weight:500;color:var(--sa-text);margin-right:2px}
+.chip{border:1px solid var(--sa-line-strong);background:#fff;padding:5px 10px;font:inherit;font-size:12px;font-weight:600;color:var(--sa-ink);cursor:pointer;line-height:1.3}
+.chip:hover,.chip:focus-visible{border-color:var(--sa-green);color:var(--sa-green-dark)}
+
+/* Saved client picker: the select takes the room, buttons wrap under it on phones. */
+.picker-row{display:flex;flex-wrap:wrap;gap:6px}
+.picker-row select{flex:1 1 170px;min-width:0}
+.picker-row .btn{flex:none}
+
+/* Line items footer */
+.items-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px}
+.link-btn{border:0;background:none;padding:4px 0;font:inherit;font-size:12px;font-weight:600;color:var(--sa-text);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.link-btn.danger{color:#b42318}
+.items-tip{margin:8px 0 0}
+#itemsEditor:empty~.items-footer,#itemsEditor:empty~.items-tip{display:none}
+.itemrow:last-child{margin-bottom:10px}
+
+/* Logo upload button (the native file control is visually hidden) */
+.logo-actions{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.upload-btn{cursor:pointer;display:inline-flex;align-items:center}
+#logoFile:focus-visible+.upload-btn{outline:3px solid rgba(70,183,81,.35);outline-offset:1px}
+
+/* Saved invoices: rows never wider than the panel */
+.invoice-list{grid-template-columns:minmax(0,1fr)}
+.invoice-row{min-width:0}
+
+/* Columns: heading on its own row, settings in a 2 x 2 grid */
+.columnrow .colgrid{grid-template-columns:1fr 1fr;gap:8px 10px}
+.columnrow .colgrid .field.full{grid-column:1/-1}
+
+/* Bundle drop zone */
+.bundle-drop{border-radius:0;border-color:var(--sa-line-strong)}
+.bundle-drop.drag{border-color:var(--sa-green);background:var(--sa-green-tint)}
+
+/* Preview toolbar: label centred between equal buttons */
+.canvasbar .actions{display:flex;align-items:center;gap:6px;margin:0}
+.canvasbar #zoomLabel{min-width:44px;text-align:center;line-height:32px;font-variant-numeric:tabular-nums}
+.canvasbar #zoomOut,.canvasbar #zoomIn{width:32px;height:32px;padding:0;font-size:16px;letter-spacing:0;display:inline-grid;place-items:center}
+.canvasbar #zoomFit{height:32px;padding:0 10px}
+/* Bundle status line: no empty gap before a sheet is chosen */
+.bundle-status:empty{display:none}
+/* Phones: messages sit above the floating Preview button instead of covering it. */
+@media (max-width:1180px){.toast{bottom:calc(76px + env(safe-area-inset-bottom, 0px));right:12px;left:12px;max-width:none}}
+/* The pinned header spans the sidebar's padding, which is narrower on phones. */
+@media (max-width:520px){.sidebar-sticky{margin-left:-14px;margin-right:-14px;padding-left:14px;padding-right:14px}}
+/* Keep the visually hidden file input inside its row (it caused sideways scroll on phones). */
+.logo-actions{position:relative}
+.logo-actions>#logoFile{left:0;top:0}
+
+/* ------------------------------------------------- Google Drive sync (2.11.0) */
+.status-stack{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex:none}
+.status-stack>[hidden]{display:none}
+.cloud-chip{border:0;cursor:pointer;font:inherit;font-size:11.5px;font-weight:600;font-family:var(--sa-font-ui)}
+.cloud-chip .cloud-icon{flex:none}
+.cloud-chip.saved{background:var(--sa-green-tint);color:var(--sa-green-dark)}
+.cloud-chip.pending,.cloud-chip.syncing{background:var(--sa-surface);color:var(--sa-text)}
+.cloud-chip.reconnect,.cloud-chip.offline{background:#fffaeb;color:#7a4d00}
+.cloud-chip.error{background:#fef3f2;color:#b42318}
+.cloud-chip:hover{filter:brightness(.96)}
+.panel[hidden]{display:none}
+/* Google's sign-in button style: white, grey outline, the four-colour G. */
+.google-btn{display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 14px 0 12px;border:1px solid #747775;border-radius:4px;background:#fff;color:#1f1f1f;font:500 14px/1 Roboto,"Segoe UI",Arial,sans-serif;cursor:pointer;margin:2px 0 4px}
+.google-btn:hover{background:#f8faff;box-shadow:0 1px 2px rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15)}
+.google-btn svg{flex:none}
+.cloud-small{font-size:11px;margin-top:8px}
+.cloud-account{display:flex;align-items:center;gap:10px;margin-bottom:8px;min-width:0}
+.cloud-avatar{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--sa-green);color:#fff;font-weight:700;font-size:14px}
+.cloud-who{display:flex;flex-direction:column;min-width:0}
+.cloud-who strong{font-size:13px;color:var(--sa-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cloud-who span{font-size:11.5px;color:var(--sa-text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cloud-status{font-size:12px;line-height:1.45;color:var(--sa-ink);margin:0 0 10px}
