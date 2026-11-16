@@ -18,6 +18,7 @@ import classicTemplate from "./templates/classic.js";
 import royaltyTemplate from "./templates/royalty.js";
 import ukhfTemplate from "./templates/ukhf.js";
 import multipurposeTemplate from "./templates/multipurpose.js";
+import { ALISON_TEMPLATES } from "./templates/alison/index.js";
 
 import { initTabs } from "./editor/tabs.js";
 import { initFieldBindings } from "./editor/details.js";
@@ -58,7 +59,7 @@ function step(name, fn) {
 
 function registerTemplates() {
   // Modern is registered first, so it is also the fallback for unknown ids.
-  [modernTemplate, minimalTemplate, classicTemplate, royaltyTemplate, ukhfTemplate, multipurposeTemplate]
+  [modernTemplate, minimalTemplate, classicTemplate, royaltyTemplate, ukhfTemplate, multipurposeTemplate, ...ALISON_TEMPLATES]
     .forEach(TemplateRegistry.register);
 }
 

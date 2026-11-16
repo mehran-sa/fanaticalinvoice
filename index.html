@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SA Invoice Generator</title>
 <meta name="application-name" content="SA Invoice Generator">
-<meta name="sa-app-version" content="2.12.0">
+<meta name="sa-app-version" content="2.13.0">
 <meta name="description" content="SA Invoice Generator: create, print and export invoices in your browser. Data stays on this device, or syncs to your own Google Drive if you sign in.">
 <!-- Policy: scripts, styles, fonts and images load from this app or from
      embedded data. The only outside connections allowed are Google sign-in
@@ -39,9 +39,28 @@
 <link rel="modulepreload" href="js/templates/royalty.js">
 <link rel="modulepreload" href="js/templates/ukhf.js">
 <link rel="modulepreload" href="js/templates/multipurpose.js">
+<link rel="modulepreload" href="js/invoice/calculations.js">
+<link rel="modulepreload" href="js/templates/alison/kit.js">
+<link rel="modulepreload" href="js/templates/alison/adams.js">
+<link rel="modulepreload" href="js/templates/alison/animalcare.js">
+<link rel="modulepreload" href="js/templates/alison/apex.js">
+<link rel="modulepreload" href="js/templates/alison/beauty.js">
+<link rel="modulepreload" href="js/templates/alison/coursecloud.js">
+<link rel="modulepreload" href="js/templates/alison/coursegate.js">
+<link rel="modulepreload" href="js/templates/alison/janets.js">
+<link rel="modulepreload" href="js/templates/alison/johnacademy.js">
+<link rel="modulepreload" href="js/templates/alison/knowledgegate.js">
+<link rel="modulepreload" href="js/templates/alison/mayfair.js">
+<link rel="modulepreload" href="js/templates/alison/nextgen.js">
+<link rel="modulepreload" href="js/templates/alison/oneeducation.js">
+<link rel="modulepreload" href="js/templates/alison/skillup.js">
+<link rel="modulepreload" href="js/templates/alison/studybooth.js">
+<link rel="modulepreload" href="js/templates/alison/studyhub.js">
+<link rel="modulepreload" href="js/templates/alison/thames.js">
+<link rel="modulepreload" href="js/templates/alison/trainingexpress.js">
+<link rel="modulepreload" href="js/templates/alison/index.js">
 <link rel="modulepreload" href="js/editor/tabs.js">
 <link rel="modulepreload" href="js/invoice/watermark.js">
-<link rel="modulepreload" href="js/invoice/calculations.js">
 <link rel="modulepreload" href="js/invoice/invoice-renderer.js">
 <link rel="modulepreload" href="js/storage/local-storage.js">
 <link rel="modulepreload" href="js/history/history-stack.js">
@@ -49,10 +68,14 @@
 <link rel="modulepreload" href="js/storage/invoice-library.js">
 <link rel="modulepreload" href="js/storage/invoice-storage.js">
 <link rel="modulepreload" href="js/editor/design.js">
-<link rel="modulepreload" href="js/editor/details.js">
 <link rel="modulepreload" href="js/ui/confirm-dialog.js">
 <link rel="modulepreload" href="js/editor/items.js">
 <link rel="modulepreload" href="js/editor/columns.js">
+<link rel="modulepreload" href="js/editor/sections.js">
+<link rel="modulepreload" href="js/invoice/snapshot.js">
+<link rel="modulepreload" href="js/session.js">
+<link rel="modulepreload" href="js/templates/alison/brand.js">
+<link rel="modulepreload" href="js/editor/details.js">
 <link rel="modulepreload" href="js/editor/jump.js">
 <link rel="modulepreload" href="js/storage/template-library.js">
 <link rel="modulepreload" href="js/storage/brand-library.js">
@@ -69,9 +92,6 @@
 <link rel="modulepreload" href="js/import-export/statement-total.js">
 <link rel="modulepreload" href="js/import-export/row-mapper.js">
 <link rel="modulepreload" href="js/import-export/spreadsheet.js">
-<link rel="modulepreload" href="js/editor/sections.js">
-<link rel="modulepreload" href="js/invoice/snapshot.js">
-<link rel="modulepreload" href="js/session.js">
 <link rel="modulepreload" href="js/invoice/reset-text.js">
 <link rel="modulepreload" href="js/documents.js">
 <link rel="modulepreload" href="js/editor/toolbar.js">
@@ -106,6 +126,7 @@
 <link rel="stylesheet" href="css/templates/classic.css">
 <link rel="stylesheet" href="css/templates/royalty.css">
 <link rel="stylesheet" href="css/templates/ukhf.css">
+<link rel="stylesheet" href="css/templates/alison.css">
 <link rel="stylesheet" href="css/templates/multipurpose.css">
 <link rel="stylesheet" href="css/print.css">
 </head>
@@ -333,10 +354,35 @@
       <div class="panel-body">
       <div class="field"><label for="template">Design</label>
         <select id="template">
-          <option value="modern">Modern</option>
-          <option value="minimal">Janets Fanatical</option>
-          <option value="classic">One Education Fanatical</option>
-          <option value="royalty">Alpha Academy Fanatical</option><option value="ukhf">UKHF Fanatical</option><option value="multipurpose">Multipurpose</option>
+          <optgroup label="General">
+            <option value="modern">Modern</option>
+            <option value="multipurpose">Multipurpose</option>
+          </optgroup>
+          <optgroup label="Fanatical">
+            <option value="minimal">Janets Fanatical</option>
+            <option value="classic">One Education Fanatical</option>
+            <option value="royalty">Alpha Academy Fanatical</option>
+            <option value="ukhf">UKHF Fanatical</option>
+          </optgroup>
+          <optgroup label="Alison">
+            <option value="alison-adams">Adams Academy Alison</option>
+            <option value="alison-animalcare">The Animal Care Alison</option>
+            <option value="alison-apex">Apex Learning Alison</option>
+            <option value="alison-coursecloud">Course Cloud Alison</option>
+            <option value="alison-coursegate">CourseGate Alison</option>
+            <option value="alison-beauty">Institute of Beauty &amp; Makeup Alison</option>
+            <option value="alison-janets">Janets Alison</option>
+            <option value="alison-johnacademy">John Academy Alison</option>
+            <option value="alison-knowledgegate">Knowledge Gate Alison</option>
+            <option value="alison-mayfair">Mayfair College Alison</option>
+            <option value="alison-nextgen">NextGen Learning Alison</option>
+            <option value="alison-oneeducation">One Education Alison</option>
+            <option value="alison-skillup">Skill Up Alison</option>
+            <option value="alison-studybooth">Study Booth Alison</option>
+            <option value="alison-studyhub">Studyhub Alison</option>
+            <option value="alison-thames">Thames College Alison</option>
+            <option value="alison-trainingexpress">Training Express Alison</option>
+          </optgroup>
         </select>
         <div class="hint" id="fontHint" style="margin-top:6px"></div>
       </div>
@@ -394,6 +440,7 @@
   <div class="canvasbar"><div class="meta" id="previewMeta">A4 portrait preview</div><div class="actions"><button class="btn small" id="zoomOut" type="button" aria-label="Zoom out">−</button><span class="meta" id="zoomLabel" aria-live="polite">100%</span><button class="btn small" id="zoomIn" type="button" aria-label="Zoom in">+</button><button class="btn small" id="zoomFit" type="button" title="Fit the page to the space available">Fit</button></div></div>
   <div class="invoice-stage" id="invoiceStage"><article class="invoice template-modern" id="invoice">
       <div class="invoice-watermark" id="pWatermark" aria-hidden="true" hidden></div>
+      <div class="custom-page" id="pCustom" hidden></div>
     <div class="topdetails">
     <header class="inv-header">
       <div class="companywrap" data-section="company">

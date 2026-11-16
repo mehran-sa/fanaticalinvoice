@@ -847,9 +847,10 @@ try:
         pu.set_input_files("#logoFile", LOGO); pu.wait_for_timeout(300)
         pu.click("#tabbtn-design"); pu.select_option("#template", "ukhf"); pu.wait_for_timeout(300)
         check("UKHF Fanatical is in the template list", pu.locator('#template option[value="ukhf"]').text_content() == "UKHF Fanatical")
-        check("template names: Alpha Academy, One Education and Janets Fanatical, plus Multipurpose",
-              pu.eval_on_selector_all("#template option", "o => o.map(x => x.textContent)")
-              == ["Modern", "Janets Fanatical", "One Education Fanatical", "Alpha Academy Fanatical", "UKHF Fanatical", "Multipurpose"])
+        check("template names: General (Modern, Multipurpose), then the Fanatical templates, then Alison",
+              pu.eval_on_selector_all("#template option", "o => o.map(x => x.textContent)")[:6]
+              == ["Modern", "Multipurpose", "Janets Fanatical", "One Education Fanatical", "Alpha Academy Fanatical", "UKHF Fanatical"]
+              and pu.eval_on_selector_all("#template optgroup", "g => g.map(x => x.label)") == ["General", "Fanatical", "Alison"])
         check("UKHF header: INVOICE, Date: 13-Oct-2026, INVOICE #2026-3080",
               pu.text_content("#pInvoiceTitle") == "INVOICE" and pu.text_content("#pDate") == "13-Oct-2026"
               and pu.text_content("#pInvoiceNo") == "INVOICE #2026-3080" and pu.is_hidden('#invoice tr[data-section="dueDate"]'))

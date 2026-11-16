@@ -10,6 +10,7 @@
  * toggles first, then narrowed by the active template.
  */
 
+import { layoutContext } from "../templates/alison/kit.js";
 import { $, qs, qsa, setText, toggleSection, fieldValue, fieldOr, trimmedField, num, esc, clamp } from "../utils.js";
 import {
   LIMITS, FIXED_WIDTH_COLUMN_COUNT, CLIENT_META_FALLBACK, paperFor
@@ -28,7 +29,7 @@ import {
 const applyTemplateChrome = (templateId, template) => {
   // The class string is built from the selected id, not the resolved template,
   // so an unknown id behaves exactly as it did before.
-  $("invoice").className = "invoice template-" + templateId;
+  $("invoice").className = "invoice template-" + templateId + (template.capabilities.layout ? " custom-layout" : "");
   setText("fontHint", template.description || "");
   applyPaper(paperFor(template));
 };
@@ -421,6 +422,9 @@ export function flushPreview() {
 /* ------------------------------------------------------------- entry */
 
 /** Rebuilds the entire A4 preview from the current form values and state. */
+/** The page last drawn by a template's own layout. */
+let renderedCustom = null;
+
 export function renderPreview() {
   cancelPending();
   const templateId = fieldValue("template");
@@ -428,6 +432,26 @@ export function renderPreview() {
   const caps = template.capabilities;
 
   applyTemplateChrome(templateId, template);
+
+  // Templates that draw the whole page themselves (the Alison templates).
+  const custom = $("pCustom");
+  if (caps.layout) {
+    const html = caps.layout(layoutContext());
+    if (html !== renderedCustom) {
+      custom.innerHTML = html;
+      renderedCustom = html;
+    }
+    custom.hidden = false;
+    applyZoom();
+    renderWatermark(template);
+    return;
+  }
+  if (custom && !custom.hidden) {
+    custom.hidden = true;
+    custom.innerHTML = "";
+    renderedCustom = null;
+  }
+
   renderLabels(template);
 
   const invoiceNo = fieldOr("invoiceNumber", "Untitled");

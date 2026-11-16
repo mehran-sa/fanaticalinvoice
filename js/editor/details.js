@@ -13,6 +13,7 @@ import { saveInvoice } from "../storage/invoice-storage.js";
 import { setAccent } from "./design.js";
 import { nextInvoiceNumber } from "../invoice/invoice-data.js";
 import * as TemplateRegistry from "../templates/template-registry.js";
+import { applyTemplateBrand } from "../templates/alison/brand.js";
 
 export function initFieldBindings() {
   FIELD_IDS.forEach(id => {
@@ -40,6 +41,11 @@ export function initFieldBindings() {
   // defaults, so nothing chosen by hand is overwritten.
   $("template")?.addEventListener("change", () => {
     const template = TemplateRegistry.get(fieldValue("template"));
+    // Alison templates bring the academy's own details (js/templates/alison/brand.js).
+    if (template?.capabilities?.brand) {
+      applyTemplateBrand(template).catch(err => console.error(err));
+      return;
+    }
     const groups = template?.capabilities?.defaultsOnSelect;
     if (!groups) return;
     const atDefault = id => {
