@@ -3,6 +3,7 @@
  * Word files supplied (see kit.js). Listed under "Alison" in the Design menu.
  */
 import adams from "./adams.js";
+import alpha from "./alpha.js";
 import animalcare from "./animalcare.js";
 import apex from "./apex.js";
 import beauty from "./beauty.js";
@@ -21,6 +22,6 @@ import thames from "./thames.js";
 import trainingexpress from "./trainingexpress.js";
 
 export const ALISON_TEMPLATES = [
-  adams, animalcare, apex, beauty, coursecloud, coursegate, janets, johnacademy, knowledgegate,
+  adams, alpha, animalcare, apex, beauty, coursecloud, coursegate, janets, johnacademy, knowledgegate,
   mayfair, nextgen, oneeducation, skillup, studybooth, studyhub, thames, trainingexpress
 ];

@@ -47,7 +47,7 @@ try:
         general = [o["text"] for o in groups[0]["options"]]
         check("Multipurpose ends the General group (the spacer follows it)", general[-1] == "Multipurpose", str(general))
         alison = groups[2]["options"] if len(groups) > 2 else []
-        check("17 Alison templates, each named \"... Alison\"", len(alison) == 17 and all(o["text"].endswith(" Alison") for o in alison))
+        check("18 Alison templates, each named \"... Alison\"", len(alison) == 18 and all(o["text"].endswith(" Alison") for o in alison))
         registered = page.evaluate("""async ids => { const r = await import('/js/templates/template-registry.js'); return ids.filter(id => !r.has(id)); }""",
                                    [o["value"] for g in groups for o in g["options"]])
         check("every menu entry is a registered template", not registered, str(registered))
