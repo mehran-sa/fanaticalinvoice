@@ -200,7 +200,7 @@ function renderBoard() {
   $("boardTitle").textContent = view.tab === "all" ? "All invoices" : `${period} invoices`;
   $("boardSub").textContent = view.tab === "all"
     ? `${plural(all.length, "saved invoice")}, newest first.`
-    : `${academiesDone} of ${plural(academiesAll, "academy").replace("academys", "academies")} invoiced. Overdue is worked out from each due date, today ${dateFmt(today())}.`;
+    : `${academiesDone} of ${plural(academiesAll, "brand")} invoiced. Overdue is worked out from each due date, today ${dateFmt(today())}.`;
 
   const stat = (label, value, sub, warn = false) => {
     const box = document.createElement("div");
@@ -237,7 +237,7 @@ function renderBoard() {
   if (!shown.length) {
     const empty = document.createElement("div");
     empty.className = "board-empty";
-    empty.textContent = filter === "all" ? `No academies for ${period} yet.` : `No ${STATUS_LABELS[filter].toLowerCase()} invoices for ${period}.`;
+    empty.textContent = filter === "all" ? `No brands for ${period} yet.` : `No ${STATUS_LABELS[filter].toLowerCase()} invoices for ${period}.`;
     list.replaceChildren(empty);
   } else {
     list.replaceChildren(...shown.map(r => boardRow(r, period)));

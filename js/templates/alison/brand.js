@@ -29,6 +29,6 @@ export async function applyTemplateBrand(template) {
     if (brand.fields?.currency) setFieldValue("currency", brand.fields.currency);
     return { logo: images[brand.logo] || "" };
   });
-  toast(`${template.name}: ${brand.fields?.companyName || "the academy"}'s details, logo and payment details are filled in, with Alison as the client. Press Ctrl+Z to undo.`);
+  toast(`${template.name}: ${brand.fields?.companyName || "the brand"}'s details, logo and payment details are filled in, with Alison as the client. Press Ctrl+Z to undo.`);
   return true;
 }

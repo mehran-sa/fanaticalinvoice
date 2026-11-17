@@ -77,7 +77,7 @@ export function renderAppBar() {
     lastAcademy = template;
     $("academyName").textContent = academyName(template);
     $("academyBadge").replaceChildren(academyBadge(template, { size: "s" }));
-    $("academyBtn").setAttribute("aria-label", `Academy: ${academyName(template)}. Change it`);
+    $("academyBtn").setAttribute("aria-label", `Brand: ${academyName(template)}. Change it`);
   }
   const number = trimmedField("invoiceNumber");
   $("barNumber").textContent = number ? "Invoice " + number : "Invoice with no number";

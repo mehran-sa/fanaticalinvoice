@@ -65,7 +65,7 @@ function layout(ctx) {
   return renderPage([
     { y: 84.6, items: [
       el(448.1, 84.6, "INVOICE", { css: "font-size:19.5pt;line-height:23.7pt;color:#575757" }),
-      el(58.2, 90, logoImg(ctx, "width:177.1pt;height:61.4pt")),
+      el(56.6, 88.3, logoImg(ctx, "width:188.3pt;height:64.5pt;object-fit:contain")),
       el(449, 109, "INVOICE # " + esc(invoice.number), { css: `${lucida};font-size:8.5pt;line-height:13.1pt;white-space:nowrap` }),
       el(300, 142, "DATE: " + esc(date(invoice.date)), { w: 236.4, css: `${lucida};font-size:8pt;line-height:12.3pt;text-align:right` }),
       el(300, 152.1, "DUE DATE: " + esc(date(invoice.due)), { w: 236.4, css: `${lucida};font-size:8.5pt;line-height:13.1pt;text-align:right` }),

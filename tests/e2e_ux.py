@@ -250,7 +250,7 @@ try:
         check("another academy may use the same number", page.is_hidden("#invoiceNumberWarning"))
         page.click("#academyBtn")
         page.wait_for_selector("#pickerDialog[open]")
-        check("the academy button changes this invoice's academy", page.text_content("#pickerTitle") == "Change the academy")
+        check("the brand button changes this invoice's brand", page.text_content("#pickerTitle") == "Change the brand")
         page.locator('.academy-tile[data-academy="alison-janets"]').first.click()
         page.wait_for_timeout(900)
         check("the same number within one academy is flagged", page.is_visible("#invoiceNumberWarning")

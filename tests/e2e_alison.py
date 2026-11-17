@@ -146,6 +146,34 @@ try:
         check("reopening keeps the edited details (the academy's are not filled in again)",
               page.input_value("#companyName") == "Edited Janets Ltd" and page.input_value("#template") == "alison-janets")
         check("and the Alison page is drawn after reloading", page.evaluate("() => !document.getElementById('pCustom').hidden && document.getElementById('pCustom').textContent.includes('Edited Janets Ltd')"))
+
+        # Training Express: the whole logo (it was cut off before 2.15.2), placed as on the original.
+        page.click("#tabbtn-design")
+        page.select_option("#template", "alison-trainingexpress")
+        page.wait_for_timeout(900)
+        logo = page.evaluate("""() => { const i = document.querySelector('#pCustom img.al-logo'); const r = i.getBoundingClientRect();
+            const page = document.querySelector('#pCustom').getBoundingClientRect();
+            return { nat: [i.naturalWidth, i.naturalHeight], ratio: r.width / r.height, x: r.left - page.left, w: r.width, pw: page.width }; }""")
+        check("Training Express shows its whole logo, at its own proportions",
+              logo["nat"] == [785, 269] and abs(logo["ratio"] - 785 / 269) < 0.02, str(logo))
+        check("and where it is on the original (56.6pt from the left, 188.3pt wide)",
+              abs(logo["x"] / logo["pw"] * 595.3 - 56.6) < 0.6 and abs(logo["w"] / logo["pw"] * 595.3 - 188.3) < 0.6, str(logo))
+        # An invoice saved with the old, cut-off logo gets the whole one when it is opened.
+        # (The test makes a stand-in with the old image's length, start and end.)
+        swapped = page.evaluate("""() => {
+            const start = 'data:image/webp;base64,UklGRug7AABXRUJQVlA4INw7AABQCAGdASpOA', end = '5k94zmkqi3ReuG0elAAACgJaW0OGIzMeSCIAAAA=';
+            const old = start + 'A'.repeat(20483 - start.length - end.length) + end;
+            const current = document.querySelector('#pCustom img.al-logo').src;
+            // Saved invoices keep each logo once, in invoiceStudio.logos.v1.
+            const logos = JSON.parse(localStorage.getItem('invoiceStudio.logos.v1') || '{}');
+            let n = 0;
+            for (const ref of Object.keys(logos)) if (logos[ref] === current) { logos[ref] = old; n++; }
+            localStorage.setItem('invoiceStudio.logos.v1', JSON.stringify(logos));
+            return n; }""")
+        page.reload()
+        page.wait_for_timeout(1200)
+        src = page.evaluate("() => document.querySelector('#pCustom img.al-logo')?.src || ''")
+        check("an invoice saved with the old cut-off logo opens with the whole one", swapped > 0 and len(src) > 20483 and "AAAAAAAAAAAAAAAA" not in src, f"{swapped} saved copies, logo {len(src)}")
         browser.close()
 finally:
     server.terminate()

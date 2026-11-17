@@ -75,7 +75,7 @@ test("no bank account numbers are left readable in the app's code or tests", asy
 test("the Alison templates carry no company, bank or PayPal details, only their logo", async () => {
   const dir = path.join(ROOT, "js", "templates", "alison");
   for (const name of await readdir(dir)) {
-    if (["kit.js", "index.js", "logos.js", "brand.js"].includes(name)) continue;
+    if (["kit.js", "index.js", "logos.js", "brand.js", "logo-upgrade.js"].includes(name)) continue;
     const text = await readFile(path.join(dir, name), "utf8");
     assert.ok(!/paymentDetails|companyAddress|clientAddress|@[a-z]/i.test(text.split("brand:")[1] || ""), name);
     assert.match(text, /brand: (\{ logo: "\w+" \}|\{\})/, name);

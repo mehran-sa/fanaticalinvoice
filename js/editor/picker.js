@@ -46,7 +46,7 @@ function tile(academy) {
   const sub = document.createElement("span");
   sub.className = "tile-sub";
   if (mode === "change") {
-    sub.textContent = academy.id === fieldValue("template") ? "This invoice's academy" : academy.group === "alison" ? "Fills in its details and bank" : "Changes the design";
+    sub.textContent = academy.id === fieldValue("template") ? "This invoice's brand" : academy.group === "alison" ? "Fills in its details and bank" : "Changes the design";
   } else if (last) {
     const next = shiftPeriod(last.period, 1) || periodForDate(today());
     sub.textContent = `Continues from ${last.number || "its last invoice"}${last.period ? " (" + last.period + ")" : ""}, for ${next}`;
@@ -74,7 +74,7 @@ function render() {
   if (!sections.length) {
     const empty = document.createElement("p");
     empty.className = "picker-empty";
-    empty.textContent = `No academy matches "${$("pickerSearch").value.trim()}".`;
+    empty.textContent = `No brand matches "${$("pickerSearch").value.trim()}".`;
     body.replaceChildren(empty);
     return;
   }
@@ -121,10 +121,10 @@ async function choose(id) {
 export function openPicker(how = "new") {
   mode = how;
   const dialog = $("pickerDialog");
-  $("pickerTitle").textContent = how === "change" ? "Change the academy" : "Who is this invoice from?";
+  $("pickerTitle").textContent = how === "change" ? "Change the brand" : "Who is this invoice from?";
   $("pickerSub").textContent = how === "change"
-    ? "The invoice takes that academy's design. Alison academies also fill in their company, bank and PayPal details."
-    : "Choose the academy. Its next invoice continues from its last one.";
+    ? "The invoice takes that brand's design. Alison brands also fill in their company, bank and PayPal details."
+    : "Choose the brand. Its next invoice continues from its last one.";
   $("pickerBlankBtn").closest(".picker-foot").hidden = how === "change";
   $("pickerSearch").value = "";
   render();

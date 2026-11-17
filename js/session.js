@@ -8,7 +8,7 @@
 
 import { fieldValue, setFieldValue } from "./utils.js";
 import { FIELD_IDS } from "./constants.js";
-import { setLogo, setWatermark, setZoom, setColumns, setItems, setSections } from "./state.js";
+import { state, setLogo, setWatermark, setZoom, setColumns, setItems, setSections } from "./state.js";
 import { setAccent } from "./editor/design.js";
 import { renderColumns } from "./editor/columns.js";
 import { renderItems } from "./editor/items.js";
@@ -17,6 +17,7 @@ import { updateDateWarning } from "./editor/details.js";
 import { normalizeSnapshot, isSafeLogo } from "./invoice/snapshot.js";
 import { renderPreview } from "./invoice/invoice-renderer.js";
 import { saveInvoice } from "./storage/invoice-storage.js";
+import { upgradedLogo } from "./templates/alison/logo-upgrade.js";
 
 /**
  * The accent colour to apply after loading data: the HEX field when it holds a
@@ -76,7 +77,23 @@ export function applySnapshot(raw, { persist = true } = {}) {
   setAccent(currentAccent());
   renderAll();
   if (persist) saveInvoice();
+  refreshRetiredLogo(data.fields.template, data.logo, persist);
   return warnings;
+}
+
+/**
+ * An academy logo that has since been corrected (see
+ * templates/alison/logo-upgrade.js) is swapped for the new one once it has
+ * loaded, if the same invoice is still open and its logo was not changed
+ * meanwhile. It is saved with the invoice unless this load must not write.
+ */
+function refreshRetiredLogo(template, logo, persist) {
+  upgradedLogo(template, logo).then(next => {
+    if (!next || state.logo !== logo || fieldValue("template") !== template) return;
+    setLogo(next);
+    renderPreview();
+    if (persist) saveInvoice();
+  }).catch(err => console.error(err));
 }
 
 /**

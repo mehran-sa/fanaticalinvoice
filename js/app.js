@@ -138,7 +138,7 @@ export function init() {
   // index, for the invoices board.
   step("invoice details", fillMissingSummaries);
   step("top bar", () => initAppBar({ openPicker }));
-  step("academy picker", () => initPicker({ onChosen: () => showView("editor") }));
+  step("brand picker", () => initPicker({ onChosen: () => showView("editor") }));
   step("saved invoices", initInvoiceList);
   step("invoices board", initBoard);
   step("settings", initSettings);

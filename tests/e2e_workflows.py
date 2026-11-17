@@ -768,7 +768,7 @@ try:
         page.click("#zoomIn"); page.click("#showEdit"); page.set_viewport_size({"width": 1400, "height": 900}); page.wait_for_timeout(150)
         go(page, "settings")
         check("Settings says where invoices are kept", "Saved only in this browser" in page.text_content("#privacyNoticeText")
-              and "2.15.1" in page.text_content("#appVersionText"))
+              and "2.15.3" in page.text_content("#appVersionText"))
         go(page, "editor")
         page.evaluate("() => localStorage.removeItem('invoiceStudio.lastBackupAt')"); page.reload(); page.wait_for_timeout(400)
         page.click("#backupLaterBtn"); page.reload(); page.wait_for_timeout(400)
