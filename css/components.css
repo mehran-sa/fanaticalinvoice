@@ -1,0 +1,125 @@
+/* Components: buttons, tabs, panels, fields, cards, toast */
+/* Extracted verbatim from the original index.html <style> block. */
+
+.actions{display:flex;gap:7px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 11px;font-size:12px;font-weight:750;color:var(--ink)}
+.btn:hover{border-color:#9da9b9;transform:translateY(-1px)}
+/* Disabled: clearly greyed, but still readable (was 42% opacity). */
+.btn:disabled{opacity:1;cursor:default;color:#98a2b3;background:#f9fafb;border-color:#eaecf0}
+.btn:disabled:hover{border-color:var(--line);transform:none}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.danger{color:var(--danger)}.btn.small{padding:6px 9px;font-size:11.5px}.btn.icon{width:31px;height:31px;padding:0}
+.library-title{font-size:11.5px;font-weight:800;color:#475467;margin:10px 0 6px}.library-list{display:grid;gap:6px}.library-item{display:flex;align-items:center;gap:6px;padding:6px;border:1px solid #e0e5ec;border-radius:8px;background:#fbfcfe}.library-item .library-name{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:700;color:#344054}.library-empty{font-size:11.5px;color:var(--muted);padding:3px 0}
+.confirm-dialog{width:min(420px,calc(100vw - 32px));border:0;border-radius:12px;padding:0;box-shadow:0 24px 70px rgba(16,24,40,.28);color:var(--ink)}.confirm-dialog::backdrop{background:rgba(16,24,40,.45)}.confirm-dialog .dialog-body{padding:18px}.confirm-dialog h3{margin:0 0 7px;font-size:15px}.confirm-dialog p{margin:0;color:#475467;font-size:12px;line-height:1.5}.confirm-dialog .dialog-list{margin:10px 0 0;padding-left:18px;color:#344054;font-size:12.5px;line-height:1.5}.confirm-dialog .dialog-list li+li{margin-top:4px}
+.confirm-dialog .field{margin-top:12px}.confirm-dialog p[hidden]{display:none}
+.confirm-dialog .dialog-actions{display:flex;justify-content:flex-end;gap:8px;padding:12px 18px;border-top:1px solid #e4e7ec;background:#f9fafb}
+.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;background:#f1f4f8;padding:5px;border-radius:10px;margin-bottom:14px}.tab{border:0;background:transparent;border-radius:7px;padding:8px 4px;font-size:11.5px;font-weight:750;color:#344054}.tab.active{background:#fff;box-shadow:0 2px 8px rgba(16,24,40,.08);color:var(--accent)}
+.tabpane{display:none}.tabpane.active{display:block}
+.panel{border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:12px;background:var(--panel)}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.panelhead h2{font-size:14px;margin:0}.hint{font-size:11.5px;line-height:1.45;color:#5b6475}
+.grid2,.grid3{display:grid;gap:10px}.grid2{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:repeat(3,1fr)}.full{grid-column:1/-1}
+/* Labels: readable size, sentence case (they were 9.5px grey capitals). */
+.field label{display:block;font-size:12px;font-weight:650;color:#344054;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;border:1px solid #cfd6e0;border-radius:8px;padding:8px 9px;background:#fff;min-height:36px}.field textarea{min-height:69px;resize:vertical}.field textarea.compact-textarea{min-height:54px}
+.toggleline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed #e0e5ec;font-size:13px}.toggleline:last-child{border-bottom:0}.switch{position:relative;width:38px;height:21px}.switch input{opacity:0;width:0;height:0}.slider{position:absolute;inset:0;background:#c9d1dc;border-radius:20px;transition:.2s}.slider:before{content:"";position:absolute;width:15px;height:15px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}.switch input:checked+.slider{background:var(--accent)}.switch input:checked+.slider:before{transform:translateX(17px)}
+.columnrow{border:1px solid #dde3eb;border-radius:9px;padding:9px;margin-bottom:8px;background:#fbfcfe}.columnhead{display:flex;align-items:center;gap:6px;margin-bottom:7px}.drag{color:#98a2b3;cursor:grab;font-size:17px}.columnhead strong{font-size:12px;flex:1}.colgrid{display:grid;grid-template-columns:1.2fr .8fr .6fr;gap:7px}.tiny{font-size:11.5px}
+.itemcard{border:1px solid #dde3eb;border-radius:9px;padding:10px;margin-bottom:8px;background:#fbfcfe}.itemtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.itemtop strong{font-size:12px}.itemgrid{display:grid;gap:7px;grid-template-columns:repeat(2,1fr)}.itemgrid .field textarea{min-height:48px}
+.importbox{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.notice{font-size:12px;line-height:1.45;color:#475467;background:rgba(var(--accent-rgb),.07);border:1px solid rgba(var(--accent-rgb),.14);padding:9px;border-radius:9px;margin-bottom:12px}
+.hidden{display:none!important}
+.field-warning{margin-top:4px;color:var(--danger)}
+/* Saved invoices list */
+.invoice-list{display:grid;gap:6px;margin-top:10px}
+.invoice-row{display:flex;align-items:center;gap:8px;padding:8px;border:1px solid #e0e5ec;border-radius:8px;background:#fbfcfe}
+.invoice-row.current{border-color:var(--accent);background:rgba(var(--accent-rgb),.05)}
+.invoice-row .invoice-main{flex:1;min-width:0}
+.invoice-row .invoice-number{font-size:13px;font-weight:800;color:#1f2937;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.invoice-row .invoice-sub{font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.invoice-row .invoice-total{font-size:11.5px;font-weight:750;white-space:nowrap}
+.invoice-row .invoice-open-now{font-size:10px;font-weight:800;color:var(--accent);white-space:nowrap}
+.invoice-empty{font-size:11px;color:var(--muted);padding:6px 0}
+.backup-reminder{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fffaeb;border-color:#fedf89;color:#7a4d00}
+.backup-reminder[hidden]{display:none}
+.import-check{margin-top:8px;padding:8px 10px;border-radius:8px;font-size:11px;line-height:1.45}
+.import-check[hidden]{display:none}
+.import-check.ok{background:#ecfdf3;border:1px solid #abefc6;color:#085d3a}
+.import-check.warn{background:#fffaeb;border:1px solid #fedf89;color:#7a4d00}
+.inline-input select{flex:1;min-width:0}
+.inline-input{display:flex;gap:6px;align-items:stretch}.inline-input input{flex:1;min-width:0}.inline-input .btn{flex:none}
+/* The library heading had no rule and fell back to the browser's 1.5em h2,
+   twice the size of every other panel heading. */
+#templateManagerSection{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+#templateManagerSection h2{font-size:13px;margin:0 0 10px}
+.field-warning[hidden]{display:none}
+
+/* Moved here from the end of the original stylesheet. The `.toast`
+   selector is unique, so its cascade position cannot affect anything. */
+.toast{position:fixed;right:20px;bottom:20px;background:#172033;color:#fff;padding:11px 14px;border-radius:10px;box-shadow:0 12px 35px rgba(0,0,0,.25);font-size:12px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s;z-index:99}.toast.show{opacity:1;transform:none}
+
+/* Start-up failure banner; removed by js/app.js as soon as the app runs.
+   It stays invisible for the first 3 seconds, so a normal start never flashes
+   it while the scripts load; it only appears if the app really did not start
+   (CSS only, so it works when scripts are blocked). Fixed position: it takes
+   no space while hidden, so nothing moves when it is removed. */
+@keyframes boot-error-reveal{to{visibility:visible}}
+.boot-error{position:fixed;top:0;left:0;right:0;visibility:hidden;animation:boot-error-reveal 0s linear 3s forwards;z-index:100;padding:12px 16px;background:#fef3f2;border-bottom:1px solid #fecdca;color:#7a271a;font-size:13px;line-height:1.5}
+.boot-error code{background:#fff;border:1px solid #fecdca;border-radius:4px;padding:1px 4px}
+
+/* Save status next to the app name */
+.save-state{display:inline-flex;align-items:center;gap:6px;flex:none;font-size:11.5px;font-weight:650;color:#475467;padding:4px 9px;border-radius:999px;background:#f2f4f7;white-space:nowrap}
+.save-state .save-dot{width:7px;height:7px;border-radius:50%;background:#12b76a}
+.save-state.pending .save-dot{background:#98a2b3}
+.save-state.held{background:#fffaeb;color:#7a4d00}.save-state.held .save-dot{background:#f79009}
+.save-state.failed{background:#fef3f2;color:#b42318}.save-state.failed .save-dot{background:#d92d20}
+
+/* Toolbar "More" menu */
+.menu-wrap{position:relative}
+.menu{position:absolute;top:calc(100% + 4px);left:0;z-index:40;min-width:232px;display:grid;gap:1px;padding:5px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 40px rgba(16,24,40,.16)}
+.menu[hidden]{display:none}
+.menu.align-right{left:auto;right:0}
+.menu-item{display:block;width:100%;text-align:left;border:0;background:transparent;border-radius:7px;padding:9px 10px;font-size:12.5px;font-weight:600;color:var(--ink)}
+.menu-item:hover,.menu-item:focus-visible{background:#f2f4f7;outline:none}
+.menu-sep{height:1px;background:#eaecf0;margin:4px 2px}
+
+/* Line items: compact rows (replaces the old per-item cards) */
+.itemrow{border:1px solid #e0e5ec;border-radius:9px;padding:8px 9px 9px;margin-bottom:7px;background:#fbfcfe}
+.itemrow.dragging{opacity:.45}
+.itemrow-head{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.itemrow-head .drag{cursor:grab;color:#98a2b3;font-size:13px;padding:2px 3px;user-select:none;touch-action:none}
+.itemrow-num{font-size:12px;color:#344054}
+.itemrow-total{margin-left:auto;font-size:12.5px;font-weight:800;color:#1f2937;white-space:nowrap}
+.itemrow-head .btn.icon{width:28px;height:28px;padding:0;font-size:13px;line-height:1}
+.itemrow-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:6px 8px}
+.itemrow-fields .field.full{grid-column:1/-1}
+.itemrow-fields label{font-size:11px;font-weight:600;color:#475467;margin-bottom:3px}
+.itemrow-fields input,.itemrow-fields textarea{padding:7px 8px;font-size:13.5px}
+.itemrow-fields textarea{min-height:36px;resize:vertical;overflow:hidden}
+/* Description boxes grow with their text without script where supported
+   (js/editor/items.js measures them only in other browsers). */
+.itemrow-fields textarea{field-sizing:content}
+/* Rows scrolled out of view are not laid out or painted until they come near
+   the screen, which keeps long royalty statements quick to edit. */
+.itemrow{content-visibility:auto;contain-intrinsic-size:auto 130px}
+
+/* Narrow screens: jump between the editor and the preview */
+.jump-btn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom, 0px));z-index:60;border:0;border-radius:999px;padding:11px 18px;font-weight:800;font-size:13px;color:#fff;background:var(--accent);box-shadow:0 10px 30px rgba(16,24,40,.25)}
+.jump-btn[hidden]{display:none}
+@media (min-width:1181px){.jump-btn{display:none}}
+
+/* Compact notices */
+.privacy-notice{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 8px 7px 12px}
+.privacy-notice[hidden]{display:none}
+.notice-close{border:0;background:transparent;color:inherit;font-size:18px;line-height:1;width:26px;height:26px;border-radius:6px;cursor:pointer;flex:none}
+.notice-close:hover,.notice-close:focus-visible{background:rgba(16,24,40,.07)}
+.notice-actions{display:flex;gap:6px;flex:none}
+
+/* Error messages stay until dismissed */
+.toast.error{pointer-events:auto;background:#b42318;display:flex;align-items:center;gap:10px;max-width:min(520px,calc(100vw - 32px))}
+.toast-close{border:0;background:rgba(255,255,255,.18);color:#fff;width:26px;height:26px;border-radius:6px;font-size:16px;line-height:1;cursor:pointer;flex:none}
+.toast-close:hover,.toast-close:focus-visible{background:rgba(255,255,255,.3)}
+
+/* Collapsible panels (<details class="panel">) */
+details.panel>summary{list-style:none;cursor:pointer;user-select:none;position:relative;padding-right:24px}
+details.panel>summary::-webkit-details-marker{display:none}
+details.panel>summary::after{content:"";position:absolute;right:4px;top:50%;width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-70%) rotate(45deg);transition:transform .15s;color:#667085}
+details.panel:not([open])>summary::after{transform:translateY(-35%) rotate(-45deg)}
+details.panel:not([open])>summary{margin-bottom:0}
+details.panel>summary:focus-visible{outline:3px solid rgba(70,183,81,.35);outline-offset:4px}
+details.panel[open]>summary .when-closed{display:none}
+details.panel>summary .hint{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60%;text-align:right}
+.panel-actions{margin-bottom:10px}
+@media (prefers-reduced-motion:reduce){details.panel>summary::after{transition:none}}

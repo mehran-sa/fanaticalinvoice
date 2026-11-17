@@ -1,0 +1,67 @@
+/* Bundles tab: royalty sheet import, bundle grouping and summary.
+   Uses the application's existing tokens rather than the standalone tool's own
+   palette, so the panel matches the rest of the editor. */
+
+.bundle-drop{
+  display:block;
+  border:2px dashed var(--line);
+  border-radius:10px;
+  padding:22px 14px;
+  text-align:center;
+  background:#fbfcfe;
+  cursor:pointer;
+  transition:border-color .15s ease, background .15s ease;
+}
+.bundle-drop:hover{border-color:#9da9b9}
+.bundle-drop.drag{border-color:var(--accent);background:rgba(var(--accent-rgb),.06)}
+.bundle-drop strong{display:block;font-size:13px;margin-bottom:3px}
+.bundle-drop span{font-size:11px;color:var(--muted)}
+
+.bundle-status{margin-top:10px;font-size:11px;color:var(--muted);min-height:14px}
+.bundle-status.ok{color:#18794e}
+.bundle-status.error{color:var(--danger)}
+
+.bundle-meta{font-size:10px;color:var(--muted);margin:12px 0 6px}
+
+.bundle-group{
+  border:1px solid #dde3eb;
+  border-radius:9px;
+  overflow:hidden;
+  margin-bottom:10px;
+  background:#fff;
+}
+.bundle-group-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:8px 10px;
+  background:#f4f6f9;
+  border-bottom:1px solid #dde3eb;
+  font-size:11px;
+  font-weight:800;
+  color:#344054;
+}
+.bundle-count{font-size:10px;font-weight:500;color:var(--muted);white-space:nowrap}
+
+.bundle-table{width:100%;border-collapse:collapse;font-size:11px}
+.bundle-table th{
+  text-align:left;
+  padding:6px 10px;
+  background:#fff;
+  color:#4b5563;
+  font-size:9.5px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  border-bottom:1px solid #eceff3;
+}
+.bundle-table td{
+  padding:7px 10px;
+  border-bottom:1px solid #eceff3;
+  vertical-align:top;
+  overflow-wrap:anywhere;
+}
+.bundle-table .right{text-align:right}
+.bundle-table tr:last-child td{border-bottom:0}
+.bundle-table .bundle-total td{background:#f9fafb;border-top:1px solid #dde3eb}
