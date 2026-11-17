@@ -476,3 +476,147 @@ kbd{font:inherit;font-size:12.5px;padding:1px 6px;border:1px solid var(--ui-line
   .export-dialog{width:100vw;max-width:100vw;max-height:100vh;border-radius:0}
 }
 @media print{.appbar,.view-switch,.pinned-total{display:none!important}}
+
+/* ------------------------------------------- Alison Statement Grabber */
+.statement-input{font-variant-numeric:tabular-nums}
+.statement-result{display:flex;flex-direction:column;gap:10px;margin-top:12px;padding:14px;border:1px solid var(--ui-line);border-radius:var(--r-m);background:#fbfcfb}
+.statement-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 10px}
+.statement-head strong{font-size:15px}
+.statement-head span{font-size:13px;color:var(--ui-muted)}
+.statement-table{width:100%;border-collapse:collapse;font-size:14px}
+.statement-table th,.statement-table td{padding:7px 0;border-bottom:1px solid #eef1ef;text-align:left;font-weight:400;vertical-align:baseline}
+.statement-table tr:last-child th,.statement-table tr:last-child td{border-bottom:0}
+.statement-table td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:12px}
+.statement-tag{width:1%;white-space:nowrap;padding-left:12px!important;font-size:12px;color:var(--ui-muted)}
+.statement-table tr.kind-total th,.statement-table tr.kind-total td.num{color:var(--ui-muted)}
+.statement-table tr.kind-earnings th,.statement-table tr.kind-earnings td.num{font-weight:600}
+.statement-result .import-check{margin:0}
+.statement-question{margin:2px 0 0;font-weight:600;font-size:14px}
+.statement-choices{display:flex;flex-direction:column;gap:8px}
+.statement-choices .btn{justify-content:flex-start;white-space:normal;text-align:left;min-height:42px;padding:8px 14px}
+.statement-note{margin:0}
+.statement-error{margin:10px 0 0}
+.statement-foot{display:flex;justify-content:flex-end;margin-top:8px}
+
+/* ============================================ 2.14.1 spacing pass
+   One rhythm: 4px steps, 16px panel padding, 10px between panels,
+   12px between a panel's blocks, 40px controls on desktop (44px on phones). */
+
+/* Top bar: every control 40px high, centred on one line. */
+.appbar{min-height:60px;padding:10px 16px}
+.academy-btn,.account-btn{height:40px}
+.account-btn{width:40px;border-radius:20px}
+.academy-btn{padding:0 10px 0 6px}
+.appnav-btn,.sync-btn,.appbar .btn,.appbar .btn.icon-btn{height:40px;min-height:40px}
+.doc-title{gap:10px}
+
+/* Sidebar rhythm */
+.sidebar>.notice{margin:0 0 12px}
+.panel,.group .panel{margin-bottom:10px}
+.group{margin:20px 0 0}
+.group-head{margin:0 2px 8px}
+details.panel>.panel-body>:last-child,.panel-body>:last-child{margin-bottom:0}
+.panel-body>.hint:first-child{margin:0 0 12px}
+.importbox{gap:8px;margin-bottom:12px}
+.grid2,.grid3{gap:12px}
+.field label{margin-bottom:6px}
+
+/* Backup reminder: the message, then its buttons */
+.backup-reminder{flex-direction:column;align-items:stretch;gap:10px;padding:12px 14px}
+.backup-reminder .notice-actions{gap:8px}
+
+/* Due in: one line of compact chips */
+.due-presets{flex-wrap:nowrap;gap:6px;margin-top:-2px}
+.due-presets .chip{padding:4px 9px;font-size:12.5px;line-height:1.35;white-space:nowrap}
+.due-presets-label{font-size:13px;color:var(--ui-soft);white-space:nowrap;margin-right:2px}
+
+/* Range sliders: no box around them, value right under */
+.field input[type=range]{min-height:0;height:24px;padding:0;border:0;background:transparent;display:block}
+.field input[type=range]+.hint{margin-top:2px}
+.field input[type=color]{height:40px}
+
+/* Line-items table: headings sit over the text in the boxes */
+.items-head{padding:8px 8px 7px}
+.items-head span{padding:0 9px}
+.items-head span:first-child{padding:0}
+.items-head .num{text-align:right}
+.items-footer{margin-top:12px}
+.items-tip{margin:10px 0 0}
+.paste-box{margin:0 0 12px}
+
+/* Statement grabber */
+.statement-foot:has(+ *),.statement-foot{margin-top:10px}
+#panel-statement .panel-body:not(:has(#statementText:not(:placeholder-shown))) .statement-foot{display:none}
+
+/* Picker: every badge the same height, so names line up */
+.academy-tile{gap:10px;min-height:128px;padding:14px}
+.academy-tile .academy-badge{height:44px;width:auto;max-width:150px;justify-content:flex-start;background:transparent}
+.academy-tile .academy-badge img{height:44px;width:auto;max-width:150px}
+.academy-tile .academy-badge.initials{width:44px;height:44px;justify-content:center;background:#eef1ef}
+.picker-grid{gap:12px}
+.picker-group{margin:16px 0 0}
+.picker-group:first-child{margin-top:4px}
+
+/* Settings: blocks inside a card keep the card's 14px rhythm */
+#cloudSignedIn,#cloudSignedOut,#driveBackups{display:flex;flex-direction:column;gap:14px}
+#cloudSignedIn[hidden],#cloudSignedOut[hidden],#driveBackups[hidden]{display:none}
+#driveBackups>.setting-help{margin-top:-6px}
+#driveBackups>.card-sub{margin-top:6px}
+.card-row>div:first-child>.setting-help{margin-top:4px}
+.backup-controls .field{flex:1 1 220px;margin:0}
+.backup-controls .field:nth-child(2){flex-basis:290px}
+.backup-controls .btn{flex:none}
+.setting-row{padding-top:16px}
+.setting-row-field .field{margin:0}
+.folder-tree{gap:8px;padding:14px 16px}
+.folder-tree li::before{width:18px;height:18px;border:0;border-radius:0;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2346504a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 3v5h5'/%3E%3C/svg%3E")}
+.folder-tree li.folder::before{border:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e7d36' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3C/svg%3E")}
+.sync-status .sync-status-icon.warn{display:none}
+.sync-status.attention .sync-status-icon.ok,.sync-status.problem .sync-status-icon.ok{display:none}
+.sync-status.attention .sync-status-icon.warn,.sync-status.problem .sync-status-icon.warn{display:block}
+.sync-status.muted .sync-status-icon{opacity:.6}
+
+/* Narrow screens: the Edit / Preview switch stays under the top bar */
+.view-switch-bar{display:none}
+@media (max-width:1180px){
+  .view-switch-bar{display:block;position:sticky;top:var(--appbar-h);z-index:30;padding:10px 14px;background:var(--ui-canvas);border-bottom:1px solid var(--ui-line)}
+  .view-switch-bar .view-switch{position:static;margin:0}
+  .sidebar>.tabs{margin-top:0}
+}
+@media (max-width:760px){
+  .appbar{padding:7px 10px}
+  .academy-btn,.account-btn,.appnav-btn,.sync-btn,.appbar .btn.icon-btn{height:44px;min-height:44px}
+  .account-btn{width:44px;border-radius:22px}
+  .due-presets{flex-wrap:wrap}
+}
+.backup-list p{margin:0}
+/* Due in: its label on its own line like other field labels, chips beneath */
+.due-presets{flex-wrap:wrap;gap:6px;margin-top:0}
+.due-presets .due-presets-label{flex-basis:100%;margin:0 0 0;font-size:13px;font-weight:500;color:var(--ui-soft)}
+.due-presets .chip{padding:4px 10px}
+/* No lines yet: nothing below the buttons but the panel's own padding */
+#panel-items .panel-body:has(.items-body:empty)>.importbox{margin-bottom:0}
+#panel-items .panel-body:has(.items-body:empty):has(#pasteBox:not([hidden]))>.importbox{margin-bottom:12px}
+.due-presets .chip{padding:4px 8px;font-size:12px}
+@media (max-width:760px){
+  #panel-items .importbox .btn{flex:1 1 auto}
+  .due-presets .chip{min-height:36px;padding:4px 12px;font-size:13px}
+}
+.statement-input{field-sizing:content;min-height:120px;max-height:280px}
+
+/* ------------------------------------------------------ master password */
+body.locked>:not(.lock-screen):not(.boot-error):not(script){display:none!important}
+.lock-screen{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:24px 16px;background:var(--ui-canvas);overflow:auto}
+.lock-screen[hidden]{display:none}
+.lock-card{width:min(400px,100%);display:flex;flex-direction:column;gap:14px;padding:32px 28px 26px;background:#fff;border:1px solid var(--ui-line);border-radius:var(--r-l);box-shadow:0 12px 40px rgba(28,36,32,.08)}
+.lock-logo{display:block;line-height:0}
+.lock-logo svg{height:34px;width:auto}
+.lock-card h1{margin:6px 0 0;font-family:var(--sa-font-heading);font-size:24px;font-weight:700;letter-spacing:-.01em}
+.lock-text{margin:-6px 0 2px;color:var(--ui-soft);line-height:1.5}
+.lock-card .field{margin:0}
+.lock-card .field input{min-height:44px;font-size:16px}
+.lock-card .check-line{min-height:0;font-size:14px;color:var(--ui-soft)}
+.lock-error{margin:0;padding:10px 12px;border-radius:var(--r-s);background:#fdf0f0;border:1px solid #e8b4b7;color:var(--ui-red);font-size:13.5px;line-height:1.45}
+.lock-submit{min-height:46px;font-size:15px}
+.lock-hint{margin:0;font-size:12.5px;color:var(--ui-muted);line-height:1.5}
+#set-device .local-backup{padding-top:14px;border-top:1px solid #eef1ef}

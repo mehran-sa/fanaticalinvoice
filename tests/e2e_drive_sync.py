@@ -15,6 +15,7 @@ proves the policy lets sync through. It fails on any other outside request.
 import json, os, re, subprocess, sys, time
 from urllib.parse import urlparse, parse_qs
 from playwright.sync_api import sync_playwright
+from unlock_helper import prepare_browser, raw_context, TEST_PASSWORD, test_single_file
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORT = int(os.environ.get("E2E_PORT", "8782"))
@@ -171,7 +172,7 @@ outside = []
 
 try:
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = prepare_browser(p.chromium.launch())
 
         def device(name):
             ctx = browser.new_context(viewport={"width": 1400, "height": 900})

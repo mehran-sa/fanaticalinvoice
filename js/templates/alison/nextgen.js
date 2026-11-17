@@ -81,30 +81,7 @@ export default alisonTemplate({
   paper: A4.paper,
   fontStack: "Arial",
   layout,
-  brand: {
-    logo: "nextgen",
-    fields: {
-      companyName: "NextGen Learning",
-      companyEmail: "info@nextgenlearning.org.uk",
-      currency: "EUR",
-      paymentDetails: [
-        "Account Name: Edlearn Ltd",
-        "Bank Name: WISE PAYMENTS LIMITED",
-        "Swift/BIC: TRWIGB2L",
-        "IBAN: GB93 TRWI 2308 0171 8783 06",
-        "Bank Address: 56 Shoreditch High Street",
-        "London",
-        "E1 6JJ",
-        "United Kingdom",
-        "",
-        "Or",
-        "",
-        "PayPal: accounts@nextgenlearning.org.uk"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Mount Carmel, Loughrea\nH62 AV62,\nIreland"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "nextgen" }
 });

@@ -39,6 +39,8 @@ export function updatePanelSummaries() {
   const period = invoicePeriod({ fields: { invoicePeriod: typedPeriod, notes: fieldValue("notes"), reference: fieldValue("reference"), invoiceNumber: number, invoiceDate: date }, items: state.items });
   setSummary("sumInvoice", [number || "No number", period, date ? dateFmt(date) : ""].filter(Boolean).join(", "));
   setSummary("periodHint", typedPeriod ? "" : period ? `${period}, worked out from this invoice. Type to change it.` : "");
+  const periodBox = $("invoicePeriod");
+  if (periodBox && periodBox.placeholder !== (period || "Q3-2026")) periodBox.placeholder = period || "Q3-2026";
   const client = trimmedField("clientName").split(/\r?\n/)[0];
   setSummary("sumClient", client || "No client yet");
   const totals = getTotals();

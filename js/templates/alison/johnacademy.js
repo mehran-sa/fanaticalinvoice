@@ -71,27 +71,7 @@ export default alisonTemplate({
   paper: LETTER.paper,
   fontStack: "Times New Roman",
   layout,
-  brand: {
-    fields: {
-      companyName: "John Academy",
-      companyAddress: "11 Floor, 15 St Botolph Street,\nLondon EC3A 7BB\nUnited Kingdom",
-      companyEmail: "info@johnacademy.co.uk",
-      currency: "EUR",
-      paymentDetails: [
-        "Bank Details", "",
-        "Bank name: Barclays Bank",
-        "Name on account: ADAMS ACADEMY INC. LTD",
-        "Country: United Kingdom",
-        "Account number: 60167509",
-        "Swift Code (BIC): BUKBGB22",
-        "IBAN: GB19 BUKB 2045 4560 1675 09",
-        "Bank Address: 403 Holloway Road London N7 6HL"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Mount Carmel\nLoughrea\nCo. Galway\nH62 AV62\nIreland",
-      clientEmail: "mmoggan@alison.com"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: {}
 });

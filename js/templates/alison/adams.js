@@ -82,18 +82,7 @@ export default alisonTemplate({
   paper: A4.paper,
   fontStack: "Arial",
   layout,
-  brand: {
-    fields: {
-      companyName: "Adams Academy",
-      companyAddress: "Beaufort House, 15 St Botolph Street,\nLondon EC3A 7BB",
-      companyEmail: "info@adamsacademy.com",
-      currency: "EUR",
-      paymentDetails: "PayPal:  info@adamsacademy.com"
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Mount Carmel, Loughrea\nCo. Galway, H62 AV62, Ireland.",
-      clientEmail: "mmoggan@alison.com"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: {}
 });

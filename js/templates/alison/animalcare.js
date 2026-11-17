@@ -86,18 +86,7 @@ export default alisonTemplate({
   paper: A4.paper,
   fontStack: "Lucida Sans Unicode + Arial Black",
   layout,
-  brand: {
-    logo: "animalcare",
-    fields: {
-      companyName: "The Animal Care",
-      companyAddress: "Bluebell Academy Ltd\n63/66 Hatton Garden, Fifth Floor Suite 23,\nLondon, EC1 N8LE\nUnited Kingdom",
-      currency: "EUR",
-      paymentDetails: "PayPal: info@theanimalcare.org",
-      terms: "Please make the payment by the due date."
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Level One Building, Technology Park\nParkmore, Galway, Ireland\nIreland"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "animalcare" }
 });

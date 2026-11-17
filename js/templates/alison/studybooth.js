@@ -80,27 +80,7 @@ export default alisonTemplate({
   paper: LETTER.paper,
   fontStack: "Times New Roman + Arial",
   layout,
-  brand: {
-    logo: "studybooth",
-    fields: {
-      companyName: "STUDY BOOTH",
-      companyAddress: "75 Honey Close\nDagenham, England\nRM10 8TF, United Kingdom",
-      currency: "EUR",
-      paymentDetails: [
-        "Bank Details", "",
-        "Bank name: Lloyds Bank",
-        "Name on account: Edujanets Ltd",
-        "Country: United Kingdom",
-        "Account number: 60046160",
-        "Swift Code (BIC): LOYDGB21031",
-        "IBAN: GB60LOYD30989760046160",
-        "Bank Address: Chelmsford Legg St Osc, 1 Legg Street, Chelmsford, Essex, CM"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Mount Carmel\nLoughrea\nCo. Galway\nH62 AV62\nIreland",
-      clientEmail: "mmoggan@alison.com"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "studybooth" }
 });

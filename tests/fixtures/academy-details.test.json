@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "academies": {
+    "alison-adams": {
+      "fields": {
+        "companyName": "Adams Academy",
+        "companyAddress": "Beaufort House, 15 St Botolph Street,\nLondon EC3A 7BB",
+        "companyEmail": "info@adamsacademy.com",
+        "currency": "EUR",
+        "paymentDetails": "PayPal:  info@adamsacademy.com"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Mount Carmel, Loughrea\nCo. Galway, H62 AV62, Ireland.",
+        "clientEmail": "accounts@alison.example"
+      }
+    },
+    "alison-alpha": {
+      "fields": {
+        "companyName": "Adams Academy Inc. Ltd.",
+        "companyVat": "GB000000000",
+        "companyReg": "00000000",
+        "companyAddress": "11 Floor, 15 St Botolph\nStreet London EC3A 7BB",
+        "companyPhone": "0000 000 0000",
+        "companyEmail": "info@adamsacademy.com",
+        "currency": "EUR",
+        "paymentDetails": "Bank: Barclays Bank\nName: Adams Academy Inc. Ltd\nSort Code: 00-00-00\nAccount: 00000000\nSwift Code: BUKBGB00\nIBAN: GB00 BUKB 0000 0000 0000 00\nOr,\nPayPal: info@alphaacademy.org"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Level One Building, Galway Technology Park,\nParkmore, Galway, Ireland"
+      }
+    },
+    "alison-animalcare": {
+      "fields": {
+        "companyName": "The Animal Care",
+        "companyAddress": "Bluebell Academy Ltd\n63/66 Hatton Garden, Fifth Floor Suite 23,\nLondon, EC1 N8LE\nUnited Kingdom",
+        "currency": "EUR",
+        "paymentDetails": "PayPal: info@theanimalcare.org",
+        "terms": "Please make the payment by the due date."
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Level One Building, Technology Park\nParkmore, Galway, Ireland\nIreland"
+      }
+    },
+    "alison-apex": {
+      "fields": {
+        "companyName": "Apex Learning",
+        "companyAddress": "The Brew Eagle House,\n163 City Road, London,\nEC1V 1NR\nUnited Kingdom",
+        "companyEmail": "info@apexlearning.org.uk",
+        "currency": "EUR",
+        "paymentDetails": "Digilearn Ltd\nAc no: 00000000\nSort : 000000\nIBAN: GB00LOYD00000000000000\nBIC: LOYDGB00000\nLloyds\nLLOYDS TSB BANK PLC\nBUTLER PLACE Chelmsford Legg St OSC,\n0 Legg Street, Essex, CM0 0JS"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Level One Building,\nTechnology Park,\nParkmore, Galway, Ireland"
+      }
+    },
+    "alison-beauty": {
+      "fields": {
+        "companyName": "Purple Academy Ltd",
+        "companyAddress": "60 Cannon St\nLondon\nEC4N 6NP",
+        "companyPhone": "+000000000000",
+        "companyEmail": "info@ibeautymakeup.co.uk",
+        "currency": "EUR",
+        "paymentDetails": "PayPal Details\n\naccounts@ibeautymakeup.co.uk\n\nOr\n\nBank Details\n\nBank name: Lloyds Bank\nName on account: Purple Academy Ltd\nCountry: United Kingdom\nAccount number: 00000000\nSwift Code (BIC): LOYDGB00\nIBAN: GB00LOYD00000000000000"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Mount Carmel\nLoughrea\nCo. Galway\nH62 AV62, Ireland"
+      }
+    },
+    "alison-coursecloud": {
+      "fields": {
+        "companyName": "Edlearn Ltd",
+        "companyAddress": "1 Coldbath Square,\nFarringdon, London,EC1R5HL",
+        "companyPhone": "00000000000",
+        "companyEmail": "info@coursecloud.org",
+        "currency": "EUR",
+        "paymentDetails": "Account Name: Edlearn Ltd\nAccount Number: 00000000\nBank Name: TSB Bank\nBank branch: TSB, PO BOX 000 Leeds LS00 0GQ\nCountry: United Kingdom\nIBAN: GB00TSBS00000000000000\nSWIFT Code: BIC: TSBSGB0AXXX\nPayPal: info@coursecloud.org",
+        "terms": "Maria Paula, Director of Studies\nCourse Cloud, EdLearn Ltd."
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Mount Carmel, Loughrea\nCo. Galway, H62 AV62, Ireland.",
+        "clientEmail": "accounts@alison.example"
+      }
+    },
+    "alison-coursegate": {
+      "fields": {
+        "companyName": "EDUKITE LTD",
+        "companyAddress": "Flat 202 Pavilion House 10 Hemming Street London\nE15BL",
+        "currency": "EUR",
+        "paymentDetails": "PayPal::\ninfo@coursegate.co.uk"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Level One Building, Galway Technology Park, Parkmore,\nGalway, Ireland"
+      }
+    },
+    "alison-janets": {
+      "fields": {
+        "companyName": "Edujanets Ltd.",
+        "companyAddress": "3rd Floor, 86-90 Paul Street London EC2A 4NE",
+        "companyEmail": "Info@janets.org.uk",
+        "currency": "EUR",
+        "paymentDetails": "PayPal: info@janets.org.uk\nBank Information:\nAccount Name: Edujanets Ltd\nBank Sort Code: 00-00-00\nAccount Number: 00000000\nCountry: United Kingdom\nIBAN: GB00LOYD00000000000000\nBIC/SWIFT: LOYDGB00000\nBank Name: Lloyds Bank\nVAT No.: 000 0000 00"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Mount Carmel,\nLoughrea, Co Galway, Ireland,\nH62 AV62"
+      }
+    },
+    "alison-johnacademy": {
+      "fields": {
+        "companyName": "John Academy",
+        "companyAddress": "11 Floor, 15 St Botolph Street,\nLondon EC3A 7BB\nUnited Kingdom",
+        "companyEmail": "info@johnacademy.co.uk",
+        "currency": "EUR",
+        "paymentDetails": "Bank Details\n\nBank name: Barclays Bank\nName on account: ADAMS ACADEMY INC. LTD\nCountry: United Kingdom\nAccount number: 00000000\nSwift Code (BIC): BUKBGB00\nIBAN: GB00 BUKB 0000 0000 0000 00\nBank Address: 000 Holloway Road London N0 0HL"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Mount Carmel\nLoughrea\nCo. Galway\nH62 AV62\nIreland",
+        "clientEmail": "accounts@alison.example"
+      }
+    },
+    "alison-knowledgegate": {
+      "fields": {
+        "companyName": "Sadman Mohammad | Knowledge Gate | Purple Academy Ltd",
+        "companyAddress": "25 Neckinger,\nLondon\nUnited Kingdom\nSE16 3GH",
+        "currency": "EUR",
+        "paymentDetails": "Bank Details\n\nAccount Name: Purple Academy Limited\nBank Name: WISE PAYMENTS LIMITED\nAccount Number: 00000000\nSort Code: 00-00-00\nIBAN: GB00 TRWI 0000 0000 0000 00\nBank Address: 00 Shoreditch High Street, London, E0 0JJ, United Kingdom"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Mount Carmel\nLoughrea\nCo. Galway\nH62 AV62\nIreland",
+        "clientEmail": "accounts@alison.example"
+      }
+    },
+    "alison-mayfair": {
+      "fields": {
+        "companyName": "Mayfair College Ltd",
+        "companyReg": "00000000",
+        "companyAddress": "163 City Road, London, England,\nEC1V 1NR",
+        "currency": "EUR",
+        "paymentDetails": "NatWest A/C  MAYFAIR COLLEGE LTD\nA /C no:  00000000\nSort Code:  000000\nWWIFT/BIC:  NWBKGB0L\nIBAN  GB00NWBK00000000000000",
+        "terms": "Thank you for your Partnership!"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Mount Carmel\nLoughrea, Co. Galway\nH62 AV62, Ireland",
+        "clientEmail": "accounts@alison.example"
+      }
+    },
+    "alison-nextgen": {
+      "fields": {
+        "companyName": "NextGen Learning",
+        "companyEmail": "info@nextgenlearning.org.uk",
+        "currency": "EUR",
+        "paymentDetails": "Account Name: Edlearn Ltd\nBank Name: WISE PAYMENTS LIMITED\nSwift/BIC: TRWIGB0L\nIBAN: GB00 TRWI 0000 0000 0000 00\nBank Address: 00 Shoreditch High Street\nLondon\nE0 0JJ\nUnited Kingdom\n\nOr\n\nPayPal: accounts@nextgenlearning.org.uk"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Mount Carmel, Loughrea\nH62 AV62,\nIreland"
+      }
+    },
+    "alison-oneeducation": {
+      "fields": {
+        "companyName": "One Education",
+        "companyAddress": "63 St Mary Axe\nLondon, EC3A 8AA",
+        "companyPhone": "000 0000 0000",
+        "currency": "EUR",
+        "paymentDetails": "PayPal:\nEmail: info@oneeducation.org.uk\nBank Details:\nBank Name: Lloyds Bank\nBranch Name: Chelmsford\nBank Account Name: Edukators London Ltd\nSort Code: 000000\nAccount Number: 00000000\nBank Account Currency: GBP\nSwift code: LOYDGB00000\nIBAN: GB00LOYD00000000000000"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Level One Building, Galway Technology Park,\nParkmore, Galway, Ireland"
+      }
+    },
+    "alison-skillup": {
+      "fields": {
+        "companyName": "SKILL UP LTD (SKILL UP)",
+        "companyAddress": "207 Regent Street, 3rd Floor, London,\nEngland, W1B 3HH",
+        "currency": "EUR",
+        "paymentDetails": "Bank Details:\nAccount holder: Skill Up Ltd\nSort code: 00-00-00\nAccount number: 00000000\nIBAN: GB00 TRWI 0000 0000 0000 00\nWise's address:\n00 Shoreditch High Street\nLondon\nE0 0JJ\nUnited Kingdom",
+        "terms": "Authorize by:\nJeremy Ruth\nBusiness Development Manager\nSkill Up Ltd\n\nTerms: Please ensure payment within the due date.\n\nFor Invoice queries, please contact: info@skill-up.org"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Mount Carmel,\nLoughrea, Co.\nGalway, H62\nAV62, Ireland"
+      }
+    },
+    "alison-studybooth": {
+      "fields": {
+        "companyName": "STUDY BOOTH",
+        "companyAddress": "75 Honey Close\nDagenham, England\nRM10 8TF, United Kingdom",
+        "currency": "EUR",
+        "paymentDetails": "Bank Details\n\nBank name: Lloyds Bank\nName on account: Edujanets Ltd\nCountry: United Kingdom\nAccount number: 00000000\nSwift Code (BIC): LOYDGB00000\nIBAN: GB00LOYD00000000000000\nBank Address: Chelmsford Legg St Osc, 0 Legg Street, Chelmsford, Essex, CM"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Mount Carmel\nLoughrea\nCo. Galway\nH62 AV62\nIreland",
+        "clientEmail": "accounts@alison.example"
+      }
+    },
+    "alison-studyhub": {
+      "fields": {
+        "companyName": "Studyhub",
+        "companyEmail": "Info@studyhub.org.uk",
+        "currency": "EUR",
+        "paymentDetails": "BLUEBELL ACADEMY LTD\nBank: Lloyds\nSort Code: 00-00-00\nAccount No: 00000000\nIBAN:GB00LOYD00000000000000\nIBAN BIC: LOYDGB0LXXXor\n\nPayPal: info@studyhub.org.uk"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Level One Building\nTechnology Park,\nParkmore, Galway, Ireland"
+      }
+    },
+    "alison-thames": {
+      "fields": {
+        "companyName": "Thames College",
+        "companyAddress": "Business Name: Learning Station Ltd\n78 ILFORD LANE, ILFORD,\nEngland IG1 2LA\nUnited Kingdom",
+        "currency": "EUR",
+        "paymentDetails": "Bank Details:\nBank Name: WISE\nBank Address: 00 Shoreditch High Street, London, E0 0JJ United Kingdom.\nAccount Full Name: Learning Station Ltd\nIBAN: GB00 TRWI 0000 0000 0000 00\nAccount No: 00000000\nSwift/BIC Code: TRWIGB0L"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Level One Building, Galway Technology Park,\nParkmore, Galway, Ireland"
+      }
+    },
+    "alison-trainingexpress": {
+      "fields": {
+        "companyName": "Training Express",
+        "companyAddress": "100 Bishopsgate, 18th Floors,\nLondon, England, EC2N 4AG",
+        "companyEmail": "info@trainingexpress.org.uk",
+        "currency": "EUR",
+        "paymentDetails": "Bank Details-\nBank: Lloyds Bank\nSort Code: 00-00-00\nAccount No: 00000000\nIBAN: GB00LOYD00000000000000\nBIC: LOYDGB00000\n\nOr PayPal- info@trainingexpress.org.uk"
+      },
+      "client": {
+        "clientName": "Alison",
+        "clientAddress": "Level One Building,\nTechnology Park, Parkmore,\nGalway, Ireland"
+      }
+    }
+  }
+}

@@ -190,3 +190,30 @@ test("restoring a backup by hand brings back an invoice deleted since, so sync k
   assert.ok(lib.listInvoices()[0].updatedAt > lib.listInvoices()[0].invoiceDate, "saved as changed now");
   assert.equal(lib.listInvoices()[0].template, "alison-janets", "board details come back too");
 });
+
+/* ------------------------------------------ Alison Statement Grabber */
+
+const { parseAlisonStatement, looksLikeStatement } = await import("../js/import-export/alison-statement.js");
+const SAMPLE = " Q2-2026 Payout \n\n\n\nOpening Balance: €29,000.00\nQ2-2026 Earnings: €8,200.77\n\n*Less Publishing Costs Recouped: €0.00\nClosing Balance: €37,200.77\n\n\nProposed Payment: €37,200.77\n";
+
+test("an Alison payout statement is read: lines, the quarter, and its totals", () => {
+  assert.ok(looksLikeStatement(SAMPLE));
+  assert.ok(!looksLikeStatement("Course\t10\nOther\t5"), "spreadsheet cells are not a statement");
+  const s = parseAlisonStatement(SAMPLE);
+  assert.equal(s.period, "Q2-2026");
+  assert.equal(s.currency, "EUR");
+  assert.deepEqual(s.lines.map(l => [l.label, l.amount]), [
+    ["Opening Balance", 29000], ["Q2-2026 Earnings", 8200.77], ["Less Publishing Costs Recouped", 0]
+  ]);
+  assert.deepEqual([s.quarter.label, s.quarter.amount], ["Q2-2026 Earnings", 8200.77]);
+  assert.equal(s.check.label, "Proposed Payment");
+  assert.equal(s.sum, 37200.77, "the lines add up to the proposed payment");
+  assert.ok(s.rows.filter(r => r.kind === "total").length === 2, "closing balance and proposed payment are totals, not lines");
+});
+
+test("a deduction on a statement is taken off", () => {
+  const s = parseAlisonStatement("Q3-2026 Payout\nOpening Balance: €100.00\nQ3-2026 Earnings: €50.00\nLess Publishing Costs Recouped: €20.00\nProposed Payment: €130.00");
+  assert.equal(s.lines[2].amount, -20);
+  assert.equal(s.sum, 130);
+  assert.equal(parseAlisonStatement("Q3 2026 statement\nEarnings: 1.234,50 EUR\nTotal: 1.234,50 EUR").lines[0].amount, 1234.5, "decimal commas");
+});

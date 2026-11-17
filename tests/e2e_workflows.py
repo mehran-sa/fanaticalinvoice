@@ -15,6 +15,7 @@ fails. Screenshots are written to tests/output/.
 import json, os, subprocess, sys, time, tempfile, zipfile, io, struct, zlib, re
 
 from playwright.sync_api import sync_playwright
+from unlock_helper import prepare_browser, raw_context, TEST_PASSWORD, test_single_file
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "tests", "output")
@@ -26,7 +27,8 @@ PORT = int(os.environ.get("E2E_PORT", "8781"))
 SINGLE = os.environ.get("E2E_TARGET") == "single"
 if SINGLE:
     ORIGIN = "file://"
-    URL = "file://" + os.path.join(ROOT, "SA-Invoice-Generator.html")
+    # The built page, with the test vault in place of the real one.
+    URL = "file://" + test_single_file()
 else:
     ORIGIN = f"http://127.0.0.1:{PORT}"
     URL = ORIGIN + "/index.html"
@@ -125,7 +127,7 @@ time.sleep(0.8)
 
 try:
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = prepare_browser(p.chromium.launch())
         ctx = browser.new_context(viewport={"width": 1400, "height": 900}, accept_downloads=True,
                                   timezone_id="Europe/London")
         page = ctx.new_page()
@@ -248,7 +250,7 @@ try:
         order = pf.evaluate("() => [...document.querySelectorAll('#tab-invoice details')].map(d => d.id)")
         check("Invoice tab order: this invoice, lines and totals first, then From and to, then more tools",
               order == ["panel-invoice", "panel-items", "panel-totals", "panel-company", "panel-client", "panel-footer",
-                        "panel-columns", "panel-bundles"], str(order))
+                        "panel-statement", "panel-columns", "panel-bundles"], str(order))
         n_before = pf.locator(".itemrow").count()
         last = pf.locator(".itemrow").last
         last.locator('[data-key="rate"]').fill("50"); last.locator('[data-key="rate"]').press("Enter")
@@ -765,7 +767,7 @@ try:
         page.click("#zoomIn"); page.click("#showEdit"); page.set_viewport_size({"width": 1400, "height": 900}); page.wait_for_timeout(150)
         go(page, "settings")
         check("Settings says where invoices are kept", "Saved only in this browser" in page.text_content("#privacyNoticeText")
-              and "2.14.0" in page.text_content("#appVersionText"))
+              and "2.15.0" in page.text_content("#appVersionText"))
         go(page, "editor")
         page.evaluate("() => localStorage.removeItem('invoiceStudio.lastBackupAt')"); page.reload(); page.wait_for_timeout(400)
         page.click("#backupLaterBtn"); page.reload(); page.wait_for_timeout(400)
@@ -897,7 +899,7 @@ try:
         for sel, val in [("#invoiceNumber", "2026-3080"), ("#invoiceDate", "2026-10-13"), ("#companyName", "Mayfair College Ltd"),
                          ("#companyReg", "12389626"), ("#companyAddress", "163 City Road, London, England, EC1V 1NR"),
                          ("#clientName", "Fanatical\nFocus Multimedia Ltd"), ("#clientAddress", "The Studios, Lea Hall Enterprise Park\nWheelhouse Road, Rugeley"),
-                         ("#paymentDetails", "PayPal Details: info@hfonline.org\nNatWest A/C | MAYFAIR COLLEGE LTD\nSort Code: 600537\nIBAN | GB29NWBK60053724214205")]:
+                         ("#paymentDetails", "PayPal Details: payments@example.org\nNatWest A/C | EXAMPLE COLLEGE LTD\nSort Code: 000000\nIBAN | GB00NWBK00000000000000")]:
             pu.fill(sel, val)
         for d, q, r in [("New Skills New You Build Your Own eLearning Bundle", "354", "0.2331"), ("Total Tech & Cybersecurity Masterclass Bundle", "300", "0.206")]:
             pu.click("#addItemBtn"); row = pu.locator(".itemrow").last
@@ -938,11 +940,11 @@ try:
               and abs(pu.evaluate("() => document.getElementById('invoice').offsetWidth") - 816) <= 1)
         pu.click("#tabbtn-invoice")
         pu.fill("#notes", "You can use the following bank details for payment.")
-        pu.fill("#paymentDetails", "Account Name Edukators London Ltd\nAccount Number 60992068\nSort Code 309897\nIBAN GB62LOYD30989760992068\nPaypal info@oneeducation.org.uk")
+        pu.fill("#paymentDetails", "Account Name Example Learning Ltd\nAccount Number 00000000\nSort Code 000000\nIBAN GB00LOYD00000000000000\nPaypal payments@example.org")
         pu.wait_for_timeout(150)
         check("bank labels are recognised without colons (Account Name, Sort Code, IBAN, Paypal)",
               pu.eval_on_selector_all("#pPayment .ukhf-bank td:first-child", "t => t.map(x => x.textContent)") == ["Account Name", "Account Number", "Sort Code", "IBAN"]
-              and pu.text_content("#pPayment .ukhf-pay-line") == "PayPal Details: info@oneeducation.org.uk")
+              and pu.text_content("#pPayment .ukhf-pay-line") == "PayPal Details: payments@example.org")
         check("long bank labels are not cut off",
               pu.evaluate("() => { const c=document.querySelectorAll('#pPayment .ukhf-bank td')[2]; return c.scrollWidth <= c.clientWidth + 1; }"))
         check("notes print as plain text, not in a shaded box",

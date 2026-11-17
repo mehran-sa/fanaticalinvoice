@@ -27,7 +27,17 @@ import { build } from "esbuild";
 import { withoutPreloads } from "./update-preloads.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const OUT = path.join(ROOT, "SA-Invoice-Generator.html");
+// For tests: SA_VAULT swaps in another vault (tests/fixtures/vault.test.js)
+// and SA_OUT writes the page elsewhere, so the real one is never touched.
+const OUT = path.resolve(ROOT, process.env.SA_OUT || "SA-Invoice-Generator.html");
+const VAULT_OVERRIDE = process.env.SA_VAULT ? path.resolve(ROOT, process.env.SA_VAULT) : "";
+const vaultPlugin = {
+  name: "vault-override",
+  setup(b) {
+    if (!VAULT_OVERRIDE) return;
+    b.onLoad({ filter: /[\\/]js[\\/]secure[\\/]vault\.js$/ }, async () => ({ contents: await readFile(VAULT_OVERRIDE, "utf8"), loader: "js" }));
+  }
+};
 const read = (p, enc = "utf8") => readFile(path.join(ROOT, p), enc);
 
 const MIME = { ".otf": "font/otf", ".png": "image/png", ".svg": "image/svg+xml", ".woff2": "font/woff2" };
@@ -65,7 +75,8 @@ async function main() {
     target: ["es2020"],
     write: false,
     legalComments: "inline",
-    logLevel: "silent"
+    logLevel: "silent",
+    plugins: [vaultPlugin]
   });
   const appJs = guardScript(bundle.outputFiles[0].text);
 

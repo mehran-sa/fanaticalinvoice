@@ -81,38 +81,7 @@ export default alisonTemplate({
   paper: A4.paper,
   fontStack: "Arial (Lucida Sans and Calibri for the signatory)",
   layout,
-  brand: {
-    logo: "skillup",
-    fields: {
-      companyName: "SKILL UP LTD (SKILL UP)",
-      companyAddress: "207 Regent Street, 3rd Floor, London,\nEngland, W1B 3HH",
-      currency: "EUR",
-      paymentDetails: [
-        "Bank Details:",
-        "Account holder: Skill Up Ltd",
-        "Sort code: 23-14-70",
-        "Account number: 69193010",
-        "IBAN: GB92 TRWI 2314 7069 1930 10",
-        "Wise's address:",
-        "56 Shoreditch High Street",
-        "London",
-        "E1 6JJ",
-        "United Kingdom"
-      ].join("\n"),
-      terms: [
-        "Authorize by:",
-        "Jeremy Ruth",
-        "Business Development Manager",
-        "Skill Up Ltd",
-        "",
-        "Terms: Please ensure payment within the due date.",
-        "",
-        "For Invoice queries, please contact: info@skill-up.org"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Mount Carmel,\nLoughrea, Co.\nGalway, H62\nAV62, Ireland"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "skillup" }
 });

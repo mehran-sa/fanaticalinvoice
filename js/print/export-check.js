@@ -12,7 +12,7 @@
  */
 
 import { $, trimmedField, fieldValue, isIsoDate, num } from "../utils.js";
-import { revealElement } from "../editor/tabs.js";
+import { revealElement, scrollEditorTo } from "../editor/tabs.js";
 import { state } from "../state.js";
 import { getTotals, calculateItemTotal, amountColumn } from "../invoice/calculations.js";
 import { money, dateFmt } from "../invoice/formatters.js";
@@ -183,6 +183,6 @@ export function goToIssue(issue) {
   if (!el) return;
   document.dispatchEvent(new CustomEvent("sa:show-editor"));
   revealElement(el);
-  el.scrollIntoView({ block: "center", behavior: "smooth" });
+  scrollEditorTo(el, { block: "center" });
   el.focus({ preventScroll: true });
 }

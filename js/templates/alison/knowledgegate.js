@@ -77,25 +77,7 @@ export default alisonTemplate({
   paper: LETTER.paper,
   fontStack: "Times New Roman",
   layout,
-  brand: {
-    fields: {
-      companyName: "Sadman Mohammad | Knowledge Gate | Purple Academy Ltd",
-      companyAddress: "25 Neckinger,\nLondon\nUnited Kingdom\nSE16 3GH",
-      currency: "EUR",
-      paymentDetails: [
-        "Bank Details", "",
-        "Account Name: Purple Academy Limited",
-        "Bank Name: WISE PAYMENTS LIMITED",
-        "Account Number: 71350607",
-        "Sort Code: 23-14-70",
-        "IBAN: GB69 TRWI 2314 7071 3506 07",
-        "Bank Address: 56 Shoreditch High Street, London, E1 6JJ, United Kingdom"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Mount Carmel\nLoughrea\nCo. Galway\nH62 AV62\nIreland",
-      clientEmail: "mmoggan@alison.com"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: {}
 });

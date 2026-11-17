@@ -45,3 +45,21 @@ export function initTabs() {
     };
   });
 }
+
+/**
+ * Scrolls the editor column to an element. On wide screens only the editor
+ * scrolls, so the invoice preview beside it stays where it is.
+ */
+export function scrollEditorTo(el, { block = "start", smooth = true } = {}) {
+  if (!el) return;
+  const sidebar = document.getElementById("sidebar");
+  const ownScroll = sidebar && getComputedStyle(sidebar).overflowY !== "visible" && sidebar.scrollHeight > sidebar.clientHeight;
+  if (!ownScroll) {
+    el.scrollIntoView({ block, behavior: smooth ? "smooth" : "auto" });
+    return;
+  }
+  const top = el.getBoundingClientRect().top - sidebar.getBoundingClientRect().top + sidebar.scrollTop;
+  const tabs = sidebar.querySelector(".tabs")?.offsetHeight || 0;
+  const target = block === "center" ? top - (sidebar.clientHeight - el.offsetHeight) / 2 : top - tabs - 12;
+  sidebar.scrollTo({ top: Math.max(0, target), behavior: smooth ? "smooth" : "auto" });
+}

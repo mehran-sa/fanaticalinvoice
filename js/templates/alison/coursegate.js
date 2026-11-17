@@ -71,17 +71,7 @@ export default alisonTemplate({
   paper: LETTER.paper,
   fontStack: "Microsoft Sans Serif + Arial",
   layout,
-  brand: {
-    logo: "coursegate",
-    fields: {
-      companyName: "EDUKITE LTD",
-      companyAddress: "Flat 202 Pavilion House 10 Hemming Street London\nE15BL",
-      currency: "EUR",
-      paymentDetails: "PayPal::\ninfo@coursegate.co.uk"
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Level One Building, Galway Technology Park, Parkmore,\nGalway, Ireland"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "coursegate" }
 });

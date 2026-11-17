@@ -10,6 +10,8 @@ import { readSettings, writeSettings, guessDeviceName } from "../settings-store.
 import { confirmAction } from "../ui/confirm-dialog.js";
 import { clearInvoice, flushInvoiceSave } from "../storage/invoice-storage.js";
 import { onViewChange } from "./appbar.js";
+import { lockNow, rememberedUntil, forgetRemembered } from "../secure/lock.js";
+import { dateFmt } from "../invoice/formatters.js";
 
 function fill() {
   const s = readSettings();
@@ -29,7 +31,7 @@ function fill() {
 async function forgetThisBrowser() {
   const ok = await confirmAction({
     title: "Remove everything from this browser?",
-    message: "Every invoice, client, template and brand is removed from this browser, and Google Drive sync signs out. " +
+    message: "Every invoice, client, template and brand is removed from this browser, Google Drive sync signs out, and the master password is forgotten here. " +
       "Your copy in Google Drive, and any backup files, stay as they are. Signing in again here brings it all back.",
     confirmLabel: "Remove from this browser",
     danger: true
@@ -45,8 +47,17 @@ async function forgetThisBrowser() {
   for (const key of keys) {
     try { localStorage.removeItem(key); } catch { /* ignore */ }
   }
+  await forgetRemembered();
   location.hash = "";
   location.reload();
+}
+
+async function showLockStatus() {
+  const until = await rememberedUntil().catch(() => null);
+  const day = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  $("lockStatus").textContent = until
+    ? `This device remembers the master password until ${dateFmt(day(until))}. Lock now to ask for it again here.`
+    : "This device does not remember the master password: it is asked for each time the app opens.";
 }
 
 /** Highlights the section in view in the settings menu. */
@@ -69,7 +80,7 @@ function trackSections() {
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(entries => {
       const visible = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-      if (visible) mark(visible.target.id === "set-sync" || visible.target.id === "set-device" ? (visible.target.id === "set-sync" ? "set-account" : "set-defaults") : visible.target.id);
+      if (visible) mark(visible.target.id === "set-sync" ? "set-account" : visible.target.id);
     }, { rootMargin: "-80px 0px -60% 0px" });
     qsa(".settings-main > .card").forEach(card => observer.observe(card));
   }
@@ -97,11 +108,14 @@ export function initSettings() {
   $("pdfNameStyle").addEventListener("change", e => writeSettings({ pdfName: e.target.value }));
   $("markIssuedDefault").addEventListener("change", e => writeSettings({ markIssued: e.target.checked }));
   $("forgetDeviceBtn").onclick = forgetThisBrowser;
+  $("lockNowBtn").onclick = () => lockNow();
+  showLockStatus();
 
   trackSections();
   onViewChange((view, before, { section }) => {
     if (view !== "settings") return;
     fill();
+    showLockStatus();
     if (section && $(section)) requestAnimationFrame(() => $(section).scrollIntoView({ block: "start" }));
   });
 }

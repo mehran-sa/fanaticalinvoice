@@ -15,6 +15,7 @@ quarter (overdue worked out from the due date) and marks invoices as paid.
 
 import os, re, subprocess, sys, time, datetime
 from playwright.sync_api import sync_playwright
+from unlock_helper import prepare_browser, raw_context, TEST_PASSWORD, test_single_file
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "tests", "output")
@@ -35,7 +36,7 @@ time.sleep(0.8)
 errors = []
 try:
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = prepare_browser(p.chromium.launch())
         ctx = browser.new_context(viewport={"width": 1440, "height": 900}, timezone_id="Europe/London")
         page = ctx.new_page()
         page.on("pageerror", lambda e: errors.append(str(e)))
@@ -47,6 +48,40 @@ try:
         today = page.evaluate("() => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }")
         quarter = page.evaluate("""t => { const [y, m] = t.split('-').map(Number); const q = Math.ceil(m / 3);
             return q === 1 ? 'Q4-' + (y - 1) : 'Q' + (q - 1) + '-' + y; }""", today)
+
+        # ---- the master password
+        lc = raw_context(browser, viewport={"width": 1440, "height": 900})
+        lp = lc.new_page()
+        lp.on("pageerror", lambda e: errors.append("lock: " + str(e)))
+        lp.goto(URL)
+        lp.wait_for_timeout(600)
+        check("the app opens on the lock screen, with nothing else shown",
+              lp.is_visible("#lockScreen") and lp.is_hidden("#appBar") and lp.is_hidden("#view-editor")
+              and lp.evaluate("() => !document.querySelector('#itemsEditor .itemrow') && document.getElementById('invoiceNumber').value === 'INV-1001'"))
+        lp.fill("#lockPassword", "not-the-password")
+        lp.click("#lockSubmit")
+        lp.wait_for_selector("#lockError:not([hidden])")
+        check("a wrong password is refused", "not right" in lp.text_content("#lockError") and lp.is_hidden("#appBar"))
+        lp.fill("#lockPassword", TEST_PASSWORD)
+        lp.click("#lockSubmit")
+        lp.wait_for_selector("#appBar", state="visible")
+        check("the right password opens the app", lp.is_hidden("#lockScreen"))
+        lp.click("#resetBtn"); lp.wait_for_selector("#pickerDialog[open]")
+        lp.locator('.academy-tile[data-academy="alison-janets"]').first.click(); lp.wait_for_timeout(900)
+        check("the academy's details come from the encrypted vault", lp.input_value("#companyName") == "Edujanets Ltd."
+              and "IBAN" in lp.input_value("#paymentDetails"))
+        lp.reload(); lp.wait_for_timeout(900)
+        check("the device remembers the password (no lock screen after a reload)", lp.is_visible("#appBar") and lp.is_hidden("#lockScreen"))
+        lp.click("#accountBtn"); lp.wait_for_timeout(300)
+        check("Settings says until when this device remembers it", "remembers the master password until" in lp.text_content("#lockStatus"))
+        lp.click("#lockNowBtn"); lp.wait_for_timeout(900)
+        check("Lock now shows the lock screen again", lp.is_visible("#lockScreen") and lp.is_hidden("#appBar"))
+        lp.uncheck("#lockRemember")
+        lp.fill("#lockPassword", TEST_PASSWORD); lp.click("#lockSubmit")
+        lp.wait_for_selector("#appBar", state="visible")
+        lp.reload(); lp.wait_for_timeout(900)
+        check("without Remember, the password is asked again after a reload", lp.is_visible("#lockScreen"))
+        lc.close()
 
         # ---- the academy picker
         page.click("#resetBtn")
@@ -138,6 +173,41 @@ try:
         page.wait_for_timeout(200)
         check("exporting marks the invoice as issued", page.input_value("#invoiceStatus") == "issued"
               and page.text_content("#statusBtnText") in ("Issued", "Overdue"))
+
+        # ---- Alison Statement Grabber: paste a payout statement, choose the lines
+        statement = " Q2-2026 Payout \n\n\n\nOpening Balance: €29,000.00\nQ2-2026 Earnings: €8,200.77\n\n*Less Publishing Costs Recouped: €0.00\nClosing Balance: €37,200.77\n\n\nProposed Payment: €37,200.77\n"
+        paste_on_page = "t => { const dt = new DataTransfer(); dt.setData('text/plain', t); document.getElementById('invoiceStage').dispatchEvent(new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true })); }"
+        page.evaluate(paste_on_page, statement)
+        page.wait_for_timeout(500)
+        check("a statement pasted on the page opens the Alison Statement Grabber and asks which lines to add",
+              page.evaluate("() => document.getElementById('panel-statement').open") and page.is_visible("#statementResult")
+              and page.text_content("#statementAllBtn") == "Add all 3 lines (€37,200.77)"
+              and page.text_content("#statementQuarterBtn") == "Add only Q2-2026 Earnings (€8,200.77)")
+        check("the grabber checks the lines against the statement's total",
+              "matching the statement's Proposed Payment" in page.text_content("#statementCheck")
+              and page.locator("#statementRows tr.kind-total").count() == 2)
+        page.click("#statementQuarterBtn")
+        page.wait_for_selector("#appConfirmDialog[open]")
+        page.click("#appConfirmAccept")
+        page.wait_for_timeout(300)
+        check("Add only the quarter: one line, the quarter set to Q2-2026",
+              page.locator(".itemrow").count() == 1 and page.locator(".itemrow textarea").first.input_value() == "Q2-2026 Earnings"
+              and page.text_content("#pinnedTotalValue") == "€8,200.77" and page.input_value("#invoicePeriod") == "Q2-2026")
+        page.click("#tabbtn-invoice")
+        page.locator(".itemrow textarea").first.evaluate("(el, t) => { const dt = new DataTransfer(); dt.setData('text/plain', t); el.dispatchEvent(new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true })); }", statement)
+        page.wait_for_timeout(400)
+        page.click("#statementAllBtn")
+        page.wait_for_selector("#appConfirmDialog[open]")
+        page.click("#appConfirmAccept")
+        page.wait_for_timeout(300)
+        descs = [page.locator(".itemrow").nth(i).locator("textarea").input_value() for i in range(page.locator(".itemrow").count())]
+        check("Add all: opening balance, earnings and the deduction, totalling the proposed payment",
+              descs == ["Opening Balance", "Q2-2026 Earnings", "Less Publishing Costs Recouped"]
+              and page.text_content("#pinnedTotalValue") == "€37,200.77", str(descs))
+        page.keyboard.press("Control+z"); page.wait_for_timeout(200)
+        page.keyboard.press("Control+z"); page.wait_for_timeout(200)
+        check("Undo brings the earlier lines back", page.locator(".itemrow").count() == 2
+              and page.text_content("#pinnedTotalValue") == "€4,248.35", page.text_content("#pinnedTotalValue"))
 
         # ---- the next quarter continues from the last
         page.click("#resetBtn")

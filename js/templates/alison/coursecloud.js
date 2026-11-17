@@ -87,30 +87,7 @@ export default alisonTemplate({
   paper: A4.paper,
   fontStack: "Jost (included) + Arial amounts",
   layout,
-  brand: {
-    logo: "coursecloud",
-    fields: {
-      companyName: "Edlearn Ltd",
-      companyAddress: "1 Coldbath Square,\nFarringdon, London,EC1R5HL",
-      companyPhone: "02037432362",
-      companyEmail: "info@coursecloud.org",
-      currency: "EUR",
-      paymentDetails: [
-        "Account Name: Edlearn Ltd",
-        "Account Number: 00044899",
-        "Bank Name: TSB Bank",
-        "Bank branch: TSB, PO BOX 373 Leeds LS14 9GQ",
-        "Country: United Kingdom",
-        "IBAN: GB14TSBS30847200044899",
-        "SWIFT Code: BIC: TSBSGB2AXXX",
-        "PayPal: info@coursecloud.org"
-      ].join("\n"),
-      terms: "Maria Paula, Director of Studies\nCourse Cloud, EdLearn Ltd."
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Mount Carmel, Loughrea\nCo. Galway, H62 AV62, Ireland.",
-      clientEmail: "mmoggan@alison.com"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "coursecloud" }
 });

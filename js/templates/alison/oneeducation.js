@@ -79,30 +79,7 @@ export default alisonTemplate({
   paper: LETTER.paper,
   fontStack: "Arial",
   layout,
-  brand: {
-    logo: "oneeducation",
-    fields: {
-      companyName: "One Education",
-      companyAddress: "63 St Mary Axe\nLondon, EC3A 8AA",
-      companyPhone: "020 3890 6420",
-      currency: "EUR",
-      paymentDetails: [
-        "PayPal:",
-        "Email: info@oneeducation.org.uk",
-        "Bank Details:",
-        "Bank Name: Lloyds Bank",
-        "Branch Name: Chelmsford",
-        "Bank Account Name: Edukators London Ltd",
-        "Sort Code: 309897",
-        "Account Number: 60992068",
-        "Bank Account Currency: GBP",
-        "Swift code: LOYDGB21031",
-        "IBAN: GB62LOYD30989760992068"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Level One Building, Galway Technology Park,\nParkmore, Galway, Ireland"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "oneeducation" }
 });

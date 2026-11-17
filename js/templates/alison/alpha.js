@@ -74,30 +74,7 @@ export default alisonTemplate({
   paper: LETTER.paper,
   fontStack: "Arial (Microsoft Sans Serif amounts)",
   layout,
-  brand: {
-    logo: "alpha",
-    fields: {
-      companyName: "Adams Academy Inc. Ltd.",
-      companyVat: "GB267018794",
-      companyReg: "10647280",
-      companyAddress: "11 Floor, 15 St Botolph\nStreet London EC3A 7BB",
-      companyPhone: "0800 368 7767",
-      companyEmail: "info@adamsacademy.com",
-      currency: "EUR",
-      paymentDetails: [
-        "Bank: Barclays Bank",
-        "Name: Adams Academy Inc. Ltd",
-        "Sort Code: 20-45-45",
-        "Account: 60167509",
-        "Swift Code: BUKBGB22",
-        "IBAN: GB19 BUKB 2045 4560 1675 09",
-        "Or,",
-        "PayPal: info@alphaacademy.org"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Level One Building, Galway Technology Park,\nParkmore, Galway, Ireland"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "alpha" }
 });

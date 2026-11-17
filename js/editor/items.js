@@ -25,6 +25,7 @@ import { saveInvoice } from "../storage/invoice-storage.js";
 import { confirmAction } from "../ui/confirm-dialog.js";
 import { roundMoney } from "../utils.js";
 import { parsePastedRows, looksLikeCells } from "../import-export/paste-rows.js";
+import { looksLikeStatement } from "../import-export/alison-statement.js";
 import { amountOnlyLines } from "../academies.js";
 import * as TemplateRegistry from "../templates/template-registry.js";
 
@@ -80,9 +81,12 @@ function applyGrid(layout) {
   }
 }
 
+/** The Amount box: two decimals, or empty for a new, blank line. */
 const amountInputValue = item => {
   const total = calculateItemTotal(item, amountColumn());
-  return total ? String(total) : "";
+  const desc = descriptionColumn();
+  const blank = !total && !String(item[desc?.key] ?? "").trim();
+  return blank ? "" : total.toFixed(2);
 };
 
 /** Sets a line to quantity 1 at this amount (Description and Amount designs). */
@@ -211,6 +215,18 @@ function itemsFromRows(rows) {
 }
 
 /**
+ * Replaces every line with these rows ({description, quantity, rate, amount}),
+ * in the current columns. Used by the Alison Statement Grabber.
+ */
+export function replaceLines(rows) {
+  setItems(itemsFromRows(rows));
+  renderItems();
+}
+
+/** An Alison statement goes to the Statement Grabber, which asks what to add. */
+const handOverStatement = text => document.dispatchEvent(new CustomEvent("sa:statement", { detail: text }));
+
+/**
  * Adds pasted rows as lines.
  * @param {string} text the pasted cells
  * @param {{at?: number, replace?: boolean}} options at: the line they go
@@ -309,6 +325,11 @@ function createItemRow(item, idx, layout) {
     if (input.tagName === "TEXTAREA") {
       input.addEventListener("paste", e => {
         const text = e.clipboardData?.getData("text/plain") || "";
+        if (looksLikeStatement(text)) {
+          e.preventDefault();
+          handOverStatement(text);
+          return;
+        }
         if (!looksLikeCells(text)) return;
         e.preventDefault();
         addPastedRows(text, { at: idx });
@@ -365,6 +386,12 @@ export function initItemControls() {
   $("pasteCancelBtn").onclick = () => { $("pasteArea").value = ""; toggleBox(false); $("pasteItemsBtn").focus(); };
   const take = replace => {
     const text = $("pasteArea").value;
+    if (looksLikeStatement(text)) {
+      $("pasteArea").value = "";
+      toggleBox(false);
+      handOverStatement(text);
+      return;
+    }
     if (!parsePastedRows(text).length) {
       toast("Paste the rows first: copy them in Excel or Google Sheets, then press Ctrl+V (Cmd+V on a Mac) in the box.");
       $("pasteArea").focus();

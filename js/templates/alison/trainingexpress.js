@@ -85,27 +85,7 @@ export default alisonTemplate({
   paper: A4.paper,
   fontStack: "Verdana + Lucida Sans Unicode",
   layout,
-  brand: {
-    logo: "trainingexpress",
-    fields: {
-      companyName: "Training Express",
-      companyAddress: "100 Bishopsgate, 18th Floors,\nLondon, England, EC2N 4AG",
-      companyEmail: "info@trainingexpress.org.uk",
-      currency: "EUR",
-      paymentDetails: [
-        "Bank Details-",
-        "Bank: Lloyds Bank",
-        "Sort Code: 30-96-26",
-        "Account No: 44307068",
-        "IBAN: GB06LOYD30962644307068",
-        "BIC: LOYDGB21446",
-        "",
-        "Or PayPal- info@trainingexpress.org.uk"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Level One Building,\nTechnology Park, Parkmore,\nGalway, Ireland"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "trainingexpress" }
 });

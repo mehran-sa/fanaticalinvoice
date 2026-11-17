@@ -32,9 +32,11 @@ import { initBoard } from "./editor/board.js";
 import { initSettings } from "./editor/settings.js";
 import { initExportDialog } from "./editor/export-dialog.js";
 import { initPreviewEditing } from "./editor/preview-edit.js";
+import { initStatementGrabber } from "./editor/statement-grabber.js";
 import { fillMissingSummaries } from "./storage/invoice-library.js";
 import { readSettings } from "./settings-store.js";
 import { exportInvoicePDF } from "./print/pdf.js";
+import { unlockApp } from "./secure/lock.js";
 import { initPanels } from "./editor/panels.js";
 import { initWatermarkControls } from "./editor/watermark-controls.js";
 import { initSidebarResizer } from "./editor/sidebar.js";
@@ -116,6 +118,7 @@ export function init() {
   // Guarded like every other step: a failure in the bundle tool must not stop
   // the invoice editor loading.
   step("bundle tools", initBundleTools);
+  step("statement grabber", initStatementGrabber);
 
   step("defaults", seedDefaults);
   step("first render", renderAll);
@@ -158,4 +161,20 @@ export function init() {
   step("compatibility globals", installCompatibilityGlobals);
 }
 
-init();
+/**
+ * Starts the app once the master password has opened the vault (or this
+ * device remembers it). Until then only the lock screen shows.
+ */
+async function boot() {
+  document.getElementById("bootError")?.remove();
+  try {
+    await unlockApp();
+  } catch (err) {
+    console.error("[SA Invoice Generator] the lock screen failed:", err);
+    return;
+  }
+  document.body.classList.remove("locked");
+  init();
+}
+
+boot();

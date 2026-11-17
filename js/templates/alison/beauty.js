@@ -73,30 +73,7 @@ export default alisonTemplate({
   paper: LETTER.paper,
   fontStack: "Times New Roman",
   layout,
-  brand: {
-    logo: "beauty",
-    fields: {
-      companyName: "Purple Academy Ltd",
-      companyAddress: "60 Cannon St\nLondon\nEC4N 6NP",
-      companyPhone: "+442039238705",
-      companyEmail: "info@ibeautymakeup.co.uk",
-      currency: "EUR",
-      paymentDetails: [
-        "PayPal Details", "",
-        "accounts@ibeautymakeup.co.uk", "",
-        "Or", "",
-        "Bank Details", "",
-        "Bank name: Lloyds Bank",
-        "Name on account: Purple Academy Ltd",
-        "Country: United Kingdom",
-        "Account number: 61541368",
-        "Swift Code (BIC): LOYDGB22",
-        "IBAN: GB75LOYD30962661541368"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Mount Carmel\nLoughrea\nCo. Galway\nH62 AV62, Ireland"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "beauty" }
 });

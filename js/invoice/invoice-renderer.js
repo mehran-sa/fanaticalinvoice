@@ -112,7 +112,7 @@ const ukhfPaymentMarkup = text => {
   // a tab, two or more spaces, or " | " separate without one ("IBAN").
   const rows = String(text || "").split(/\r?\n/).map(l => l.trim()).filter(Boolean).map(line => {
     // Common bank labels are recognised even without a separator
-    // ("Account Name Edukators London Ltd", "Sort Code 309897").
+    // ("Account Name Edukators London Ltd", "Sort Code 000000").
     const known = line.match(UKHF_KNOWN_LABELS);
     if (known && known[2]) return { label: known[1].trim(), value: known[2].trim() };
     const plain = line.match(/^(.*?\S)(?:\t+| {2,}| \| )(.+)$/);

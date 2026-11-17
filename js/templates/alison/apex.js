@@ -73,28 +73,7 @@ export default alisonTemplate({
   paper: A4.paper,
   fontStack: "Arial + Calibri",
   layout,
-  brand: {
-    logo: "apex",
-    fields: {
-      companyName: "Apex Learning",
-      companyAddress: "The Brew Eagle House,\n163 City Road, London,\nEC1V 1NR\nUnited Kingdom",
-      companyEmail: "info@apexlearning.org.uk",
-      currency: "EUR",
-      paymentDetails: [
-        "Digilearn Ltd",
-        "Ac no: 49484763",
-        "Sort : 309897",
-        "IBAN: GB89LOYD30989749484763",
-        "BIC: LOYDGB21031",
-        "Lloyds",
-        "LLOYDS TSB BANK PLC",
-        "BUTLER PLACE Chelmsford Legg St OSC,",
-        "1 Legg Street, Essex, CM1 1JS"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Level One Building,\nTechnology Park,\nParkmore, Galway, Ireland"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "apex" }
 });

@@ -1,0 +1,5 @@
+node_modules/
+tests/output/
+# The readable academy details. Only the encrypted js/secure/vault.js is committed.
+secrets/
+__pycache__/

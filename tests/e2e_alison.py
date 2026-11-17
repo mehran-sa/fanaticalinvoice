@@ -13,6 +13,7 @@ overwrites its details with the academy's.
 
 import os, subprocess, sys, time
 from playwright.sync_api import sync_playwright
+from unlock_helper import prepare_browser, raw_context, TEST_PASSWORD, test_single_file
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORT = int(os.environ.get("E2E_PORT", "8784"))
@@ -31,7 +32,7 @@ time.sleep(0.8)
 errors = []
 try:
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = prepare_browser(p.chromium.launch())
         ctx = browser.new_context(viewport={"width": 1400, "height": 900})
         page = ctx.new_page()
         page.on("pageerror", lambda e: errors.append(str(e)))

@@ -71,26 +71,7 @@ export default alisonTemplate({
   paper: A4.paper,
   fontStack: "Arial",
   layout,
-  brand: {
-    logo: "studyhub",
-    fields: {
-      companyName: "Studyhub",
-      companyEmail: "Info@studyhub.org.uk",
-      currency: "EUR",
-      paymentDetails: [
-        "BLUEBELL ACADEMY LTD",
-        "Bank: Lloyds",
-        "Sort Code: 30-98-97",
-        "Account No: 24685962",
-        "IBAN:GB93LOYD30989724685962",
-        "IBAN BIC: LOYDGB2LXXXor",
-        "",
-        "PayPal: info@studyhub.org.uk"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Level One Building\nTechnology Park,\nParkmore, Galway, Ireland"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "studyhub" }
 });

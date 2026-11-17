@@ -11,7 +11,7 @@ import { $, fieldValue } from "../utils.js";
 import { state } from "../state.js";
 import { calculateItemTotal, amountColumn } from "../invoice/calculations.js";
 import { money } from "../invoice/formatters.js";
-import { revealElement } from "./tabs.js";
+import { revealElement, scrollEditorTo } from "./tabs.js";
 
 const norm = text => String(text || "").replace(/\s+/g, " ").trim().toLowerCase();
 const lines = text => String(text || "").split(/\r?\n/).map(norm).filter(l => l.length >= 2);
@@ -82,7 +82,7 @@ export function initPreviewEditing() {
       flash(el);
       document.dispatchEvent(new CustomEvent("sa:show-editor"));
       revealElement(field);
-      field.scrollIntoView({ block: "center", behavior: "smooth" });
+      scrollEditorTo(field, { block: "center" });
       field.focus({ preventScroll: true });
       return;
     }

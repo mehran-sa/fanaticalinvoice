@@ -65,26 +65,7 @@ export default alisonTemplate({
   paper: LETTER.paper,
   fontStack: "Verdana, Calibri and Times New Roman",
   layout,
-  brand: {
-    logo: "mayfair",
-    fields: {
-      companyName: "Mayfair College Ltd",
-      companyReg: "12389626",
-      companyAddress: "163 City Road, London, England,\nEC1V 1NR",
-      currency: "EUR",
-      paymentDetails: [
-        "NatWest A/C  MAYFAIR COLLEGE LTD",
-        "A /C no:  24214205",
-        "Sort Code:  600537",
-        "WWIFT/BIC:  NWBKGB2L",
-        "IBAN  GB29NWBK60053724214205"
-      ].join("\n"),
-      terms: "Thank you for your Partnership!"
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Mount Carmel\nLoughrea, Co. Galway\nH62 AV62, Ireland",
-      clientEmail: "mmoggan@alison.com"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "mayfair" }
 });

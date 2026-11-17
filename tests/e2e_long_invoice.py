@@ -12,6 +12,7 @@ are printed for comparison.
 
 import os, subprocess, sys, time
 from playwright.sync_api import sync_playwright
+from unlock_helper import prepare_browser, raw_context, TEST_PASSWORD, test_single_file
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORT = int(os.environ.get("E2E_PORT", "8783"))
@@ -31,8 +32,8 @@ time.sleep(0.8)
 errors = []
 try:
     with sync_playwright() as p:
-        browser = p.chromium.launch()
-        page = browser.new_page(viewport={"width": 1400, "height": 900})
+        browser = prepare_browser(p.chromium.launch())
+        page = browser.new_context(viewport={"width": 1400, "height": 900}).new_page()
         page.on("pageerror", lambda e: errors.append(str(e)))
         page.goto(URL)
         page.wait_for_timeout(400)

@@ -7,6 +7,7 @@
 
 import { setFieldValue, toast } from "../../utils.js";
 import { applyBrand } from "../../session.js";
+import { academyDetails } from "../../secure/academy-details.js";
 
 /** Company and client fields a brand replaces (cleared when it has no value). */
 const COMPANY_FIELDS = ["companyName", "companyReg", "companyVat", "companyAddress", "companyPhone", "companyEmail", "companyWebsite", "paymentDetails", "terms"];
@@ -17,8 +18,10 @@ let logos = null;
 const loadLogos = async () => (logos ||= (await import("./logos.js")).default);
 
 export async function applyTemplateBrand(template) {
-  const brand = template?.capabilities?.brand;
-  if (!brand) return false;
+  const logoOnly = template?.capabilities?.brand;
+  if (!logoOnly) return false;
+  // The details are encrypted (js/secure/vault.js) and opened by the master password.
+  const brand = { ...logoOnly, ...(academyDetails(template.id) || {}) };
   const images = brand.logo ? await loadLogos() : {};
   applyBrand(() => {
     for (const id of COMPANY_FIELDS) setFieldValue(id, brand.fields?.[id] ?? "");

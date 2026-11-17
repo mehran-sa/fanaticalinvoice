@@ -110,29 +110,7 @@ export default alisonTemplate({
   paper: LETTER.paper,
   fontStack: "Arial",
   layout,
-  brand: {
-    logo: "janets",
-    fields: {
-      companyName: "Edujanets Ltd.",
-      companyAddress: "3rd Floor, 86-90 Paul Street London EC2A 4NE",
-      companyEmail: "Info@janets.org.uk",
-      currency: "EUR",
-      paymentDetails: [
-        "PayPal: info@janets.org.uk",
-        "Bank Information:",
-        "Account Name: Edujanets Ltd",
-        "Bank Sort Code: 30-98-97",
-        "Account Number: 60046160",
-        "Country: United Kingdom",
-        "IBAN: GB60LOYD30989760046160",
-        "BIC/SWIFT: LOYDGB21031",
-        "Bank Name: Lloyds Bank",
-        "VAT No.: 397 6698 10"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Mount Carmel,\nLoughrea, Co Galway, Ireland,\nH62 AV62"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "janets" }
 });

@@ -36,7 +36,7 @@ export const multiline = text => lines(text).map(esc).join("<br>");
 /**
  * "Key: value" lines as {key, value}; a line without a colon has no key.
  * With columns: true, two or more spaces (or a tab) also separate the key
- * from the value, and the key is kept exactly as typed ("Sort Code:  600537"
+ * from the value, and the key is kept exactly as typed ("Sort Code:  00-00-00"
  * shows "Sort Code:"), for tables whose labels mix both styles.
  */
 export function keyValueRows(text, { columns = false } = {}) {

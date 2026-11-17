@@ -68,25 +68,7 @@ export default alisonTemplate({
   paper: LETTER.paper,
   fontStack: "Arial",
   layout,
-  brand: {
-    logo: "thames",
-    fields: {
-      companyName: "Thames College",
-      companyAddress: "Business Name: Learning Station Ltd\n78 ILFORD LANE, ILFORD,\nEngland IG1 2LA\nUnited Kingdom",
-      currency: "EUR",
-      paymentDetails: [
-        "Bank Details:",
-        "Bank Name: WISE",
-        "Bank Address: 56 Shoreditch High Street, London, E1 6JJ United Kingdom.",
-        "Account Full Name: Learning Station Ltd",
-        "IBAN: GB26 TRWI 2314 7013 2585 66",
-        "Account No: 13258566",
-        "Swift/BIC Code: TRWIGB2L"
-      ].join("\n")
-    },
-    client: {
-      clientName: "Alison",
-      clientAddress: "Level One Building, Galway Technology Park,\nParkmore, Galway, Ireland"
-    }
-  }
+  // The academy's company, bank and PayPal details are kept encrypted in
+  // js/secure/vault.js and filled in after the master password is entered.
+  brand: { logo: "thames" }
 });
