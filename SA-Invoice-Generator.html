@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SA Invoice Generator</title>
 <meta name="application-name" content="SA Invoice Generator">
-<meta name="sa-app-version" content="2.15.0">
+<meta name="sa-app-version" content="2.15.1">
 <meta name="description" content="SA Invoice Generator: create, print and export invoices in your browser. Data stays on this device, or syncs to your own Google Drive if you sign in.">
 <!-- Policy: scripts, styles, fonts and images load from this app or from
      embedded data. The only outside connections allowed are Google sign-in
@@ -14,7 +14,7 @@
      used only for Google Drive sync, which is off unless a client ID is set
      in js/config.js and the user signs in. Excel import uses the bundled
      js/vendor copy. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-HsvsSiU86aiMbPs5rh47lflvyVOIAPeJ5lLaH9FjocM=' 'sha256-/k/sid02G64idx7B7qq8Yb7b0htJhK5IwDcdas7FOQI='; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; worker-src blob:; connect-src 'none'; frame-src 'self' about:; object-src 'none'; base-uri 'self' file:; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-HsvsSiU86aiMbPs5rh47lflvyVOIAPeJ5lLaH9FjocM=' 'sha256-yjrY2TbLreTTBWKFnPPCGll4JKSwRx9JWNB0+jpY3/Q='; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; worker-src blob:; connect-src 'none'; frame-src 'self' about:; object-src 'none'; base-uri 'self' file:; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlN0YWZmQXNpYSIgdmlld0JveD0iLTEgLTggNjUgNjUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTS0zLjA1MTc2ZS0wNSAyMy4yNDUySDE3LjI4NjFMMjYuNTk4NCAzMy4zNzA2QzI3LjAxMDkgMzMuODQ4IDI3LjczMDggMzMuOTAyMiAyOC4yMDg0IDMzLjQ4MjdMNTguNDYwOSA2LjkwNzAxSDYyLjU0NTRMMjguODQ1MSA0Ny4yMUMyOC4wMzExIDQ4LjE4MjcgMjYuNTY1OSA0OC4yNjk1IDI1LjYzOTcgNDcuNDAxNkwtMy4wNTE3NmUtMDUgMjMuMjQ1MloiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcl84N18xMzQ1KSI+PC9wYXRoPjxwYXRoIGQ9Ik0zNy4xNDA5IDE2LjYxM1YyMy4xMjU4TDM1LjM5NzEgMjQuNjU1NUwyOC4yMDQ4IDMwLjk3MzFDMjcuNzMwOCAzMS4zOTI2IDI3LjAwNzMgMzEuMzM4MyAyNi41OTQ4IDMwLjg2MUwyMC40ODA2IDI0LjIxMDdMMTguMjgxIDIxLjgyMDRWMTYuNjEzQzE4LjI4MSAxNC42MDI0IDE5LjU1MDkgMTIuODkxOSAyMS4zMzA4IDEyLjIyNjVDMjEuODM3MyAxMi4wNDIxIDIyLjM4MzYgMTEuOTM3MiAyMi45NTUzIDExLjkzNzJIMjUuMDM5MVYxMC4yNzM3QzIzLjQ0MzcgOS4zNTE2IDIyLjM2OTIgNy42MzAyNyAyMi4zNjkyIDUuNjUyMTlDMjIuMzY5MiAyLjcwMTM0IDI0Ljc2MDYgMC4zMTEwMDUgMjcuNzEyNyAwLjMxMTAwNUMzMC42NjQ5IDAuMzExMDA1IDMzLjA1NjMgMi43MDEzNCAzMy4wNTYzIDUuNjUyMTlDMzMuMDU2MyA3LjYyNjY1IDMxLjk3ODIgOS4zNDc5OCAzMC4zODYzIDEwLjI3MzdWMTEuOTM3MkgzMi40NjY2QzMzLjAzODIgMTEuOTM3MiAzMy41ODgxIDEyLjA0MjEgMzQuMDk0NiAxMi4yMjY1QzM1Ljg3MSAxMi44ODgzIDM3LjE0MDkgMTQuNjAyNCAzNy4xNDA5IDE2LjYxM1oiIGZpbGw9IiMxQTFBMUEiPjwvcGF0aD48cGF0aCBkPSJNMjEuMTc4OSAxMS4zMDhDMjAuODI4IDExLjM2NTggMjAuNDg3OSAxMS40NTYyIDIwLjE2MjMgMTEuNTc1NkMxOC4wNjAzIDEyLjM2MDMgMTYuNTU4OSAxNC4zODU0IDE2LjU1ODkgMTYuNzYxM1YyMC43MzE5SDcuMDU4NDFWMTIuMzM1QzcuMDU4NDEgMTAuMzgyMiA4LjY0MzAzIDguNzk4MyAxMC41OTY3IDguNzk4M0gxMi4xNzA0VjcuNTM5ODVDMTAuOTYyMSA2Ljg0MTkyIDEwLjE0ODEgNS41NDAwOCAxMC4xNDgxIDQuMDQyOTVDMTAuMTQ4MSAxLjgwODEyIDExLjk1NyAwIDE0LjE5MjggMEMxNi40MjUgMCAxOC4yMzc2IDEuODA4MTIgMTguMjM3NiA0LjA0Mjk1QzE4LjIzNzYgNS41NDAwOCAxNy40MTk5IDYuODQxOTIgMTYuMjE1MiA3LjUzOTg1VjguNzk4M0gxNy43OTI2QzE5LjM5MTcgOC43OTgzIDIwLjc0MTEgOS44NTQyNSAyMS4xNzg5IDExLjMwOFoiIGZpbGw9IiMxQTFBMUEiPjwvcGF0aD48cGF0aCBkPSJNNDguMzYzNCAxMi4zMzVWMTMuMjY0NEwzOC44NjMgMjEuNjA3VjE2Ljc2MTNDMzguODYzIDE0LjM4MTggMzcuMzYxNSAxMi4zNjAzIDM1LjI1OTYgMTEuNTc1NkMzNC45Mzc2IDExLjQ1NjIgMzQuNTk3NSAxMS4zNjU4IDM0LjI0MyAxMS4zMDhDMzQuNjgwNyA5Ljg1NDI1IDM2LjAzMDIgOC43OTgzIDM3LjYyOTMgOC43OTgzSDM5LjIwM1Y3LjUzOTg1QzM3Ljk5NDcgNi44NDE5MiAzNy4xODA2IDUuNTQwMDggMzcuMTgwNiA0LjA0Mjk1QzM3LjE4MDYgMS44MDgxMiAzOC45ODk2IDAgNDEuMjI1NCAwQzQzLjQ1NzYgMCA0NS4yNzAyIDEuODA4MTIgNDUuMjcwMiA0LjA0Mjk1QzQ1LjI3MDIgNS41NDAwOCA0NC40NTI1IDYuODQxOTIgNDMuMjQ3OCA3LjUzOTg1VjguNzk4M0g0NC44MjUyQzQ2Ljc3ODggOC43OTgzIDQ4LjM2MzQgMTAuMzgyMiA0OC4zNjM0IDEyLjMzNVoiIGZpbGw9IiMxQTFBMUEiPjwvcGF0aD48cGF0aCBkPSJNNzEuMjcyNyAyNS4zMTI3TDczLjY2MTMgMjIuNTkyN0M3NS4zMTQ3IDI0LjExNjMgNzcuNTM0OCAyNS4xNDE4IDc5LjY4MzIgMjUuMTQxOEM4Mi4yODM0IDI1LjE0MTggODMuNzE0NCAyNCA4My43MTQ0IDIyLjI1ODFDODMuNzE0NCAyMC40MjE4IDgyLjIyMjQgMTkuODMyNyA4MC4xMjQzIDE4Ljk3MDlMNzYuOTY0NiAxNy42NDM2Qzc0LjY4NzEgMTYuNzI3MiA3Mi4yOTEzIDE0Ljk4NTQgNzIuMjkxMyAxMS43MkM3Mi4yOTEzIDguMTU5OTcgNzUuNTQ0MyA1LjQyMTc4IDgwLjA1MjYgNS40MjE3OEM4Mi43NTMzIDUuNDIxNzggODUuMzY3OSA2LjUwMTc4IDg3LjE3OTEgOC4yNjkwNkw4NS4wNzM4IDEwLjc4NTRDODMuNjAzMyA5LjU3NDUxIDgyLjAzMjQgOC44NjU0MiA4MC4wNTI2IDguODY1NDJDNzcuODYxMiA4Ljg2NTQyIDc2LjQzMzggOS44NTQ1MSA3Ni40MzM4IDExLjQ4NzJDNzYuNDMzOCAxMy4yNDM2IDc4LjE5NDggMTMuODkwOSA4MC4xMSAxNC42NTA5TDgzLjIyNjcgMTUuOTE2M0M4NS45Nzc2IDE3LjAyMTggODcuOSAxOC43MDU0IDg3LjkgMjEuOTQxOEM4Ny45IDI1LjU2MzYgODQuNzkwNCAyOC41ODE4IDc5LjYwMDcgMjguNTgxOEM3Ni40NzY4IDI4LjU4NTQgNzMuNDY0MSAyNy40IDcxLjI3MjcgMjUuMzEyN1oiIGZpbGw9IiM0NkI3NTEiPjwvcGF0aD48cGF0aCBkPSJNOTIuMzc2IDIyLjUyVjE0LjUyMzZIODkuOTAxM1YxMS41NzA5TDkyLjU4NzYgMTEuMzkyN0w5My4wNjgyIDYuODE0NTRIOTYuNDQ2N1YxMS4zOTI3SDEwMC44NzNWMTQuNTIzNkg5Ni40NDY3VjIyLjUwOTFDOTYuNDQ2NyAyNC40ODM2IDk3LjIzOTMgMjUuNDU0NSA5OC45MDcxIDI1LjQ1NDVDOTkuNTAyNSAyNS40NTQ1IDEwMC4yMDkgMjUuMjYxOCAxMDAuNzE4IDI1LjA3MjdMMTAxLjQxIDI3Ljk3MDlDMTAwLjQ2NCAyOC4yNzI3IDk5LjI1NSAyOC41ODU1IDk3Ljg1OTggMjguNTg1NUM5My44NjA4IDI4LjU4NTUgOTIuMzc2IDI2LjE0MTggOTIuMzc2IDIyLjUyWiIgZmlsbD0iIzQ2Qjc1MSI+PC9wYXRoPjxwYXRoIGQ9Ik0xMDMuNTk1IDIzLjY2OTFDMTAzLjU5NSAyMC4wNzY0IDEwNi42NzYgMTguMjAzNiAxMTMuODAyIDE3LjQ2NTVDMTEzLjc0NSAxNS42NjE4IDExMi45OTUgMTQuMTYgMTEwLjY0OSAxNC4xNkMxMDguOTI0IDE0LjE2IDEwNy4zIDE0LjkxMjcgMTA1Ljc3MiAxNS44MTQ2TDEwNC4yNzMgMTMuMTg5MUMxMDYuMTgxIDEyLjAyOTEgMTA4LjY0MSAxMC45ODkxIDExMS4zOTkgMTAuOTg5MUMxMTUuNzM5IDEwLjk4OTEgMTE3Ljg3NiAxMy41NzA5IDExNy44NzYgMTguMjQzNlYyOC4xNzgySDExNC41NDFMMTE0LjIyOSAyNi4zMkgxMTQuMTE0QzExMi41NTcgMjcuNjAzNiAxMTAuNzc5IDI4LjU4OTEgMTA4LjcyNyAyOC41ODkxQzEwNS42ODkgMjguNTg1NSAxMDMuNTk1IDI2LjU5MjcgMTAzLjU5NSAyMy42NjkxWk0xMTMuODA2IDIzLjY4VjE5LjkwOTFDMTA5LjA5NiAyMC40ODM3IDEwNy41MjkgMjEuNjcyNyAxMDcuNTI5IDIzLjM2NzNDMTA3LjUyOSAyNC44NTA5IDEwOC41NzYgMjUuNDk4MiAxMTAuMDMzIDI1LjQ5ODJDMTExLjQ0MiAyNS40OTgyIDExMi41MTggMjQuODI5MSAxMTMuODA2IDIzLjY4WiIgZmlsbD0iIzQ2Qjc1MSI+PC9wYXRoPjxwYXRoIGQ9Ik0xMjEuMTI5IDExLjU3NDVMMTIzLjY3NiAxMS4zOTY0SDE0MS41NjJWMTQuNTI3M0gxMjEuMTI5VjExLjU3NDVaTTEyMy40NjEgOS45MzQ1M0MxMjMuNDYxIDYuNDc2MzUgMTI1LjI4MyAzLjk3ODE3IDEyOS40NjggMy45NzgxN0MxMzAuNzg0IDMuOTc4MTcgMTMyLjAyOSA0LjI0MzYzIDEzMi44NjEgNC41OTI3MkwxMzIuMDgzIDcuNTMwOUMxMzEuNDM0IDcuMjQzNjIgMTMwLjgwOSA3LjEwNTQ0IDEyOS45MDYgNy4xMDU0NEMxMjguNDY0IDcuMTA1NDQgMTI3LjUzMSA4LjA2MTgxIDEyNy41MzEgOS45NDkwOFYyOC4xNzgySDEyMy40NjFWOS45MzQ1M1pNMTM0LjA5NSA5LjY2MTgxQzEzNC4wOTUgNi4xODU0NCAxMzUuNzQ4IDMuNjM2MzUgMTM5Ljg0OCAzLjYzNjM1QzE0MS4xMDYgMy42MzYzNSAxNDIuMjUxIDMuOTIzNjIgMTQzLjAyOSA0LjIyNTQ0TDE0Mi4yNTEgNy4xNjM2M0MxNDEuNjI2IDYuOTA1NDQgMTQwLjk2MyA2Ljc2NzI2IDE0MC4zNzEgNi43NjcyNkMxMzguOTI5IDYuNzY3MjYgMTM4LjE2NSA3LjY0NzI2IDEzOC4xNjUgOS41OTYzNVYyOC4xODE4SDEzNC4wOTVWOS42NjE4MVoiIGZpbGw9IiM0NkI3NTEiPjwvcGF0aD48cGF0aCBkPSJNMTQ5LjQ5MiA1LjgzMjdIMTU0LjI5OEwxNjEuODMzIDI4LjE3NDVIMTU3LjQ5M0wxNTMuOTcxIDE2LjI4NzJDMTUzLjIzNiAxMy45MjM2IDE1Mi41NTggMTEuMzc0NSAxNTEuODggOC45MjM2MUgxNTEuNzQxQzE1MS4xMDYgMTEuMzk2MyAxNTAuNDI0IDEzLjkyMzYgMTQ5LjY4OSAxNi4yODcyTDE0Ni4xMzggMjguMTc0NUgxNDEuOTUzTDE0OS40OTIgNS44MzI3Wk0xNDYuNDA3IDE5LjAxNDVIMTU3LjI5NlYyMi4xMjM2SDE0Ni40MDdWMTkuMDE0NVoiIGZpbGw9IiMxQTFBMUEiPjwvcGF0aD48cGF0aCBkPSJNMTYyLjYxMSAyNi4yNTA5TDE2NC41MDUgMjMuNzQ5MUMxNjYuMDQ3IDI0LjkwOTEgMTY3LjUzOSAyNS42MjE4IDE2OS4yOTcgMjUuNjIxOEMxNzEuMTkgMjUuNjIxOCAxNzIuMDgzIDI0Ljc2IDE3Mi4wODMgMjMuNjE0NkMxNzIuMDgzIDIyLjIwNzMgMTcwLjIwNCAyMS41NzgyIDE2OC4zNSAyMC44OTQ2QzE2Ni4wNzIgMjAuMDY5MSAxNjMuNDcyIDE4LjgwMzcgMTYzLjQ3MiAxNi4wMDM3QzE2My40NzIgMTMuMDk0NiAxNjUuOTA0IDEwLjk4OTEgMTY5Ljc5MiAxMC45ODkxQzE3Mi4yMDkgMTAuOTg5MSAxNzQuMTQ2IDExLjkzODIgMTc1LjU1OSAxMi45OTY0TDE3My42OTQgMTUuNDE0NkMxNzIuNDc4IDE0LjU1MjcgMTcxLjI1NSAxMy45NTI3IDE2OS44ODggMTMuOTUyN0MxNjguMTQyIDEzLjk1MjcgMTY3LjMxNyAxNC43NiAxNjcuMzE3IDE1LjgxMDlDMTY3LjMxNyAxNy4xMzgyIDE2OS4wNzEgMTcuNjQzNyAxNzAuOTUgMTguMzEyN0MxNzMuMjk2IDE5LjE2IDE3NS45MjggMjAuMjU0NiAxNzUuOTI4IDIzLjM4MThDMTc1LjkyOCAyNi4yNjU1IDE3My41NjggMjguNTg5MSAxNjkuMTg2IDI4LjU4OTFDMTY2LjgxMSAyOC41ODU1IDE2NC4zMDggMjcuNjAzNyAxNjIuNjExIDI2LjI1MDlaIiBmaWxsPSIjMUExQTFBIj48L3BhdGg+PHBhdGggZD0iTTE3OS4xMDYgNi4yMjkwOUMxNzkuMTA2IDQuOTAxODEgMTgwLjE4MiA0LjAwMzYzIDE4MS42MjQgNC4wMDM2M0MxODMuMDY1IDQuMDAzNjMgMTg0LjE0MSA0LjkwNTQ1IDE4NC4xNDEgNi4yMjkwOUMxODQuMTQxIDcuNTI3MjcgMTgzLjA2NSA4LjQ1ODE4IDE4MS42MjQgOC40NTgxOEMxODAuMTgyIDguNDU4MTggMTc5LjEwNiA3LjUyNzI3IDE3OS4xMDYgNi4yMjkwOVpNMTc5LjU3MiAxMS4zOTY0SDE4My42NDNWMjguMTc4MkgxNzkuNTcyVjExLjM5NjRaIiBmaWxsPSIjMUExQTFBIj48L3BhdGg+PHBhdGggZD0iTTE4Ny45IDIzLjY2OTFDMTg3LjkgMjAuMDc2NCAxOTAuOTgxIDE4LjIwMzYgMTk4LjEwNyAxNy40NjU1QzE5OC4wNSAxNS42NjE4IDE5Ny4zIDE0LjE2IDE5NC45NTUgMTQuMTZDMTkzLjIzIDE0LjE2IDE5MS42MDUgMTQuOTEyNyAxOTAuMDc3IDE1LjgxNDZMMTg4LjU3OCAxMy4xODkxQzE5MC40ODYgMTIuMDI5MSAxOTIuOTQ2IDEwLjk4OTEgMTk1LjcwNCAxMC45ODkxQzIwMC4wNDQgMTAuOTg5MSAyMDIuMTgyIDEzLjU3MDkgMjAyLjE4MiAxOC4yNDM2VjI4LjE3ODJIMTk4Ljg0NkwxOTguNTM0IDI2LjMySDE5OC40MTlDMTk2Ljg2MyAyNy42MDM2IDE5NS4wODQgMjguNTg5MSAxOTMuMDMyIDI4LjU4OTFDMTg5Ljk5MSAyOC41ODU1IDE4Ny45IDI2LjU5MjcgMTg3LjkgMjMuNjY5MVpNMTk4LjEwNyAyMy42OFYxOS45MDkxQzE5My4zOTggMjAuNDgzNyAxOTEuODMxIDIxLjY3MjcgMTkxLjgzMSAyMy4zNjczQzE5MS44MzEgMjQuODUwOSAxOTIuODc4IDI1LjQ5ODIgMTk0LjMzNCAyNS40OTgyQzE5NS43NDggMjUuNDk4MiAxOTYuODIgMjQuODI5MSAxOTguMTA3IDIzLjY4WiIgZmlsbD0iIzFBMUExQSI+PC9wYXRoPjxwYXRoIGQ9Ik03Mi4wNTI3IDQwLjA0VjM3LjYwMzdINzEuMjcyN1YzNi43MDU1TDcyLjExODYgMzYuNjUwOUw3Mi4yNjg4IDM1LjI1NDZINzMuMzM0NFYzNi42NTA5SDc0LjcyOTZWMzcuNjAzN0g3My4zMzQ0VjQwLjA0QzczLjMzNDQgNDAuNjQzNyA3My41ODM0IDQwLjkzODIgNzQuMTEwNyA0MC45MzgyQzc0LjI5NzUgNDAuOTM4MiA3NC41MjA5IDQwLjg4IDc0LjY4MiA0MC44MjE4TDc0LjkwMTcgNDEuNzA1NUM3NC42MDE1IDQxLjc5NjQgNzQuMjIwNiA0MS44OTQ2IDczLjc4MTIgNDEuODk0NkM3Mi41MjE0IDQxLjg4NzMgNzIuMDUyNyA0MS4xNDE5IDcyLjA1MjcgNDAuMDRaIiBmaWxsPSIjMUExQTFBIj48L3BhdGg+PHBhdGggZD0iTTc5LjQyOCAzOS4yMTA5Qzc5LjQyOCAzNy41MDU1IDgwLjY2NTcgMzYuNTIzNyA4Mi4wMzE3IDM2LjUyMzdDODMuMzk3NiAzNi41MjM3IDg0LjYzNTMgMzcuNTA1NSA4NC42MzUzIDM5LjIxMDlDODQuNjM1MyA0MC45MDU1IDgzLjM5NzYgNDEuODkwOSA4Mi4wMzE3IDQxLjg5MDlDODAuNjY5NCA0MS44ODczIDc5LjQyOCA0MC45MDU1IDc5LjQyOCAzOS4yMTA5Wk04My4zMTcgMzkuMjEwOUM4My4zMTcgMzguMTg1NSA4Mi44MzM2IDM3LjUwMTggODIuMDMxNyAzNy41MDE4QzgxLjIyOTcgMzcuNTAxOCA4MC43NDYzIDM4LjE4NTUgODAuNzQ2MyAzOS4yMTA5QzgwLjc0NjMgNDAuMjM2NCA4MS4yMjYgNDAuOTA5MSA4Mi4wMzE3IDQwLjkwOTFDODIuODM3MyA0MC45MDkxIDgzLjMxNyA0MC4yMzY0IDgzLjMxNyAzOS4yMTA5WiIgZmlsbD0iIzFBMUExQSI+PC9wYXRoPjxwYXRoIGQ9Ik04OS40Mzk5IDQyLjY5MDlDODkuNDM5OSA0Mi4yNTgyIDg5LjcyNTUgNDEuODgzNiA5MC4yMzA5IDQxLjZWNDEuNTZDODkuOTQ4OSA0MS4zODkxIDg5LjczNjUgNDEuMTIgODkuNzM2NSA0MC43MDU1Qzg5LjczNjUgNDAuMzA5MSA5MC4wMjU4IDM5Ljk2IDkwLjM0NDQgMzkuNzUyN1YzOS43MDkxQzg5Ljk3MDkgMzkuNDUwOSA4OS42MjMgMzguOTYzNyA4OS42MjMgMzguMzZDODkuNjIzIDM3LjE4NTUgOTAuNjQxIDM2LjUyMzcgOTEuNzg3MiAzNi41MjM3QzkyLjA5MTIgMzYuNTIzNyA5Mi4zNzY4IDM2LjU3NDYgOTIuNjAwMiAzNi42NDczSDk0LjU1OTNWMzcuNTM4Mkg5My41NTk2QzkzLjczOTEgMzcuNzMwOSA5My44NzA5IDM4LjA0NzMgOTMuODcwOSAzOC4zOTY0QzkzLjg3MDkgMzkuNTM0NiA5Mi45NDgxIDQwLjE0MTggOTEuNzg3MiA0MC4xNDE4QzkxLjU1NjUgNDAuMTQxOCA5MS4yOTI4IDQwLjA5NDYgOTEuMDQ3NSA0MC4wMDczQzkwLjg4MjcgNDAuMTM4MiA5MC43ODAyIDQwLjI2OTEgOTAuNzgwMiA0MC40OTgyQzkwLjc4MDIgNDAuNzg1NSA5MS4wMDM1IDQwLjk2IDkxLjY2NjQgNDAuOTZIOTIuNjQwNUM5My45NDc4IDQwLjk2IDk0LjY0MzYgNDEuMzM4MiA5NC42NDM2IDQyLjIyMThDOTQuNjQzNiA0My4yMjkxIDkzLjUxMiA0NC4wMjU1IDkxLjcyMTMgNDQuMDI1NUM5MC40MTAzIDQ0LjAyNTUgODkuNDM5OSA0My41ODkxIDg5LjQzOTkgNDIuNjkwOVpNOTMuMzk4NSA0Mi40MTgyQzkzLjM5ODUgNDIuMDIxOCA5My4wNTc5IDQxLjkwNTUgOTIuNDMxNyA0MS45MDU1SDkxLjY4MUM5MS4zODgxIDQxLjkwNTUgOTEuMTUgNDEuODgzNyA5MC45NDEzIDQxLjgzMjdDOTAuNjQ4MyA0Mi4wNCA5MC41MTY1IDQyLjI2OTEgOTAuNTE2NSA0Mi41MDkxQzkwLjUxNjUgNDIuOTc0NiA5MS4wNTEyIDQzLjI0NzMgOTEuOTExNyA0My4yNDczQzkyLjc5NzkgNDMuMjQ3MyA5My4zOTg1IDQyLjg1ODIgOTMuMzk4NSA0Mi40MTgyWk05Mi43MzIgMzguMzZDOTIuNzMyIDM3LjcyIDkyLjMxODIgMzcuMzUyNyA5MS43ODM2IDM3LjM1MjdDOTEuMjQ4OSAzNy4zNTI3IDkwLjgzNTEgMzcuNzE2NCA5MC44MzUxIDM4LjM2QzkwLjgzNTEgMzkuMDEwOSA5MS4yNTk5IDM5LjM4OTEgOTEuNzgzNiAzOS4zODkxQzkyLjMwNzIgMzkuMzg5MSA5Mi43MzIgMzkuMDEwOSA5Mi43MzIgMzguMzZaIiBmaWxsPSIjMUExQTFBIj48L3BhdGg+PHBhdGggZD0iTTk5LjE1NTIgMzkuMjEwOUM5OS4xNTUyIDM3LjU0OTEgMTAwLjM4OSAzNi41MjM3IDEwMS42NzggMzYuNTIzN0MxMDMuMTU4IDM2LjUyMzcgMTAzLjkzOCAzNy41MjM2IDEwMy45MzggMzguOTUyN0MxMDMuOTM4IDM5LjE4MTggMTAzLjkxMiAzOS40MTA5IDEwMy44ODMgMzkuNTM0NkgxMDAuNDA4QzEwMC41MTQgNDAuNDQzNyAxMDEuMTQgNDAuOTYgMTAyLjAyMiA0MC45NkMxMDIuNDkxIDQwLjk2IDEwMi44OTQgNDAuODIxOCAxMDMuMjkzIDQwLjU4OTFMMTAzLjcyOSA0MS4zMzQ2QzEwMy4yMDkgNDEuNjYxOCAxMDIuNTQ2IDQxLjg4NzMgMTAxLjg1IDQxLjg4NzNDMTAwLjM0MiA0MS44ODczIDk5LjE1NTIgNDAuODk4MiA5OS4xNTUyIDM5LjIxMDlaTTEwMi44MjggMzguNzE2NEMxMDIuODI4IDM3LjkyNzMgMTAyLjQ1NSAzNy40NTA5IDEwMS43MDQgMzcuNDUwOUMxMDEuMDY3IDM3LjQ1MDkgMTAwLjUwMyAzNy44OTgyIDEwMC4zOTMgMzguNzE2NEgxMDIuODI4WiIgZmlsbD0iIzFBMUExQSI+PC9wYXRoPjxwYXRoIGQ9Ik0xMDkuMjYyIDQwLjA0VjM3LjYwMzdIMTA4LjQ4MlYzNi43MDU1TDEwOS4zMjggMzYuNjUwOUwxMDkuNDc4IDM1LjI1NDZIMTEwLjU0NFYzNi42NTA5SDExMS45MzlWMzcuNjAzN0gxMTAuNTQ0VjQwLjA0QzExMC41NDQgNDAuNjQzNyAxMTAuNzkzIDQwLjkzODIgMTExLjMyIDQwLjkzODJDMTExLjUwNyA0MC45MzgyIDExMS43MyA0MC44OCAxMTEuODkyIDQwLjgyMThMMTEyLjExMSA0MS43MDU1QzExMS44MTEgNDEuNzk2NCAxMTEuNDMgNDEuODk0NiAxMTAuOTkxIDQxLjg5NDZDMTA5LjczMSA0MS44ODczIDEwOS4yNjIgNDEuMTQxOSAxMDkuMjYyIDQwLjA0WiIgZmlsbD0iIzFBMUExQSI+PC9wYXRoPjxwYXRoIGQ9Ik0xMTcgMzQuNDA3M0gxMTguMjg1VjM2LjMxMjdMMTE4LjIzMSAzNy4yOTgyQzExOC42ODggMzYuODk0NiAxMTkuMjM0IDM2LjUyMzcgMTE5Ljk4NSAzNi41MjM3QzEyMS4xNTYgMzYuNTIzNyAxMjEuNjY5IDM3LjI2NTUgMTIxLjY2OSAzOC41NTY0VjQxLjc2MzdIMTIwLjM4NFYzOC43MDkxQzEyMC4zODQgMzcuODY5MSAxMjAuMTI0IDM3LjU1MjcgMTE5LjUzMSAzNy41NTI3QzExOS4wNDcgMzcuNTUyNyAxMTguNzMyIDM3Ljc3NDYgMTE4LjI4MiAzOC4xODkxVjQxLjc2MzdIMTE2Ljk5NlYzNC40MDczSDExN1oiIGZpbGw9IiMxQTFBMUEiPjwvcGF0aD48cGF0aCBkPSJNMTI2Ljc2MyAzOS4yMTA5QzEyNi43NjMgMzcuNTQ5MSAxMjcuOTk3IDM2LjUyMzcgMTI5LjI4NiAzNi41MjM3QzEzMC43NjYgMzYuNTIzNyAxMzEuNTQ2IDM3LjUyMzYgMTMxLjU0NiAzOC45NTI3QzEzMS41NDYgMzkuMTgxOCAxMzEuNTIgMzkuNDEwOSAxMzEuNDkxIDM5LjUzNDZIMTI4LjAxNUMxMjguMTIyIDQwLjQ0MzcgMTI4Ljc0OCA0MC45NiAxMjkuNjMgNDAuOTZDMTMwLjA5OSA0MC45NiAxMzAuNTAyIDQwLjgyMTggMTMwLjkwMSA0MC41ODkxTDEzMS4zMzcgNDEuMzM0NkMxMzAuODE3IDQxLjY2MTggMTMwLjE1NCA0MS44ODczIDEyOS40NTggNDEuODg3M0MxMjcuOTQ2IDQxLjg4NzMgMTI2Ljc2MyA0MC44OTgyIDEyNi43NjMgMzkuMjEwOVpNMTMwLjQzNiAzOC43MTY0QzEzMC40MzYgMzcuOTI3MyAxMzAuMDYyIDM3LjQ1MDkgMTI5LjMxMiAzNy40NTA5QzEyOC42NzUgMzcuNDUwOSAxMjguMTExIDM3Ljg5ODIgMTI4LjAwMSAzOC43MTY0SDEzMC40MzZaIiBmaWxsPSIjMUExQTFBIj48L3BhdGg+PHBhdGggZD0iTTEzNi42OCAzNi42NDczSDEzNy43MzFMMTM3LjgzIDM3LjU2SDEzNy44NjZDMTM4LjI1OCAzNi44OTQ2IDEzOC44MzcgMzYuNTIzNyAxMzkuNDIyIDM2LjUyMzdDMTM5LjcwMSAzNi41MjM3IDEzOS44NzcgMzYuNTU2NCAxNDAuMDQxIDM2LjYyOTFMMTM5LjgxOCAzNy42NjkxQzEzOS42MjggMzcuNjE4MiAxMzkuNDg1IDM3LjU4NTUgMTM5LjI1OCAzNy41ODU1QzEzOC44MjIgMzcuNTg1NSAxMzguMjk1IDM3Ljg2NTUgMTM3Ljk2NSAzOC42NDM3VjQxLjc2MzdIMTM2LjY4VjM2LjY0NzNaIiBmaWxsPSIjMUExQTFBIj48L3BhdGg+PHBhdGggZD0iTTE1MC4zMjQgMzYuNjQ3M0gxNTEuNjEzTDE1Mi4yNzYgMzkuMzAxOUMxNTIuMzgyIDM5Ljc5NjQgMTUyLjQ2MyA0MC4yNzY0IDE1Mi41NjIgNDAuNzc4MkgxNTIuNjA2QzE1Mi43MTIgNDAuMjc2NCAxNTIuODE4IDM5Ljc4NTUgMTUyLjk1NCAzOS4zMDE5TDE1My42NzEgMzYuNjQ3M0gxNTQuODM2TDE1NS41NjggMzkuMzAxOUMxNTUuNzA0IDM5Ljc5NjQgMTU1LjgxIDQwLjI3NjQgMTU1LjkzMSA0MC43NzgySDE1NS45NzVDMTU2LjA4MSA0MC4yNzY0IDE1Ni4xNjEgMzkuOCAxNTYuMjY4IDM5LjMwMTlMMTU2LjkyMyAzNi42NDczSDE1OC4xMjRMMTU2LjczNiA0MS43NjM3SDE1NS4yMTNMMTU0LjU3MiAzOS4zNzgyQzE1NC40NTUgMzguODk4MiAxNTQuMzYgMzguNDI5MSAxNTQuMjQzIDM3Ljg5NDZIMTU0LjE5OUMxNTQuMDkyIDM4LjQyOTEgMTUzLjk5NyAzOC45MDkxIDE1My44NzMgMzkuMzg5MUwxNTMuMjU0IDQxLjc2NzNIMTUxLjc3NEwxNTAuMzI0IDM2LjY0NzNaIiBmaWxsPSIjMUExQTFBIj48L3BhdGg+PHBhdGggZD0iTTE2Mi43NTMgMzkuMjEwOUMxNjIuNzUzIDM3LjU0OTEgMTYzLjk4NyAzNi41MjM3IDE2NS4yNzYgMzYuNTIzN0MxNjYuNzU2IDM2LjUyMzcgMTY3LjUzNiAzNy41MjM2IDE2Ny41MzYgMzguOTUyN0MxNjcuNTM2IDM5LjE4MTggMTY3LjUxIDM5LjQxMDkgMTY3LjQ4MSAzOS41MzQ2SDE2NC4wMDVDMTY0LjExMiA0MC40NDM3IDE2NC43MzggNDAuOTYgMTY1LjYyIDQwLjk2QzE2Ni4wODkgNDAuOTYgMTY2LjQ5MiA0MC44MjE4IDE2Ni44OTEgNDAuNTg5MUwxNjcuMzI3IDQxLjMzNDZDMTY2LjgwNyA0MS42NjE4IDE2Ni4xNDQgNDEuODg3MyAxNjUuNDQ4IDQxLjg4NzNDMTYzLjk0IDQxLjg4NzMgMTYyLjc1MyA0MC44OTgyIDE2Mi43NTMgMzkuMjEwOVpNMTY2LjQzIDM4LjcxNjRDMTY2LjQzIDM3LjkyNzMgMTY2LjA1NiAzNy40NTA5IDE2NS4zMDUgMzcuNDUwOUMxNjQuNjY4IDM3LjQ1MDkgMTY0LjEwNCAzNy44OTgyIDE2My45OTQgMzguNzE2NEgxNjYuNDNaIiBmaWxsPSIjMUExQTFBIj48L3BhdGg+PHBhdGggZD0iTTE3OC40NDEgMzkuMjEwOUMxNzguNDQxIDM3LjUwNTUgMTc5LjczIDM2LjUyMzcgMTgxLjE4OCAzNi41MjM3QzE4MS44ODMgMzYuNTIzNyAxODIuMzkyIDM2Ljc3NDYgMTgyLjc4OCAzNy4wOTgyTDE4Mi4xNjIgMzcuODc2NEMxODEuODcyIDM3LjY0IDE4MS41OTQgMzcuNTAxOCAxODEuMjUzIDM3LjUwMThDMTgwLjM3MSAzNy41MDE4IDE3OS43NTkgMzguMTg1NSAxNzkuNzU5IDM5LjIxMDlDMTc5Ljc1OSA0MC4yMzY0IDE4MC4zNiA0MC45MDkxIDE4MS4yMTMgNDAuOTA5MUMxODEuNjQyIDQwLjkwOTEgMTgyLjAzMyA0MC43MTI3IDE4Mi4zNDUgNDAuNDY5MUwxODIuODY1IDQxLjI2MThDMTgyLjM1MiA0MS42ODczIDE4MS43IDQxLjg5MDkgMTgxLjA3OCA0MS44OTA5QzE3OS41ODcgNDEuODg3MyAxNzguNDQxIDQwLjkwNTUgMTc4LjQ0MSAzOS4yMTA5WiIgZmlsbD0iIzFBMUExQSI+PC9wYXRoPjxwYXRoIGQ9Ik0xODcuNTYzIDQwLjM4OTFDMTg3LjU2MyAzOS4yOTQ2IDE4OC41MzQgMzguNzIzNiAxOTAuNzgyIDM4LjQ5ODJDMTkwLjc2NCAzNy45NDkxIDE5MC41MjkgMzcuNDkwOSAxODkuNzkgMzcuNDkwOUMxODkuMjQ0IDM3LjQ5MDkgMTg4LjczMSAzNy43MiAxODguMjUyIDM3Ljk5NjRMMTg3Ljc3OSAzNy4xOTY0QzE4OC4zOCAzNi44NDM3IDE4OS4xNTYgMzYuNTI3MyAxOTAuMDI4IDM2LjUyNzNDMTkxLjM5NyAzNi41MjczIDE5Mi4wNzEgMzcuMzE2NCAxOTIuMDcxIDM4LjczODJWNDEuNzY3M0gxOTEuMDJMMTkwLjkyMSA0MS4ySDE5MC44ODVDMTkwLjM5NCA0MS41OTI3IDE4OS44MzQgNDEuODkwOSAxODkuMTg1IDQxLjg5MDlDMTg4LjIyMiA0MS44ODczIDE4Ny41NjMgNDEuMjggMTg3LjU2MyA0MC4zODkxWk0xOTAuNzgyIDQwLjM5MjdWMzkuMjQzNkMxODkuMjk5IDM5LjQxODIgMTg4LjgwMSAzOS43ODE4IDE4OC44MDEgNDAuMjk4MkMxODguODAxIDQwLjc0OTEgMTg5LjEzIDQwLjk0OTEgMTg5LjU5MiA0MC45NDkxQzE5MC4wMzkgNDAuOTQ1NSAxOTAuMzc2IDQwLjc0MTggMTkwLjc4MiA0MC4zOTI3WiIgZmlsbD0iIzFBMUExQSI+PC9wYXRoPjxwYXRoIGQ9Ik0xOTcuNTEzIDM2LjY0NzNIMTk4LjU2NEwxOTguNjYzIDM3LjMzODJIMTk4LjY5OUMxOTkuMTkgMzYuODkwOSAxOTkuNzQ3IDM2LjUyIDIwMC40OTcgMzYuNTJDMjAxLjY2OSAzNi41MiAyMDIuMTgyIDM3LjI2MTggMjAyLjE4MiAzOC41NTI3VjQxLjc2SDIwMC44OTZWMzguNzA1NUMyMDAuODk2IDM3Ljg2NTUgMjAwLjYzNiAzNy41NDkxIDIwMC4wNDMgMzcuNTQ5MUMxOTkuNTYgMzcuNTQ5MSAxOTkuMjQ1IDM3Ljc3MDkgMTk4Ljc5NCAzOC4xODU1VjQxLjc2SDE5Ny41MDlWMzYuNjQ3M0gxOTcuNTEzWiIgZmlsbD0iIzFBMUExQSI+PC9wYXRoPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl84N18xMzQ1IiB4MT0iNTEuOTA2MyIgeTE9Ii0wLjc1MjkiIHgyPSItMTYuNTg5MSIgeTI9IjY1LjA3MjYiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAuMzcyOCIgc3RvcC1jb2xvcj0iIzQ2Qjc1MSI+PC9zdG9wPjxzdG9wIG9mZnNldD0iMC45OTgzIiBzdG9wLWNvbG9yPSIjNDY1QzVDIj48L3N0b3A+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PC9zdmc+">
 <link rel="alternate icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEk0lEQVR4nOxXXUwcVRj97sxgWDfsUgnlRxA0bRSxpdhWsFCrqYWlFYuSIm1SEmmq8a8PJjb6UF940RhfTFNDLQUpaptVigZK2bauaPqgpokmZaPVpFqgS4MLtbtQKTtzPTO7nZ0usz+laXjpSYY799z73XPmu9+9gEQLDIkWGHcMCGZkbm7u3Tk5OU60E2g/BSUaxraBG0Lry87Ofo8MHwFuN56LGP8eTxElAdGMtFqtOwVBeAuvFsZYCfpnA4GAB4tXgusFlxkeq0xLS5v2+/2nMzIy7pUkqR98GvgCtOmI6ab5ZAC4GtXn6g9FUcpN5qqmSJblKbOYRDCtgbGxsS/wtTvwWsE5H0C/R3MrCKPRczF+UW0vAxaLZQ++vgVdH/g9ZmtvcNUvZbKyl4jNkBDYOmcLsrKyyux2+/tYoBiL2UGJNputFttwwev19iHlpeAeDE//fXp6eivSvxj8Z+ivRkwOYmV16xAnY3vO6uJ99asYKYN4LcL4qy5H7zkWpc/w5ZNo7Sbm92ELOpCFZXhvM3BOCOaCP4RF52wpxouRQU/VsboaYkytiVTO2M4Tju4DmmDU/FQYiN5/dX/fgcBGCKwlcwxjztuYsx9zrAZ+JhgMlq3oqFiJ90+gBoN8n6um57XrE2IVoRG/iqI4HkdcRT7mrEcmDho4H0ytK+mseB7CbSFxctv9KbuMgQkNYNEhPIWUGEXIwC/hGI+cIq8u6VjzBuP0bnil8yL/r87Z4JSNQTecgry8PIY9m+OBkgRiOUy4rZXWFx5oXv45Qp8OL3FFVpjDtan/SnTMDQZGRkZmcLs9ZeSQ+kto6igxOAwMFrQUH7Pn21xIw4qwfYUJQt2pTd3nzIKkqoON+SQHd2hWhOhH0SxOXPq3c7TFox6x52Kqc/5VaWe5wEn6CZ379A8Q+JsDjqPuWHHaKahu3fK6IvGPcIhQKsi4CJrx0EWt9gV2fvLv8XWjH/55BMzjUcIKnuZlbY8NMUEaAHOPYbjLVXN0O8WBVoQDLzv3Mpm2kUwKEoZzB1GOVi0Hta/w+xcVZJ5Kr8luAvOHIX4Gad+MYhuF+A9R4qd9mZnNlAD6KXC99OVhCG7mMs3qJrRWN7E0b2PhN6lLbPVgJvHVfrTrS9rX2JGG4xBPpUheh1Pka7VnVu2fTdpA2ESvIAvVMDIVyQRFMiFT0ZJdD7eLuZYnYGD5I63lapV3ceNvVUYBUVEcfc/0TVISYGbkhjbc2ZydRAHaQ7XAQrWgyoT6P3KmXGAS26LXCtMerhCrPeno7qMkwWINVLXWP0QSG0SOFuuFqRUkRczop0U3sRtF9wHdBFi8QcfHjYXKXbNuiBfGyITe58S7Tjwbv+LNEPcqPv7K4b/omlKGvf9NOxVaYVKkMMN9FO7PE97EFW8GlsykJ9vr0lMU6VsmUqlJJoZFElf2NzjHaR5I5rchffdiz2WWYllLMnOH7gf9iF6FuGO+4kkbUOFqOjTlCy6qhmivKq7efziyjRD30C1AvJnJ3t4zyvZHG46M2Mb/wV81B1xNzq/pFpFUDdxO3PnXbMEN/A8AAP//28g8hwAAAAZJREFUAwDaJ9fLAEYqFgAAAABJRU5ErkJggg==">
@@ -1141,6 +1141,25 @@ body.locked>:not(.lock-screen):not(.boot-error):not(script){display:none!importa
 .lock-submit{min-height:46px;font-size:15px}
 .lock-hint{margin:0;font-size:12.5px;color:var(--ui-muted);line-height:1.5}
 #set-device .local-backup{padding-top:14px;border-top:1px solid #eef1ef}
+
+/* Line items with Qty, Rate and more: when the table is narrow (the usual
+   sidebar width), the description gets its own full-width line, and the other
+   boxes and the line total sit under it, each with its label. */
+.items-table{container-type:inline-size;container-name:items}
+@media (min-width:761px){
+  @container items (max-width:560px){
+    .items-table.multi .items-head{display:none}
+    .items-table.multi .itemrow{grid-template-columns:var(--item-cols-stacked);row-gap:4px;padding:8px 8px 10px}
+    .items-table.multi .itemrow .drag{grid-row:1 / span 2;grid-column:1}
+    .items-table.multi .itemrow .field.desc{grid-row:1;grid-column:2 / -2}
+    .items-table.multi .itemrow-actions{grid-row:1;grid-column:-2;align-self:start}
+    .items-table.multi .itemrow .field:not(.desc){grid-row:2}
+    .items-table.multi .itemrow .field:not(.desc) label{position:static;width:auto;height:auto;margin:0 0 4px 1px;clip:auto;overflow:visible;white-space:nowrap;font-size:12px;line-height:16px;font-weight:500;color:var(--ui-muted)}
+    .items-table.multi .itemrow .field input,.items-table.multi .itemrow .field textarea{border-color:var(--ui-line)}
+    .items-table.multi .itemrow-total{grid-row:2;align-self:stretch;display:grid;grid-template-rows:auto 1fr;align-items:center;justify-items:end;padding:0 4px 0 0}
+    .items-table.multi .itemrow-total::before{content:"Line total";display:block;margin-bottom:4px;font-size:12px;line-height:16px;font-weight:500;color:var(--ui-muted);text-align:right}
+  }
+}
 
 /* css/invoice.css */
 /* Invoice canvas and the Modern template (the base invoice design) */
@@ -2606,14 +2625,13 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
       <section class="card" id="set-defaults" aria-labelledby="defaultsTitle">
         <h2 id="defaultsTitle">Invoice defaults</h2>
         <div class="defaults-grid">
-          <div class="field"><label for="defaultDueDays">Days to pay, for an academy's first invoice</label><select id="defaultDueDays"><option value="0">On receipt</option><option value="7">7 days</option><option value="14">14 days</option><option value="15">15 days</option><option value="30">30 days</option></select></div>
           <div class="field"><label for="pdfNameStyle">PDF file name</label><select id="pdfNameStyle"><option value="academy">Academy, number and quarter</option><option value="number">Invoice number only</option></select></div>
         </div>
         <div class="setting-row">
           <div><label for="markIssuedDefault" class="setting-label">Mark as issued after exporting</label><p class="setting-help" id="markIssuedHelp">Ticked by default in Check and export, so the invoices board stays up to date.</p></div>
           <input id="markIssuedDefault" type="checkbox" role="switch" class="toggle" aria-describedby="markIssuedHelp" checked>
         </div>
-        <p class="setting-help">The next invoice for an academy copies its last one: number, payment term, bank details and lines, moved on to the new quarter.</p>
+        <p class="setting-help">The next invoice for an academy copies its last one: its number, bank details and lines, moved on to the new quarter. The due date is left for you to choose; Check and export reminds you if it is empty.</p>
       </section>
 
       <section class="card" id="set-device" aria-labelledby="deviceTitle">
@@ -2718,10 +2736,10 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
   };
 
   // js/constants.js
-  var APP_VERSION, PAPER_SIZES, NEXT_PAGE_TOP_MARGIN_MM, paperFor, DATA_VERSION, STORAGE_KEYS, BACKUP_SNOOZE_DAYS, BACKUP_REMINDER_DAYS, LIMITS, AUTOSAVE_TYPING_DELAY_MS, DEFAULT_ACCENT, DEFAULT_DUE_DAYS, TOAST_MS, PRINT_SETTLE_MS, PRINT_FONT_SETTLE_MS, HISTORY_LIMIT, HISTORY_DEBOUNCE_MS, LOGO_HINT_DEFAULT, SIDEBAR_RESIZE_MIN_VIEWPORT, XLSX_WORKER_SRC, XLSX_PARSE_TIMEOUT_MS, FIXED_AMOUNT_KEY, NUMERIC_COLUMN_TYPES, SECTION_DEFS, FIELD_IDS, BRAND_FIELD_IDS, LEGACY_BRAND_COMPANY_FIELDS, COMPANY_META_FALLBACK, CLIENT_META_FALLBACK;
+  var APP_VERSION, PAPER_SIZES, NEXT_PAGE_TOP_MARGIN_MM, paperFor, DATA_VERSION, STORAGE_KEYS, BACKUP_SNOOZE_DAYS, BACKUP_REMINDER_DAYS, LIMITS, AUTOSAVE_TYPING_DELAY_MS, DEFAULT_ACCENT, TOAST_MS, PRINT_SETTLE_MS, PRINT_FONT_SETTLE_MS, HISTORY_LIMIT, HISTORY_DEBOUNCE_MS, LOGO_HINT_DEFAULT, SIDEBAR_RESIZE_MIN_VIEWPORT, XLSX_WORKER_SRC, XLSX_PARSE_TIMEOUT_MS, FIXED_AMOUNT_KEY, NUMERIC_COLUMN_TYPES, SECTION_DEFS, FIELD_IDS, BRAND_FIELD_IDS, LEGACY_BRAND_COMPANY_FIELDS, COMPANY_META_FALLBACK, CLIENT_META_FALLBACK;
   var init_constants = __esm({
     "js/constants.js"() {
-      APP_VERSION = "2.15.0";
+      APP_VERSION = "2.15.1";
       PAPER_SIZES = {
         a4: { id: "a4", label: "A4", width: 210, height: 297 },
         letter: { id: "letter", label: "US Letter", width: 215.9, height: 279.4 }
@@ -2779,7 +2797,6 @@ body.pdf-exporting .invoice.template-classic{padding:16mm 8mm 14mm!important}
       };
       AUTOSAVE_TYPING_DELAY_MS = 300;
       DEFAULT_ACCENT = "#46b751";
-      DEFAULT_DUE_DAYS = 14;
       TOAST_MS = 2200;
       PRINT_SETTLE_MS = 180;
       PRINT_FONT_SETTLE_MS = 80;
@@ -5240,7 +5257,11 @@ ${message}${points}`));
     const cols = ["14px", ...layout19.fields.map(widthFor)];
     if (!layout19.amountOnly) cols.push("minmax(72px,auto)");
     cols.push("50px");
-    $("itemsTable")?.style.setProperty("--item-cols", cols.join(" "));
+    const table = $("itemsTable");
+    table?.style.setProperty("--item-cols", cols.join(" "));
+    const others = layout19.fields.filter((f) => !isDescriptionField(f)).length;
+    table?.style.setProperty("--item-cols-stacked", ["14px", ...Array(Math.max(others, 0)).fill("minmax(0,1fr)"), "minmax(84px,auto)", "50px"].join(" "));
+    table?.classList.toggle("multi", !layout19.amountOnly && others > 0);
     const head = $("itemsHead");
     if (head) {
       const cells = ["<span></span>", ...layout19.fields.map((f) => `<span class="${isNumericType(f.type) ? "num" : ""}">${esc(f.label)}</span>`)];
@@ -6012,60 +6033,6 @@ ${message}${points}`));
     }
   });
 
-  // js/settings-store.js
-  function guessDeviceName() {
-    const ua = typeof navigator === "undefined" ? "" : navigator.userAgent || "";
-    if (/iPhone/.test(ua)) return "iPhone";
-    if (/iPad/.test(ua)) return "iPad";
-    if (/Android/.test(ua)) return /Mobile/.test(ua) ? "Android phone" : "Android tablet";
-    if (/Mac OS X|Macintosh/.test(ua)) return "Mac";
-    if (/Windows/.test(ua)) return "Windows PC";
-    if (/CrOS/.test(ua)) return "Chromebook";
-    if (/Linux/.test(ua)) return "Linux computer";
-    return "This device";
-  }
-  function readSettings() {
-    const saved = readJSON(STORAGE_KEYS.settings, {});
-    const merged = { ...SETTINGS_DEFAULTS, ...saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {} };
-    if (!String(merged.deviceName || "").trim()) merged.deviceName = guessDeviceName();
-    return merged;
-  }
-  function writeSettings(patch) {
-    const saved = readJSON(STORAGE_KEYS.settings, {}) || {};
-    const next = { ...saved, ...patch };
-    const ok = writeJSON(STORAGE_KEYS.settings, next);
-    listeners.forEach((fn) => fn(readSettings()));
-    return ok;
-  }
-  var SETTINGS_DEFAULTS, listeners, onSettingsChange;
-  var init_settings_store = __esm({
-    "js/settings-store.js"() {
-      init_constants();
-      init_local_storage();
-      SETTINGS_DEFAULTS = Object.freeze({
-        /** Days to pay for an invoice that has no earlier one to copy the term from. */
-        defaultDueDays: 14,
-        /** "academy": Janets-Alison_2026-11005_Q3-2026.pdf; "number": 2026-11005.pdf */
-        pdfName: "academy",
-        /** Tick "Mark as issued after exporting" by default. */
-        markIssued: true,
-        /** Sync with Google Drive by itself; off means only when Sync now is pressed. */
-        autoSync: true,
-        /** Renew Google's hourly sign-in on the next click, so sync carries on. */
-        staySignedIn: true,
-        /** "daily" | "weekly" | "off": automatic backups in the Drive Backups folder. */
-        backupFrequency: "daily",
-        /** "tidy": 30 daily and 12 monthly backups; "all": every backup. */
-        backupKeep: "tidy",
-        deviceName: ""
-      });
-      listeners = /* @__PURE__ */ new Set();
-      onSettingsChange = (fn) => {
-        listeners.add(fn);
-      };
-    }
-  });
-
   // js/documents.js
   function captureBlankDefaults() {
     const snapshot = clone2(serialize());
@@ -6083,12 +6050,8 @@ ${message}${points}`));
     notifyDocumentsChanged();
     return warnings;
   }
-  function freshDates(fields) {
-    const issued = fields.invoiceDate;
-    const due = fields.dueDate;
-    const days = isIsoDate(issued) && isIsoDate(due) ? Math.round((/* @__PURE__ */ new Date(due + "T00:00:00") - /* @__PURE__ */ new Date(issued + "T00:00:00")) / 864e5) : defaultDueDays();
-    const start = today();
-    return { invoiceDate: start, dueDate: plusDays(start, days >= 0 ? days : defaultDueDays()) };
+  function freshDates() {
+    return { invoiceDate: today(), dueDate: "" };
   }
   function freshStatus(fields) {
     fields.invoiceStatus = "draft";
@@ -6247,12 +6210,10 @@ ${message}${points}`));
     setInvoiceId(newInvoiceId());
     return messages;
   }
-  var listeners2, onDocumentsChange, notifyDocumentsChanged, clone2, blankDefaults, defaultDueDays, CLIENT_AND_CONTENT_FIELDS, $statusListeners, onStatusChange;
+  var listeners, onDocumentsChange, notifyDocumentsChanged, clone2, blankDefaults, CLIENT_AND_CONTENT_FIELDS, $statusListeners, onStatusChange;
   var init_documents = __esm({
     "js/documents.js"() {
       init_utils();
-      init_constants();
-      init_settings_store();
       init_state();
       init_session();
       init_invoice_data();
@@ -6262,21 +6223,69 @@ ${message}${points}`));
       init_periods();
       init_invoice_storage();
       init_template_registry();
-      listeners2 = /* @__PURE__ */ new Set();
+      listeners = /* @__PURE__ */ new Set();
       onDocumentsChange = (fn) => {
-        listeners2.add(fn);
+        listeners.add(fn);
       };
-      notifyDocumentsChanged = () => listeners2.forEach((fn) => fn());
+      notifyDocumentsChanged = () => listeners.forEach((fn) => fn());
       clone2 = (value) => JSON.parse(JSON.stringify(value));
       blankDefaults = null;
-      defaultDueDays = () => {
-        const days = Number(readSettings().defaultDueDays);
-        return Number.isInteger(days) && days >= 0 ? days : DEFAULT_DUE_DAYS;
-      };
       CLIENT_AND_CONTENT_FIELDS = ["clientName", "clientContact", "clientTax", "clientAddress", "clientEmail", "reference", "notes"];
       $statusListeners = /* @__PURE__ */ new Set();
       onStatusChange = (fn) => {
         $statusListeners.add(fn);
+      };
+    }
+  });
+
+  // js/settings-store.js
+  function guessDeviceName() {
+    const ua = typeof navigator === "undefined" ? "" : navigator.userAgent || "";
+    if (/iPhone/.test(ua)) return "iPhone";
+    if (/iPad/.test(ua)) return "iPad";
+    if (/Android/.test(ua)) return /Mobile/.test(ua) ? "Android phone" : "Android tablet";
+    if (/Mac OS X|Macintosh/.test(ua)) return "Mac";
+    if (/Windows/.test(ua)) return "Windows PC";
+    if (/CrOS/.test(ua)) return "Chromebook";
+    if (/Linux/.test(ua)) return "Linux computer";
+    return "This device";
+  }
+  function readSettings() {
+    const saved = readJSON(STORAGE_KEYS.settings, {});
+    const merged = { ...SETTINGS_DEFAULTS, ...saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {} };
+    if (!String(merged.deviceName || "").trim()) merged.deviceName = guessDeviceName();
+    return merged;
+  }
+  function writeSettings(patch) {
+    const saved = readJSON(STORAGE_KEYS.settings, {}) || {};
+    const next = { ...saved, ...patch };
+    const ok = writeJSON(STORAGE_KEYS.settings, next);
+    listeners2.forEach((fn) => fn(readSettings()));
+    return ok;
+  }
+  var SETTINGS_DEFAULTS, listeners2, onSettingsChange;
+  var init_settings_store = __esm({
+    "js/settings-store.js"() {
+      init_constants();
+      init_local_storage();
+      SETTINGS_DEFAULTS = Object.freeze({
+        /** "academy": Janets-Alison_2026-11005_Q3-2026.pdf; "number": 2026-11005.pdf */
+        pdfName: "academy",
+        /** Tick "Mark as issued after exporting" by default. */
+        markIssued: true,
+        /** Sync with Google Drive by itself; off means only when Sync now is pressed. */
+        autoSync: true,
+        /** Renew Google's hourly sign-in on the next click, so sync carries on. */
+        staySignedIn: true,
+        /** "daily" | "weekly" | "off": automatic backups in the Drive Backups folder. */
+        backupFrequency: "daily",
+        /** "tidy": 30 daily and 12 monthly backups; "all": every backup. */
+        backupKeep: "tidy",
+        deviceName: ""
+      });
+      listeners2 = /* @__PURE__ */ new Set();
+      onSettingsChange = (fn) => {
+        listeners2.add(fn);
       };
     }
   });
@@ -6405,6 +6414,15 @@ ${message}${points}`));
       if (wmType === "image" && !state.watermark) add("warning", "wm-image", "The watermark is set to an image, but none is uploaded", "watermarkType", { tab: "design" });
     }
     issues.sort((a, b) => a.severity === b.severity ? 0 : a.severity === "blocker" ? -1 : 1);
+    if (shown("dueDate") && !due) {
+      add(
+        "warning",
+        "no-due",
+        "There is no due date yet",
+        "dueDate",
+        { detail: "Choose one: type it, or use the Due in buttons under the dates.", goLabel: "Choose a due date" }
+      );
+    }
     return { issues, passes, context: { academy, template, period, number, total: totals.total } };
   }
   function goToIssue(issue) {
@@ -8941,8 +8959,6 @@ ${collectStyleMarkup()}
     $("deviceName").placeholder = guessDeviceName();
     $("backupFrequency").value = s.backupFrequency;
     $("backupKeep").value = s.backupKeep;
-    $("defaultDueDays").value = String(s.defaultDueDays);
-    if ($("defaultDueDays").value !== String(s.defaultDueDays)) $("defaultDueDays").value = "14";
     $("pdfNameStyle").value = s.pdfName;
     $("markIssuedDefault").checked = s.markIssued !== false;
   }
@@ -9020,7 +9036,6 @@ ${collectStyleMarkup()}
     });
     $("backupFrequency").addEventListener("change", (e) => writeSettings({ backupFrequency: e.target.value }));
     $("backupKeep").addEventListener("change", (e) => writeSettings({ backupKeep: e.target.value }));
-    $("defaultDueDays").addEventListener("change", (e) => writeSettings({ defaultDueDays: Number(e.target.value) }));
     $("pdfNameStyle").addEventListener("change", (e) => writeSettings({ pdfName: e.target.value }));
     $("markIssuedDefault").addEventListener("change", (e) => writeSettings({ markIssued: e.target.checked }));
     $("forgetDeviceBtn").onclick = forgetThisBrowser;
@@ -9254,7 +9269,6 @@ ${collectStyleMarkup()}
 
   // js/app.js
   init_invoice_library();
-  init_settings_store();
   init_pdf();
 
   // js/editor/panels.js
@@ -12219,8 +12233,7 @@ ${text2}\r
   function seedDefaults() {
     applyLogoDefaults();
     $("invoiceDate").value = today();
-    const days = Number(readSettings().defaultDueDays);
-    $("dueDate").value = plusDays(today(), Number.isInteger(days) && days >= 0 ? days : DEFAULT_DUE_DAYS);
+    $("dueDate").value = "";
     setAccent(DEFAULT_ACCENT);
   }
   function restoreAutosave() {

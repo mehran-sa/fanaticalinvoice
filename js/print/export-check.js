@@ -171,6 +171,13 @@ export function runExportChecks() {
 
   // Blockers first, then warnings in the order found.
   issues.sort((a, b) => (a.severity === b.severity ? 0 : a.severity === "blocker" ? -1 : 1));
+  // A reminder, listed last so it never comes before a real problem: the due
+  // date is the user's choice and is never filled in for them.
+  if (shown("dueDate") && !due) {
+    add("warning", "no-due", "There is no due date yet", "dueDate",
+      { detail: "Choose one: type it, or use the Due in buttons under the dates.", goLabel: "Choose a due date" });
+  }
+
   return { issues, passes, context: { academy, template, period, number, total: totals.total } };
 }
 

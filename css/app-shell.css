@@ -620,3 +620,22 @@ body.locked>:not(.lock-screen):not(.boot-error):not(script){display:none!importa
 .lock-submit{min-height:46px;font-size:15px}
 .lock-hint{margin:0;font-size:12.5px;color:var(--ui-muted);line-height:1.5}
 #set-device .local-backup{padding-top:14px;border-top:1px solid #eef1ef}
+
+/* Line items with Qty, Rate and more: when the table is narrow (the usual
+   sidebar width), the description gets its own full-width line, and the other
+   boxes and the line total sit under it, each with its label. */
+.items-table{container-type:inline-size;container-name:items}
+@media (min-width:761px){
+  @container items (max-width:560px){
+    .items-table.multi .items-head{display:none}
+    .items-table.multi .itemrow{grid-template-columns:var(--item-cols-stacked);row-gap:4px;padding:8px 8px 10px}
+    .items-table.multi .itemrow .drag{grid-row:1 / span 2;grid-column:1}
+    .items-table.multi .itemrow .field.desc{grid-row:1;grid-column:2 / -2}
+    .items-table.multi .itemrow-actions{grid-row:1;grid-column:-2;align-self:start}
+    .items-table.multi .itemrow .field:not(.desc){grid-row:2}
+    .items-table.multi .itemrow .field:not(.desc) label{position:static;width:auto;height:auto;margin:0 0 4px 1px;clip:auto;overflow:visible;white-space:nowrap;font-size:12px;line-height:16px;font-weight:500;color:var(--ui-muted)}
+    .items-table.multi .itemrow .field input,.items-table.multi .itemrow .field textarea{border-color:var(--ui-line)}
+    .items-table.multi .itemrow-total{grid-row:2;align-self:stretch;display:grid;grid-template-rows:auto 1fr;align-items:center;justify-items:end;padding:0 4px 0 0}
+    .items-table.multi .itemrow-total::before{content:"Line total";display:block;margin-bottom:4px;font-size:12px;line-height:16px;font-weight:500;color:var(--ui-muted);text-align:right}
+  }
+}

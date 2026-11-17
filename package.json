@@ -1,6 +1,6 @@
 {
   "name": "sa-invoice-generator",
-  "version": "2.15.0",
+  "version": "2.15.1",
   "private": true,
   "description": "SA Invoice Generator: browser-based invoice editor that keeps all data on this device.",
   "type": "module",

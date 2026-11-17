@@ -8,9 +8,7 @@
  * saveInvoice() (js/storage/invoice-storage.js).
  */
 
-import { today, plusDays, isIsoDate, toast, toastError, fieldValue, setFieldValue } from "./utils.js";
-import { DEFAULT_DUE_DAYS } from "./constants.js";
-import { readSettings } from "./settings-store.js";
+import { today, toast, toastError, fieldValue, setFieldValue } from "./utils.js";
 import { state, setInvoiceId } from "./state.js";
 import { applySnapshot } from "./session.js";
 import { serialize, nextInvoiceNumber } from "./invoice/invoice-data.js";
@@ -52,21 +50,13 @@ function switchTo(snapshot, id, { save = true } = {}) {
   return warnings;
 }
 
-/** Days to pay chosen in Settings, or the app default. */
-const defaultDueDays = () => {
-  const days = Number(readSettings().defaultDueDays);
-  return Number.isInteger(days) && days >= 0 ? days : DEFAULT_DUE_DAYS;
-};
-
-/** Today, and a due date that keeps the given invoice's payment term. */
-function freshDates(fields) {
-  const issued = fields.invoiceDate;
-  const due = fields.dueDate;
-  const days = isIsoDate(issued) && isIsoDate(due)
-    ? Math.round((new Date(due + "T00:00:00") - new Date(issued + "T00:00:00")) / 864e5)
-    : defaultDueDays();
-  const start = today();
-  return { invoiceDate: start, dueDate: plusDays(start, days >= 0 ? days : defaultDueDays()) };
+/**
+ * A new invoice is dated today. The due date is left empty: it is always the
+ * user's decision (the "Due in" buttons set it in one click), and Check and
+ * export reminds them if it is still empty.
+ */
+function freshDates() {
+  return { invoiceDate: today(), dueDate: "" };
 }
 
 /** A new invoice starts as a draft, not paid, for the quarter its lines name. */
@@ -92,7 +82,7 @@ const CLIENT_AND_CONTENT_FIELDS = ["clientName", "clientContact", "clientTax", "
  * Starts a new invoice.
  *  - normally: keeps your company details, design, columns, payment details
  *    and terms; clears the client, reference, notes and line items; uses the
- *    next unused invoice number and today's date with the same payment term;
+ *    next unused invoice number and today's date, with no due date yet;
  *  - blank: the app's original defaults.
  */
 export function newInvoice({ blank = false, template = "", quiet = false } = {}) {
@@ -144,8 +134,8 @@ export const invoicesForPeriod = (template, period, exceptId) =>
 /**
  * Starts an academy's invoice for a quarter.
  *  - With an earlier invoice from that academy: a copy of the latest one,
- *    with the academy's next number, today's date, the same payment term,
- *    and every quarter in its lines, notes and reference changed to the new
+ *    with the academy's next number, today's date, no due date yet (it is
+ *    the user's to choose), and every quarter in its lines, notes and reference changed to the new
  *    one ("Q3-2026 earnings" becomes "Q4-2026 earnings").
  *  - Otherwise a blank invoice in that academy's template; an Alison
  *    template then fills in the academy's details (see templates/alison/brand.js).

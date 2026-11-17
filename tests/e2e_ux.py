@@ -217,15 +217,28 @@ try:
         page.locator('.academy-tile[data-academy="alison-janets"]').first.click()
         page.wait_for_timeout(500)
         descs = [page.locator(".itemrow").nth(i).locator("textarea").input_value() for i in range(page.locator(".itemrow").count())]
-        due_days = page.evaluate("() => (new Date(document.getElementById('dueDate').value) - new Date(document.getElementById('invoiceDate').value)) / 864e5")
-        check("Janets' next invoice: next number, today's date, same 15-day term, Q4 in the lines, a draft",
-              page.input_value("#invoiceNumber") == "2026-11006" and page.input_value("#invoiceDate") == today and due_days == 15
+        check("Janets' next invoice: next number, today's date, no due date (the user chooses it), Q4 in the lines, a draft",
+              page.input_value("#invoiceNumber") == "2026-11006" and page.input_value("#invoiceDate") == today
+              and page.input_value("#dueDate") == ""
               and descs == ["Opening balance", "Q4-2026 earnings"] and page.input_value("#invoicePeriod") == "Q4-2026"
-              and page.input_value("#invoiceStatus") == "draft", f"{page.input_value('#invoiceNumber')} {due_days} {descs}")
+              and page.input_value("#invoiceStatus") == "draft", f"{page.input_value('#invoiceNumber')} due={page.input_value('#dueDate')!r} {descs}")
         page.click("#pdfBtn")
         page.wait_for_selector("#exportDialog[open]")
-        check("unchanged amounts from last quarter are flagged", "amounts are the same as on the Q3-2026 invoice" in page.text_content("#exportIssues"))
+        issues = page.text_content("#exportIssues")
+        check("unchanged amounts from last quarter are flagged", "amounts are the same as on the Q3-2026 invoice" in issues)
+        check("Check and export reminds that there is no due date yet", "There is no due date yet" in issues)
         page.click("#exportBackBtn")
+        # The due date is whatever the user types, and stays so.
+        page.fill("#dueDate", "2026-12-24")
+        page.fill("#invoiceDate", "2026-11-03")
+        page.wait_for_timeout(500)
+        page.reload(); page.wait_for_timeout(900)
+        check("a typed due date stays as typed (changing the invoice date or reloading does not move it)",
+              page.input_value("#dueDate") == "2026-12-24" and page.input_value("#invoiceDate") == "2026-11-03", page.input_value("#dueDate"))
+        page.click("#tabbtn-invoice") if page.is_visible("#tabbtn-invoice") else None
+        page.click('[data-due-days="30"]'); page.wait_for_timeout(200)
+        check("the Due in buttons set it only when clicked", page.input_value("#dueDate") == "2026-12-03", page.input_value("#dueDate"))
+        page.fill("#invoiceDate", today)
 
         # ---- each academy keeps its own numbers
         page.click("#resetBtn")
@@ -306,6 +319,22 @@ try:
               page.input_value("#pdfFileName"))
         page.click("#exportBackBtn")
         page.screenshot(path=os.path.join(OUT, "editor-2.14.png"))
+
+        # ---- Qty and Rate in a narrow sidebar: the description keeps its width
+        page.click("#resetBtn"); page.wait_for_selector("#pickerDialog[open]")
+        page.locator('.academy-tile[data-academy="alison-oneeducation"]').first.click(); page.wait_for_timeout(900)
+        if page.locator(".itemrow").count() == 0:
+            page.click("#addItemBtn"); page.wait_for_timeout(200)
+        page.locator(".itemrow textarea").first.fill("Royalty payment for Q3-2026 course sales across all Alison platforms")
+        page.wait_for_timeout(200)
+        geo = page.evaluate("""() => { const row = document.querySelector('.itemrow'); const d = row.querySelector('textarea').getBoundingClientRect();
+            const q = row.querySelector('.field:not(.desc) input').getBoundingClientRect();
+            return { desc: d.width, row: row.getBoundingClientRect().width, below: q.top >= d.bottom }; }""")
+        check("with Qty and Rate in the narrow sidebar, the description uses the row's width and the numbers go below it",
+              geo["desc"] > geo["row"] * 0.6 and geo["below"], str(geo))
+        page.set_viewport_size({"width": 390, "height": 844}); page.wait_for_timeout(300)
+        geo = page.evaluate("() => document.querySelector('.itemrow textarea').getBoundingClientRect().width")
+        check("on a phone the description is full width too", geo > 250, str(geo))
         browser.close()
 finally:
     server.terminate()

@@ -21,8 +21,6 @@ function fill() {
   $("deviceName").placeholder = guessDeviceName();
   $("backupFrequency").value = s.backupFrequency;
   $("backupKeep").value = s.backupKeep;
-  $("defaultDueDays").value = String(s.defaultDueDays);
-  if ($("defaultDueDays").value !== String(s.defaultDueDays)) $("defaultDueDays").value = "14";
   $("pdfNameStyle").value = s.pdfName;
   $("markIssuedDefault").checked = s.markIssued !== false;
 }
@@ -104,7 +102,6 @@ export function initSettings() {
   });
   $("backupFrequency").addEventListener("change", e => writeSettings({ backupFrequency: e.target.value }));
   $("backupKeep").addEventListener("change", e => writeSettings({ backupKeep: e.target.value }));
-  $("defaultDueDays").addEventListener("change", e => writeSettings({ defaultDueDays: Number(e.target.value) }));
   $("pdfNameStyle").addEventListener("change", e => writeSettings({ pdfName: e.target.value }));
   $("markIssuedDefault").addEventListener("change", e => writeSettings({ markIssued: e.target.checked }));
   $("forgetDeviceBtn").onclick = forgetThisBrowser;

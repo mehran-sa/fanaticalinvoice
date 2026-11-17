@@ -21,8 +21,6 @@ export function guessDeviceName() {
 }
 
 export const SETTINGS_DEFAULTS = Object.freeze({
-  /** Days to pay for an invoice that has no earlier one to copy the term from. */
-  defaultDueDays: 14,
   /** "academy": Janets-Alison_2026-11005_Q3-2026.pdf; "number": 2026-11005.pdf */
   pdfName: "academy",
   /** Tick "Mark as issued after exporting" by default. */

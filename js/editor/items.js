@@ -71,7 +71,13 @@ function applyGrid(layout) {
   const cols = ["14px", ...layout.fields.map(widthFor)];
   if (!layout.amountOnly) cols.push("minmax(72px,auto)");
   cols.push("50px");
-  $("itemsTable")?.style.setProperty("--item-cols", cols.join(" "));
+  const table = $("itemsTable");
+  table?.style.setProperty("--item-cols", cols.join(" "));
+  // A narrow table puts the description on its own line, with the other
+  // boxes and the line total under it (css/app-shell.css, "stacked").
+  const others = layout.fields.filter(f => !isDescriptionField(f)).length;
+  table?.style.setProperty("--item-cols-stacked", ["14px", ...Array(Math.max(others, 0)).fill("minmax(0,1fr)"), "minmax(84px,auto)", "50px"].join(" "));
+  table?.classList.toggle("multi", !layout.amountOnly && others > 0);
   const head = $("itemsHead");
   if (head) {
     const cells = ["<span></span>", ...layout.fields.map(f => `<span class="${isNumericType(f.type) ? "num" : ""}">${esc(f.label)}</span>`)];

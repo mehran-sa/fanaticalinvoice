@@ -294,8 +294,9 @@ try:
         check("Google Drive sync is off until a client ID is configured (Settings says so)",
               page.is_hidden("#cloudChip") and page.is_hidden("#cloudSignInBtn") and "not set up" in page.text_content("#cloudNotConfigured"))
         inv, due = page.input_value("#invoiceDate"), page.input_value("#dueDate")
-        check("due date defaults to invoice date + 14 days",
-              page.evaluate("([a, b]) => (new Date(b) - new Date(a)) / 864e5", [inv, due]) == 14)
+        check("a new invoice is dated today and has no due date (the user chooses it)",
+              inv == page.evaluate("() => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }")
+              and due == "", f"{inv} {due!r}")
 
         # ---- create an invoice through the UI
         page.fill("#invoiceNumber", "INV-2001")
@@ -767,7 +768,7 @@ try:
         page.click("#zoomIn"); page.click("#showEdit"); page.set_viewport_size({"width": 1400, "height": 900}); page.wait_for_timeout(150)
         go(page, "settings")
         check("Settings says where invoices are kept", "Saved only in this browser" in page.text_content("#privacyNoticeText")
-              and "2.15.0" in page.text_content("#appVersionText"))
+              and "2.15.1" in page.text_content("#appVersionText"))
         go(page, "editor")
         page.evaluate("() => localStorage.removeItem('invoiceStudio.lastBackupAt')"); page.reload(); page.wait_for_timeout(400)
         page.click("#backupLaterBtn"); page.reload(); page.wait_for_timeout(400)
@@ -1009,8 +1010,11 @@ try:
         p3 = ctx3.new_page()
         p3.goto(URL); p3.wait_for_timeout(300)
         d1, d2 = p3.input_value("#invoiceDate"), p3.input_value("#dueDate")
-        check("due date is +14 days east of UTC (was 13)",
-              p3.evaluate("([a, b]) => (new Date(b) - new Date(a)) / 864e5", [d1, d2]) == 14)
+        p3.click('[data-due-days="14"]'); p3.wait_for_timeout(100)
+        d2 = p3.input_value("#dueDate")
+        check("Due in 14 days is +14 days east of UTC (was 13)",
+              d1 == p3.evaluate("() => new Date().toLocaleDateString('en-CA')")
+              and p3.evaluate("([a, b]) => (new Date(b) - new Date(a)) / 864e5", [d1, d2]) == 14, f"{d1} {d2}")
         p3.evaluate("() => localStorage.setItem('invoiceStudioPro.v2', '{corrupt')")
         p3.reload(); p3.wait_for_timeout(300)
         p3.fill("#reference", "after corruption"); p3.wait_for_timeout(100)

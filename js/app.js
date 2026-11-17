@@ -9,8 +9,8 @@
  * the saved-library panel) cannot stop the rest of the application loading.
  */
 
-import { $, today, plusDays, toast, toastError } from "./utils.js";
-import { DEFAULT_DUE_DAYS, APP_VERSION } from "./constants.js";
+import { $, today, toast, toastError } from "./utils.js";
+import { APP_VERSION } from "./constants.js";
 import * as TemplateRegistry from "./templates/template-registry.js";
 import modernTemplate from "./templates/modern.js";
 import minimalTemplate from "./templates/minimal.js";
@@ -34,7 +34,6 @@ import { initExportDialog } from "./editor/export-dialog.js";
 import { initPreviewEditing } from "./editor/preview-edit.js";
 import { initStatementGrabber } from "./editor/statement-grabber.js";
 import { fillMissingSummaries } from "./storage/invoice-library.js";
-import { readSettings } from "./settings-store.js";
 import { exportInvoicePDF } from "./print/pdf.js";
 import { unlockApp } from "./secure/lock.js";
 import { initPanels } from "./editor/panels.js";
@@ -77,8 +76,8 @@ function registerTemplates() {
 function seedDefaults() {
   applyLogoDefaults();
   $("invoiceDate").value = today();
-  const days = Number(readSettings().defaultDueDays);
-  $("dueDate").value = plusDays(today(), Number.isInteger(days) && days >= 0 ? days : DEFAULT_DUE_DAYS);
+  // The due date is left for the user to choose.
+  $("dueDate").value = "";
   setAccent(DEFAULT_ACCENT);
 }
 

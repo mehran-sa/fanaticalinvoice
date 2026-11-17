@@ -422,8 +422,11 @@ try:
         confirm(b)
         b.wait_for_selector("#appConfirmDialog[open]")
         check("sign-out offers to remove the local copy", "Remove" in b.text_content("#appConfirmAccept"))
-        b.click("#appConfirmAccept")
-        b.wait_for_load_state()
+        # The page reloads (and unlocks again: removing the local copy also
+        # forgets the remembered master password), so wait for that reload.
+        with b.expect_navigation():
+            b.click("#appConfirmAccept")
+        b.wait_for_selector("#appBar", state="visible")
         b.wait_for_timeout(600)
         check("removing the local copy leaves no invoices in that browser", numbers(b) == []
               and not b.evaluate("() => Object.keys(localStorage).some(k => k.startsWith('invoiceStudio.invoice.'))"))
