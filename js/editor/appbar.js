@@ -83,13 +83,12 @@ export function renderAppBar() {
   $("barNumber").textContent = number ? "Invoice " + number : "Invoice with no number";
 
   const stored = fieldValue("invoiceStatus") || "draft";
-  const shown = effectiveStatus({ status: stored, dueDate: fieldValue("dueDate") }, today());
+  const shown = effectiveStatus({ status: stored });
   const chip = $("statusBtn");
   chip.className = "status-chip " + shown;
   $("statusBtnText").textContent = STATUS_LABELS[shown];
-  chip.setAttribute("aria-label", `Status: ${STATUS_LABELS[shown]}${shown === "overdue" ? " (issued, past the due date)" : ""}. Change it`);
+  chip.setAttribute("aria-label", `Status: ${STATUS_LABELS[shown]}. Change it`);
   qsa("#statusMenu [data-status]").forEach(item => item.setAttribute("aria-checked", String(item.dataset.status === stored)));
-  $("paidDateField").hidden = stored !== "paid";
 
   const meta = readJSON(STORAGE_KEYS.cloudSync, {}) || {};
   const who = meta.email ? (meta.name || meta.email) : "";
@@ -155,19 +154,12 @@ export function initAppBar({ openPicker }) {
     return option;
   }));
 
-  // Paid needs a date: today, unless one is set.
-  $("invoiceStatus").addEventListener("change", () => {
-    if (fieldValue("invoiceStatus") === "paid" && !fieldValue("paidDate")) $("paidDate").value = today();
-    if (fieldValue("invoiceStatus") !== "paid") $("paidDate").value = "";
-    renderAppBar();
-  });
-
   let timer = null;
   const schedule = () => {
     clearTimeout(timer);
     timer = setTimeout(renderAppBar, 120);
   };
-  for (const id of ["invoiceNumber", "dueDate", "template"]) {
+  for (const id of ["invoiceNumber", "invoiceStatus", "template"]) {
     $(id)?.addEventListener("input", schedule);
     $(id)?.addEventListener("change", schedule);
   }

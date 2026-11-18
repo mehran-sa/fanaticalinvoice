@@ -65,12 +65,13 @@ test("an invoice's quarter: set by hand, else from its lines, else from its date
   assert.equal(P.invoicePeriod({ fields: { invoiceDate: "2026-11-17" }, items: [] }), "Q3-2026");
 });
 
-test("overdue is worked out from the due date; old invoices count as issued", () => {
-  assert.equal(P.effectiveStatus({ status: "issued", dueDate: "2026-11-01" }, "2026-11-17"), "overdue");
-  assert.equal(P.effectiveStatus({ status: "issued", dueDate: "2026-11-30" }, "2026-11-17"), "issued");
-  assert.equal(P.effectiveStatus({ status: "paid", dueDate: "2026-11-01" }, "2026-11-17"), "paid");
-  assert.equal(P.effectiveStatus({ status: "draft", dueDate: "2026-11-01" }, "2026-11-17"), "draft");
-  assert.equal(P.effectiveStatus({ dueDate: "2026-11-30" }, "2026-11-17"), "issued");
+test("an invoice is a draft or issued: no Paid or Overdue (payments are not tracked)", () => {
+  assert.equal(P.effectiveStatus({ status: "issued", dueDate: "2026-11-01" }), "issued");
+  assert.equal(P.effectiveStatus({ status: "paid", dueDate: "2026-11-01" }), "issued");
+  assert.equal(P.effectiveStatus({ status: "draft", dueDate: "2026-11-01" }), "draft");
+  assert.equal(P.effectiveStatus({ dueDate: "2026-11-30" }), "issued");
+  assert.deepEqual(P.STATUSES, ["draft", "issued"]);
+  assert.ok(!("paid" in P.STATUS_LABELS) && !("overdue" in P.STATUS_LABELS));
 });
 
 test("the PDF is named by academy, number and quarter", () => {

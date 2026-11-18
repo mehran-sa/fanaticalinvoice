@@ -1,13 +1,14 @@
 /**
  * The Invoices view.
  *
- * Quarter board: one row per academy for the chosen quarter, so it is clear at
- * a glance who is not started, in draft, issued, overdue or paid. Most
+ * Quarter board: one row per brand for the chosen quarter, so it is clear at
+ * a glance who is not started, in draft or issued. The app does not track
+ * payments. Most
  * invoicing tools are built for one seller and many clients; here there are
  * many academies and one main client, so the board is organised by academy.
  * Every Alison academy has a row; other academies have one when they have an
  * invoice in that quarter or the one before. Each row offers one next step:
- * Start, Continue, Mark as paid or Open.
+ * Start, Continue or Open.
  *
  * All invoices: every saved invoice, newest first, with search.
  */
@@ -20,7 +21,7 @@ import { money, dateFmt } from "../invoice/formatters.js";
 import { listInvoices } from "../storage/invoice-library.js";
 import { onInvoiceWritten } from "../storage/invoice-storage.js";
 import {
-  openInvoice, deleteInvoice, onDocumentsChange, startInvoiceFor, setInvoiceStatus
+  openInvoice, deleteInvoice, onDocumentsChange, startInvoiceFor
 } from "../documents.js";
 import { confirmAction } from "../ui/confirm-dialog.js";
 import { listAcademies, academyName, academyBadge } from "../academies.js";
@@ -29,20 +30,12 @@ import { applyTemplateBrand } from "../templates/alison/brand.js";
 import { showView, onViewChange, currentView } from "./appbar.js";
 import * as TemplateRegistry from "../templates/template-registry.js";
 
-const FILTERS = [["all", "All"], ["notstarted", "Not started"], ["draft", "Draft"], ["issued", "Issued"], ["overdue", "Overdue"], ["paid", "Paid"]];
+const FILTERS = [["all", "All"], ["notstarted", "Not started"], ["draft", "Draft"], ["issued", "Issued"]];
 
 const readView = () => ({ tab: "quarter", period: "", filter: "all", ...(readJSON(STORAGE_KEYS.boardView, {}) || {}) });
 const saveView = patch => writeJSON(STORAGE_KEYS.boardView, { ...readView(), ...patch });
 
 const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
-
-/** Sums by currency: "€4,248.35 + £120.00". */
-function sumText(entries) {
-  const by = new Map();
-  for (const e of entries) by.set(e.currency || "GBP", (by.get(e.currency || "GBP") || 0) + e.total);
-  if (!by.size) return money(0, "EUR");
-  return [...by].map(([currency, total]) => money(total, currency)).join(" + ");
-}
 
 const button = (label, className, onClick, ariaLabel = "") => {
   const b = document.createElement("button");
@@ -92,7 +85,7 @@ function rowsFor(period, all) {
   for (const entry of inPeriod.filter(e => !e.template || !TemplateRegistry.has(e.template))) {
     if (!ids.has(entry.template)) rows.push({ academy: { id: entry.template, name: entry.company || "No template", group: "general" }, entry, status: effectiveStatus(entry, t) });
   }
-  const order = { overdue: 0, draft: 1, notstarted: 2, issued: 3, paid: 4 };
+  const order = { draft: 0, notstarted: 1, issued: 2 };
   return rows.sort((a, b) => order[a.status] - order[b.status] || a.academy.name.localeCompare(b.academy.name));
 }
 
@@ -138,8 +131,7 @@ function boardRow({ academy, entry, status }, period) {
   if (entry) {
     const parts = [];
     if (entry.invoiceDate) parts.push((status === "draft" ? "Dated " : "Issued ") + dateFmt(entry.invoiceDate));
-    if (status === "paid" && entry.paidDate) parts.push("paid " + dateFmt(entry.paidDate));
-    else if (entry.dueDate) parts.push((status === "overdue" ? "was due " : "due ") + dateFmt(entry.dueDate));
+    if (entry.dueDate) parts.push("due " + dateFmt(entry.dueDate));
     dates.textContent = parts.join(", ");
   } else {
     dates.textContent = "—";
@@ -160,12 +152,6 @@ function boardRow({ academy, entry, status }, period) {
     actions.appendChild(button(`Start ${period}`, "btn small", () => startFor(academy.id, period), `Start ${label}'s ${period} invoice`));
   } else if (status === "draft") {
     actions.appendChild(button("Continue", "btn primary small", () => open(entry.id), `Continue ${label} invoice ${entry.number}`));
-  } else if (status === "issued" || status === "overdue") {
-    actions.appendChild(button("Mark as paid", "btn small", () => {
-      setInvoiceStatus(entry.id, "paid");
-      toast(`${label} invoice ${entry.number} marked as paid.`);
-    }, `Mark ${label} invoice ${entry.number} as paid`));
-    actions.appendChild(button("Open", "btn small", () => open(entry.id), `Open ${label} invoice ${entry.number}`));
   } else {
     actions.appendChild(button("Open", "btn small", () => open(entry.id), `Open ${label} invoice ${entry.number}`));
   }
@@ -190,33 +176,13 @@ function renderBoard() {
 
   const rows = rowsFor(period, all);
   const counts = Object.fromEntries(FILTERS.map(([key]) => [key, key === "all" ? rows.length : rows.filter(r => r.status === key).length]));
-  const invoiced = rows.filter(r => r.entry && r.status !== "draft").map(r => r.entry);
-  const paid = rows.filter(r => r.status === "paid").map(r => r.entry);
-  const waiting = rows.filter(r => r.status === "issued" || r.status === "overdue").map(r => r.entry);
-  const overdue = rows.filter(r => r.status === "overdue").map(r => r.entry);
   const academiesDone = new Set(rows.filter(r => r.entry && r.status !== "draft").map(r => r.academy.id)).size;
   const academiesAll = new Set(rows.map(r => r.academy.id)).size;
 
   $("boardTitle").textContent = view.tab === "all" ? "All invoices" : `${period} invoices`;
   $("boardSub").textContent = view.tab === "all"
     ? `${plural(all.length, "saved invoice")}, newest first.`
-    : `${academiesDone} of ${plural(academiesAll, "brand")} invoiced. Overdue is worked out from each due date, today ${dateFmt(today())}.`;
-
-  const stat = (label, value, sub, warn = false) => {
-    const box = document.createElement("div");
-    box.className = "board-stat" + (warn ? " warn" : "");
-    box.innerHTML = `<div class="board-stat-label"></div><div class="board-stat-value"></div><div class="board-stat-sub"></div>`;
-    box.children[0].textContent = label;
-    box.children[1].textContent = value;
-    box.children[2].textContent = sub;
-    return box;
-  };
-  $("boardSummary").replaceChildren(
-    stat("Invoiced", sumText(invoiced), plural(invoiced.length, "invoice")),
-    stat("Paid", sumText(paid), plural(paid.length, "invoice")),
-    stat("Waiting for payment", sumText(waiting), overdue.length ? `${overdue.length} overdue` : "None overdue", overdue.length > 0),
-    stat("Not started", String(counts.notstarted), counts.draft ? `${plural(counts.draft, "draft")} in progress` : "No drafts")
-  );
+    : `${academiesDone} of ${plural(academiesAll, "brand")} invoiced.`;
 
   const filter = FILTERS.some(([k]) => k === view.filter) ? view.filter : "all";
   $("boardFilters").replaceChildren(...FILTERS.map(([key, label]) => {

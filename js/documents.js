@@ -59,7 +59,7 @@ function freshDates() {
   return { invoiceDate: today(), dueDate: "" };
 }
 
-/** A new invoice starts as a draft, not paid, for the quarter its lines name. */
+/** A new invoice starts as a draft, for the quarter its lines name. */
 function freshStatus(fields) {
   fields.invoiceStatus = "draft";
   fields.paidDate = "";
@@ -170,14 +170,13 @@ export function startInvoiceFor(template, { period = "" } = {}) {
 }
 
 /**
- * Sets an invoice's status: draft, issued or paid (with today as the paid
- * date). The open invoice is changed in the editor (so Undo works); any
+ * Sets an invoice's status: draft or issued. The open invoice is changed in the editor (so Undo works); any
  * other saved invoice is changed where it is stored.
  */
-export function setInvoiceStatus(id, status, { paidDate = today() } = {}) {
+export function setInvoiceStatus(id, status) {
   if (id === state.invoiceId) {
     setFieldValue("invoiceStatus", status);
-    setFieldValue("paidDate", status === "paid" ? (fieldValue("paidDate") || paidDate) : "");
+    setFieldValue("paidDate", "");
     saveInvoice();
     $statusListeners.forEach(fn => fn());
     notifyDocumentsChanged();
@@ -187,7 +186,7 @@ export function setInvoiceStatus(id, status, { paidDate = today() } = {}) {
   const entry = listInvoices().find(e => e.id === id);
   if (!snapshot || !entry) return false;
   snapshot.fields.invoiceStatus = status;
-  snapshot.fields.paidDate = status === "paid" ? (snapshot.fields.paidDate || paidDate) : "";
+  snapshot.fields.paidDate = "";
   const { invoiceId, ...data } = snapshot;
   const { id: _id, updatedAt, ...summary } = entry;
   const saved = saveInvoiceRecord(id, data, { ...summary, ...summaryDetails(data) });

@@ -579,12 +579,16 @@ try:
         check("reset text clears text but keeps amounts and invoice number",
               s["fields"]["companyName"] == "" and s["fields"]["invoiceNumber"] == "INV-PDF"
               and page.text_content("#pSubtotal") == "£25.00")
-        page.click("#statusBtn"); page.click('#statusMenu [data-status="paid"]'); page.wait_for_timeout(150)
-        check("the status menu in the top bar marks an invoice as paid, with today's date",
-              page.input_value("#invoiceStatus") == "paid" and page.text_content("#statusBtnText") == "Paid"
-              and page.input_value("#paidDate") != "" and page.locator('[data-section="status"]').count() == 0)
+        page.click("#statusBtn")
+        check("the status menu offers Draft and Issued only (payments are not tracked)",
+              page.eval_on_selector_all("#statusMenu [data-status]", "m => m.map(x => x.dataset.status)") == ["draft", "issued"]
+              and page.locator("#invoiceStatus option[value=paid], #paidDateField").count() == 0)
+        page.click('#statusMenu [data-status="issued"]'); page.wait_for_timeout(150)
+        check("the status menu in the top bar marks an invoice as issued",
+              page.input_value("#invoiceStatus") == "issued" and page.text_content("#statusBtnText") == "Issued"
+              and page.locator('[data-section="status"]').count() == 0)
         page.click("#statusBtn"); page.click('#statusMenu [data-status="draft"]'); page.wait_for_timeout(150)
-        check("and back to draft (the paid date is cleared)", page.input_value("#invoiceStatus") == "draft" and page.input_value("#paidDate") == "")
+        check("and back to draft", page.input_value("#invoiceStatus") == "draft")
 
         # ---- saved invoices
         tpl_before = snapshot()["fields"]["template"]
@@ -768,7 +772,7 @@ try:
         page.click("#zoomIn"); page.click("#showEdit"); page.set_viewport_size({"width": 1400, "height": 900}); page.wait_for_timeout(150)
         go(page, "settings")
         check("Settings says where invoices are kept", "Saved only in this browser" in page.text_content("#privacyNoticeText")
-              and "2.15.3" in page.text_content("#appVersionText"))
+              and "2.15.5" in page.text_content("#appVersionText"))
         go(page, "editor")
         page.evaluate("() => localStorage.removeItem('invoiceStudio.lastBackupAt')"); page.reload(); page.wait_for_timeout(400)
         page.click("#backupLaterBtn"); page.reload(); page.wait_for_timeout(400)

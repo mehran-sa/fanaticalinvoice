@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SA Invoice Generator</title>
 <meta name="application-name" content="SA Invoice Generator">
-<meta name="sa-app-version" content="2.15.3">
+<meta name="sa-app-version" content="2.15.5">
 <meta name="description" content="SA Invoice Generator: create, print and export invoices in your browser. Data stays on this device, or syncs to your own Google Drive if you sign in.">
 <!-- Policy: scripts, styles, fonts and images load from this app or from
      embedded data. The only outside connections allowed are Google sign-in
@@ -196,7 +196,6 @@
         <div class="menu" id="statusMenu" role="menu" aria-label="Status" hidden>
           <button class="menu-item" type="button" role="menuitemradio" aria-checked="true" data-status="draft">Draft<span class="menu-sub">Still being written</span></button>
           <button class="menu-item" type="button" role="menuitemradio" aria-checked="false" data-status="issued">Issued<span class="menu-sub">Sent to the client</span></button>
-          <button class="menu-item" type="button" role="menuitemradio" aria-checked="false" data-status="paid">Paid<span class="menu-sub">Money received</span></button>
         </div>
       </div>
     </div>
@@ -262,9 +261,9 @@
         <div class="field"><label for="invoiceDate">Invoice date</label><input id="invoiceDate" type="date"></div>
         <div class="field"><label for="dueDate">Due date</label><input id="dueDate" type="date" aria-describedby="dueDateWarning"><div class="hint field-warning" id="dueDateWarning" role="status" hidden>The due date is before the invoice date.</div></div>
         <div class="field full due-presets" role="group" aria-labelledby="duePresetsLabel"><span class="due-presets-label" id="duePresetsLabel">Due in</span><button class="chip" type="button" data-due-days="0">On receipt</button><button class="chip" type="button" data-due-days="7">7 days</button><button class="chip" type="button" data-due-days="14">14 days</button><button class="chip" type="button" data-due-days="15">15 days</button><button class="chip" type="button" data-due-days="30">30 days</button></div>
-        <div class="field"><label for="invoiceStatus">Status</label><select id="invoiceStatus"><option value="draft" selected>Draft</option><option value="issued">Issued</option><option value="paid">Paid</option></select></div>
+        <div class="field"><label for="invoiceStatus">Status</label><select id="invoiceStatus"><option value="draft" selected>Draft</option><option value="issued">Issued</option></select></div>
         <div class="field"><label for="reference">Reference / PO</label><input id="reference"></div>
-        <div class="field" id="paidDateField"><label for="paidDate">Paid on</label><input id="paidDate" type="date"></div>
+        <input id="paidDate" type="hidden">
       </div>
     </div>
     </details>
@@ -571,7 +570,6 @@
       </div>
     </div>
     <div id="boardQuarter" role="tabpanel" aria-labelledby="boardTabQuarter">
-      <div class="board-summary" id="boardSummary"></div>
       <div class="board-filters" id="boardFilters" role="group" aria-label="Show only"></div>
       <div class="board-list" id="boardRows" role="list"></div>
     </div>

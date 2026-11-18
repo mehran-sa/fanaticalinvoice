@@ -10,7 +10,7 @@ Lines can be pasted from Excel, and Alison designs with only Description and
 Amount get just those boxes. Clicking the preview goes to the field. Check
 and export flags a line that repeats the total, names the PDF and marks the
 invoice as issued. The invoices board shows each academy's status for a
-quarter (overdue worked out from the due date) and marks invoices as paid.
+quarter (draft, issued or not started; payments are not tracked).
 """
 
 import os, re, subprocess, sys, time, datetime
@@ -172,7 +172,7 @@ try:
         check("the print document carries the file name", title == "Janets-Alison_2026-11005_Q3-2026", str(title))
         page.wait_for_timeout(200)
         check("exporting marks the invoice as issued", page.input_value("#invoiceStatus") == "issued"
-              and page.text_content("#statusBtnText") in ("Issued", "Overdue"))
+              and page.text_content("#statusBtnText") == "Issued")
 
         # ---- Alison Statement Grabber: paste a payout statement, choose the lines
         statement = " Q2-2026 Payout \n\n\n\nOpening Balance: €29,000.00\nQ2-2026 Earnings: €8,200.77\n\n*Less Publishing Costs Recouped: €0.00\nClosing Balance: €37,200.77\n\n\nProposed Payment: €37,200.77\n"
@@ -268,16 +268,17 @@ try:
         check("the board is for a quarter", page.text_content("#boardTitle") == "Q3-2026 invoices")
         janets = page.locator('.board-row[data-academy="alison-janets"]')
         status_of = lambda academy: page.locator(f'.board-row[data-academy="{academy}"] .status-chip').first.text_content()
-        overdue = today > "2026-11-20"
-        check("Janets' Q3 invoice is issued (or overdue after its due date)",
-              status_of("alison-janets") == ("Overdue" if overdue else "Issued"), status_of("alison-janets"))
+        check("Janets' Q3 invoice is issued", status_of("alison-janets") == "Issued", status_of("alison-janets"))
+        check("the board has no payment summary, Paid or Overdue (payments are not tracked)",
+              page.locator("#boardSummary, .board-stat").count() == 0
+              and [c for c in page.eval_on_selector_all(".filter-chip", "c => c.map(x => x.dataset.filter)")] == ["all", "notstarted", "draft", "issued"]
+              and janets.locator("button", has_text="Mark as paid").count() == 0
+              and "Overdue" not in page.text_content("#boardSub"), page.text_content("#boardSub"))
+        gap = page.evaluate("() => document.getElementById('boardRows').getBoundingClientRect().top - document.getElementById('boardFilters').getBoundingClientRect().bottom")
+        check("the filters and the list have the same 16px space as the rest of the board", abs(gap - 16) < 1, str(gap))
         check("academies with no Q3 invoice are Not started, with Start", status_of("alison-mayfair") == "Not started"
               and page.locator('.board-row[data-academy="alison-mayfair"] button', has_text="Start Q3-2026").count() == 1)
         check("every Alison academy has a row", page.locator(".board-row").count() >= 18)
-        janets.locator("button", has_text="Mark as paid").click()
-        page.wait_for_timeout(300)
-        check("Mark as paid on the board", status_of("alison-janets") == "Paid"
-              and [e for e in index() if e["number"] == "2026-11005" and e["template"] == "alison-janets"][0]["paidDate"] == today)
         page.click('.filter-chip[data-filter="notstarted"]')
         check("filters show only one status", all(t == "Not started" for t in page.eval_on_selector_all(".board-row .status-chip", "c => c.map(x => x.textContent)")))
         page.click('.filter-chip[data-filter="all"]')
@@ -292,11 +293,11 @@ try:
               page.evaluate("() => document.body.dataset.view") == "editor" and page.input_value("#template") == "alison-mayfair"
               and page.input_value("#invoicePeriod") == "Q4-2026" and page.input_value("#companyName") != "")
 
-        # ---- overdue is worked out from the due date
+        # ---- no Overdue: an issued invoice past its due date is still Issued
         page.fill("#invoiceDate", "2026-01-01"); page.fill("#dueDate", "2026-01-15")
         page.click("#statusBtn"); page.click('#statusMenu [data-status="issued"]')
         page.wait_for_timeout(300)
-        check("an issued invoice past its due date shows Overdue", page.text_content("#statusBtnText") == "Overdue")
+        check("an issued invoice past its due date still shows Issued", page.text_content("#statusBtnText") == "Issued")
 
         # ---- All invoices, and the view in the address
         page.click("#navInvoices")

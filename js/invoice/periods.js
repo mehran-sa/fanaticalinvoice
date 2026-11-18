@@ -91,23 +91,23 @@ export function invoicePeriod(snapshot) {
 
 /* ------------------------------------------------------------ status */
 
-export const STATUSES = ["draft", "issued", "paid"];
-export const STATUS_LABELS = {
-  notstarted: "Not started", draft: "Draft", issued: "Issued", overdue: "Overdue", paid: "Paid"
-};
+/**
+ * An invoice is a draft or issued. The app does not track payments, so there
+ * is no Paid or Overdue: an invoice saved as "paid" by 2.14 to 2.15.3 counts
+ * as issued, as do invoices saved before 2.14.0 (which have no status).
+ */
+export const STATUSES = ["draft", "issued"];
+export const STATUS_LABELS = { notstarted: "Not started", draft: "Draft", issued: "Issued" };
 
-/** A stored status; invoices saved before 2.14.0 have none and count as issued. */
-export const storedStatus = value => (STATUSES.includes(value) ? value : "issued");
+/** A stored status, as one of STATUSES. */
+export const storedStatus = value => (value === "draft" ? "draft" : "issued");
 
 /**
- * What the board shows: an issued invoice past its due date is overdue.
- * @param {{status?: string, dueDate?: string}} entry
- * @param {string} todayIso
+ * The status the app shows (kept as a function so callers need not change).
+ * @param {{status?: string}} entry
  */
-export function effectiveStatus(entry, todayIso) {
-  const status = storedStatus(entry?.status);
-  if (status === "issued" && /^\d{4}-\d{2}-\d{2}$/.test(entry?.dueDate || "") && entry.dueDate < todayIso) return "overdue";
-  return status;
+export function effectiveStatus(entry) {
+  return storedStatus(entry?.status);
 }
 
 /* ---------------------------------------------------------- file name */
